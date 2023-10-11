@@ -1,0 +1,16 @@
+.activity-list {
+    margin: 16px;;
+}
+
+.activity-cell {
+    background-color: white;
+    font-size: large;
+    padding: 16px;
+    width: 70%;
+    border: solid gray thin;
+    border-radius: 8px;
+    background-color:white;
+    text-align: left;
+}
+  
+  

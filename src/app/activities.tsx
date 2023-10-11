@@ -1,5 +1,6 @@
 'use client';
-// import styles from './page.module.css'
+import styles from './activities.module.css'
+// import './activities.module.css'
 import { useState } from 'react';
 
 export class Activity {
@@ -14,8 +15,8 @@ export class Activity {
 
 export function ActivitiesScene({ activities }: { activities: Array<Activity> }) {
     const activityItems = activities.map((val, index) => 
-    <li key={val.name}>
-      <button onClick={() => handleClick(val)}>
+    <li className={styles['activity-list']} key={val.name}>
+      <button className={styles['activity-cell']} onClick={() => handleClick(val)}>
         {val.name} - {val.description}
       </button>
     </li>

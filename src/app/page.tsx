@@ -1,8 +1,6 @@
 // import Image from 'next/image'
-import styles from './page.module.css'
-
 'use client';
-
+import styles from './page.module.css'
 import { Activity, ActivitiesScene } from './activities';
 
 const activities = [
@@ -30,7 +28,9 @@ export default function Home() {
 
 function NavigationBar() {
   return (
-    <h1>CheckPoint</h1>
+    <div className={styles["navbar"]}>
+        <h1 className={styles["navbar-title"]}>CheckPoint</h1>
+    </div>
   );
 }
 
