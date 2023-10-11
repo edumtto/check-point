@@ -2,6 +2,7 @@
 'use client';
 import styles from './page.module.css'
 import { Activity, ActivitiesScene } from './activities';
+import { useState } from 'react';
 
 const activities = [
   new Activity("Zumba", "Dance class."),
@@ -10,18 +11,21 @@ const activities = [
 
 export default function Home() {
   
-  // if (selectedActivity.activity != null) {
-  //   return (
-  //     <main>
-  //       <NavigationBar />
-  //       <p>Activity {selectedActivity.activity.name}</p>
-  //     </main>
-  //   )
-  // }
+  const nullActivity = new Activity("", "");
+  const [ selectedActivity, setSelectedActivity ] = useState(nullActivity);
+
+  if (selectedActivity.name != "") {
+    return (
+      <main>
+        <NavigationBar />
+        <p>Activity {selectedActivity.name}</p>
+      </main>
+    )
+  }
   return (
     <main>
       <NavigationBar />
-      <ActivitiesScene activities={activities} />
+      <ActivitiesScene activities={activities} setSelectedActivity={setSelectedActivity}/>
     </main>
   );
 }

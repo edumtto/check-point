@@ -1,7 +1,5 @@
 'use client';
 import styles from './activities.module.css'
-// import './activities.module.css'
-import { useState } from 'react';
 
 export class Activity {
   name: string;
@@ -13,23 +11,17 @@ export class Activity {
   }
 }
 
-export function ActivitiesScene({ activities }: { activities: Array<Activity> }) {
-    const activityItems = activities.map((val, index) => 
+export function ActivitiesScene({ activities, setSelectedActivity}: { activities: Array<Activity>, setSelectedActivity: (value: Activity) => void}) {
+
+  const activityItems = activities.map((val, index) => 
     <li className={styles['activity-list']} key={val.name}>
-      <button className={styles['activity-cell']} onClick={() => handleClick(val)}>
+      <button className={styles['activity-cell']} onClick={() => setSelectedActivity(val)}>
         {val.name} - {val.description}
       </button>
     </li>
-   );
-    return (
-      <ul>{activityItems}</ul>
-    );
-  }
-  
-  function handleClick(activity: Activity) {
-    console.log(activity);
-    //setSelectedActivity({ activity: activity });
-  }
+  );
 
-
-// const [selectedActivity, setSelectedActivity] = useState<{ activity: null | Activity }>({activity: null});
+  return (
+    <ul>{activityItems}</ul>
+  );
+}
