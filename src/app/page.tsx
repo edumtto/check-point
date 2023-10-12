@@ -1,7 +1,7 @@
 // import Image from 'next/image'
 'use client';
 import styles from './page.module.css'
-import { Activity, ActivitiesScene } from './activities';
+import { Activity, ActivitiesScene } from './activities/activities';
 import { useState } from 'react';
 
 const activities = [
