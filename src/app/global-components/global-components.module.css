@@ -24,3 +24,7 @@
     height: 42px;
     border-radius: 100%;
 }
+
+.back-button img {
+    padding: 10px;
+}

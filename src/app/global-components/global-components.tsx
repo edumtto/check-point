@@ -1,4 +1,5 @@
 import styles from './global-components.module.css'
+import Image from 'next/image'
 
 export function NavigationBar() {
     return (
@@ -10,7 +11,9 @@ export function NavigationBar() {
 
 export function BackButton({ onClick }:{ onClick: () => void}) {
     return (
-        <button className={styles['back-button']} onClick={onClick}>Back</button> 
+        <button className={styles['back-button']} onClick={onClick}>
+            <Image src='/arrow-left-solid.svg' alt='back' width={22} height={22}/>
+        </button> 
     )
 }
 
