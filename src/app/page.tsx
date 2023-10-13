@@ -4,6 +4,7 @@ import styles from './page.module.css'
 import { v4 as uuidv4 } from 'uuid';
 import { Activity, ActivitiesScene } from './activities/activities';
 import { Participant, ParticipantsScene } from './participants/participants';
+import { NavigationBar, SceneHeader } from './global-components/global-components';
 import { useState } from 'react';
 
 
@@ -29,24 +30,24 @@ export default function Home() {
     return (
       <main>
         <NavigationBar />
-        <ParticipantsScene activity={selectedActivity} participants={participantsDB} setSelectedActivity={setSelectedActivity} />
+        <SceneHeader title={selectedActivity.name} showBackButton={true} handleBackButtonClick={handleBackButtonClick}/>
+        <ParticipantsScene activity={selectedActivity} participants={participantsDB} />
       </main>
     )
   }
   return (
     <main>
       <NavigationBar />
+      <SceneHeader title='Activities' />
       <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity}/>
     </main>
   );
+
+  function handleBackButtonClick() {
+      setSelectedActivity(nullActivity);
+  }
 }
 
-function NavigationBar() {
-  return (
-    <div className={styles["navbar"]}>
-        <h1 className={styles["navbar-title"]}>CheckPoint</h1>
-    </div>
-  );
-}
+
 
 

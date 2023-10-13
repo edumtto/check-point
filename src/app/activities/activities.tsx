@@ -22,6 +22,8 @@ export function ActivitiesScene({ activities, setSelectedActivity}: { activities
   );
 
   return (
-    <ul>{activityItems}</ul>
+    <div className='content'>
+      <ul>{activityItems}</ul>
+    </div>
   );
 }

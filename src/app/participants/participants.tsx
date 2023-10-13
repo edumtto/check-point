@@ -14,18 +14,16 @@ export class Participant {
     }  
 }
 
-export function ParticipantsScene({ activity, participants, setSelectedActivity}:{activity: Activity, participants: Array<Participant>, setSelectedActivity: (value: Activity) => void}) {
+export function ParticipantsScene({ activity, participants}:{activity: Activity, participants: Array<Participant>}) {
     if (participants.length == 0) {
         return (
             <div>
-            <h3>{activity.name}</h3>
             <p>No participants registered.</p>
         </div>
         )
     }
     return (
         <div>
-            <h3>{activity.name}</h3>
             <p>{participants.length} participants</p>
             <ul>
             {participants.map( (p) => <li key={p.id}>{p.id} - {p.name}</li>)}
