@@ -9,8 +9,8 @@ import { useState } from 'react';
 
 
 const activitiesDB = [
-  new Activity("Zumba", "Dance class."),
-  new Activity("Chair-a-cise", "Exercise in chair.")
+  new Activity("Zumba", "Latin music dance class.", new Date(2023, 10, 17, 14, 15, 0, 0), 60),
+  new Activity("Chair-a-cise", "Exercises in a chair.", new Date(2023, 10, 18, 11, 15, 0, 0), 60)
 ];
 
 const participantsDB = [
@@ -23,7 +23,7 @@ const participantsDB = [
 
 export default function Home() {
   
-  const nullActivity = new Activity("", "");
+  const nullActivity = new Activity("", "", new Date(), 0);
   const [ selectedActivity, setSelectedActivity ] = useState(nullActivity);
 
   if (selectedActivity.name != "") {
@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <main>
       <NavigationBar />
-      <SceneHeader title='Activities' />
+      <SceneHeader title='Activities'/>
       <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity}/>
     </main>
   );

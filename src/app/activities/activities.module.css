@@ -1,11 +1,13 @@
-.activity-list {
-    margin: 16px;;
+.activity-item {
+    margin: 8px 16px 8px 16px;
+    display: flex;
+    align-items: center;
 }
 
-.activity-cell {
+.activity-content {
     background-color: white;
     font-size: large;
-    padding: 16px;
+    padding: 8px;
     width: 70%;
     border: solid gray thin;
     border-radius: 8px;
@@ -13,4 +15,11 @@
     text-align: left;
 }
   
-  
+.activity-content:hover {
+    background-color: lightblue;
+    box-shadow: 1px 1px 5px rgba(0, 0, 255, 0.295);
+}
+
+.activity-time {
+    margin: 0px 8px 0px 0px;
+}
