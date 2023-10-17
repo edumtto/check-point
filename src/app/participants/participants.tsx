@@ -14,19 +14,30 @@ export class Participant {
     }  
 }
 
+function ParticipantItem({ participant }:{ participant: Participant }) {
+    return (
+        <li key={participant.id} onClick={ () => alert(participant.name)}>
+            {participant.name}
+        </li>
+    )
+}
+
 export function ParticipantsScene({ activity, participants}:{activity: Activity, participants: Array<Participant>}) {
     if (participants.length == 0) {
         return (
             <div>
-            <p>No participants registered.</p>
-        </div>
+                <p>No participants registered.</p>
+            </div>
         )
     }
+
+    let items = participants.map( (p) => <ParticipantItem participant={p} />)
+
     return (
-        <div>
+        <div className={styles["participants-content"]}>
             <p>{participants.length} participants</p>
-            <ul>
-            {participants.map( (p) => <li key={p.id}>{p.id} - {p.name}</li>)}
+            <ul className={styles["participant-list"]}>
+            {items}
             </ul>
             
         </div>

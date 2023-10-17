@@ -16,29 +16,25 @@ export class Activity {
   }
 }
 
-// function ActivityCellContent(activity: Activity) {
-//   return (
-//     <div>
-
-//     </div>
-//   )
-// }
+function ActivityItem({ activity, setSelectedActivity}: { activity: Activity, setSelectedActivity: (value: Activity) => void}) {
+  return (
+    <li className={styles['activity-item']} key={activity.name}>
+      <p className={styles['activity-time']}>{activity.dateTime.getHours()}:{activity.dateTime.getMinutes()}</p>
+      <button className={styles['activity-content']} onClick={() => setSelectedActivity(activity)}>
+        <h4>{activity.name}</h4>
+        <p>{activity.description}</p>
+      </button>
+    </li>
+  )
+}
 
 export function ActivitiesScene({ activities, setSelectedActivity}: { activities: Array<Activity>, setSelectedActivity: (value: Activity) => void}) {
 
   const activityItems = activities.map((val, index) => 
-    <li className={styles['activity-item']} key={val.name}>
-      <p className={styles['activity-time']}>{val.dateTime.getHours()}:{val.dateTime.getMinutes()}</p>
-      <button className={styles['activity-content']} onClick={() => setSelectedActivity(val)}>
-        <h4>{val.name}</h4>
-        <p>{val.description}</p>
-      </button>
-    </li>
+    <ActivityItem activity={val} setSelectedActivity={setSelectedActivity}/>
   );
 
   return (
-    <div className='content'>
       <ul>{activityItems}</ul>
-    </div>
   );
 }

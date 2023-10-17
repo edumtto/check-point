@@ -8,11 +8,15 @@
     background-color: white;
     font-size: large;
     padding: 8px;
-    width: 70%;
-    border: solid gray thin;
+    /* width: 70%; */
+    /* border: solid rgb(220, 220, 220) thin; */
     border-radius: 8px;
     background-color:white;
     text-align: left;
+}
+
+.activity-content p {
+    font-size: large;
 }
   
 .activity-content:hover {
@@ -22,4 +26,5 @@
 
 .activity-time {
     margin: 0px 8px 0px 0px;
+    font-size: large;
 }

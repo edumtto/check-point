@@ -1,0 +1,29 @@
+.participants-content {
+    margin: 8px 16px 8px 16px;
+}
+
+.participant-list {
+    background-color: white;
+    margin-top: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+.participant-list li{
+    padding: 8px;
+}
+
+.participant-list li:hover{
+    background-color: lightblue;
+    box-shadow: 1px 1px 5px rgba(0, 0, 255, 0.295);
+}
+
+.participant-list li:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+}
+
+.participant-item {
+    padding: 8px;
+    background-color: lightblue;
+}
