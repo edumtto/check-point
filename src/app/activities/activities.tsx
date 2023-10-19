@@ -16,7 +16,7 @@ export class Activity {
   }
 }
 
-function ActivityItem({ activity, setSelectedActivity}: { activity: Activity, setSelectedActivity: (value: Activity) => void}) {
+function ActivityItem({ activity, setSelectedActivity }: { activity: Activity, setSelectedActivity: (value: Activity) => void }) {
   return (
     <li className={styles['activity-item']} key={activity.name}>
       <p className={styles['activity-time']}>{activity.dateTime.getHours()}:{activity.dateTime.getMinutes()}</p>
@@ -28,13 +28,13 @@ function ActivityItem({ activity, setSelectedActivity}: { activity: Activity, se
   )
 }
 
-export function ActivitiesScene({ activities, setSelectedActivity}: { activities: Array<Activity>, setSelectedActivity: (value: Activity) => void}) {
+export function ActivitiesScene({ activities, setSelectedActivity }: { activities: Array<Activity>, setSelectedActivity: (value: Activity) => void }) {
 
-  const activityItems = activities.map((val, index) => 
-    <ActivityItem activity={val} setSelectedActivity={setSelectedActivity}/>
+  const activityItems = activities.map((val, index) =>
+    <ActivityItem activity={val} setSelectedActivity={setSelectedActivity} />
   );
 
   return (
-      <ul>{activityItems}</ul>
+    <ul>{activityItems}</ul>
   );
 }

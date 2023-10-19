@@ -1,5 +1,6 @@
 import styles from './global-components.module.css'
 import Image from 'next/image'
+import { useState } from 'react';
 
 export function NavigationBar() {
     return (
@@ -32,4 +33,18 @@ export function SceneHeader(
             <h2 className={styles["header-title"]}>{title}</h2>
         </div>
     );
+}
+
+export function ModalBox({ children, hidden, onClose }:{ children: JSX.Element, hidden: Boolean, onClose: () => void}) {
+    if (hidden) {
+        return <>hidden</>;
+    }
+    return (
+        <div className={styles["modal"]}>
+            <div className={styles["modal-content"]}>
+                <button className={styles["close-modal"]} onClick={onClose}>x</button>
+                {children}
+            </div>
+        </div>
+    )
 }

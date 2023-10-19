@@ -3,7 +3,7 @@
 import styles from './page.module.css'
 import { v4 as uuidv4 } from 'uuid';
 import { Activity, ActivitiesScene } from './activities/activities';
-import { Participant, ParticipantsScene } from './participants/participants';
+import { Participant, ParticipantsScene, PersonName } from './participants/participants';
 import { NavigationBar, SceneHeader } from './global-components/global-components';
 import { useState } from 'react';
 
@@ -14,11 +14,11 @@ const activitiesDB = [
 ];
 
 const participantsDB = [
-  new Participant(uuidv4(), "Maria"),
-  new Participant(uuidv4(), "Robert"),
-  new Participant(uuidv4(), "James"),
-  new Participant(uuidv4(), "Olivia"),
-  new Participant(uuidv4(), "Marc")
+  new Participant(uuidv4(), new PersonName("Maria", "", "Gomez")),
+  new Participant(uuidv4(), new PersonName("Robert", "", "Rodriguez")),
+  new Participant(uuidv4(), new PersonName("James", "", "Smith")),
+  new Participant(uuidv4(), new PersonName("Olivia", "", "Rodrigo")),
+  new Participant(uuidv4(), new PersonName("Marc", "", "Lopes"))
 ];
 
 export default function Home() {
