@@ -11,14 +11,14 @@
     /* width: 70%; */
     /* border: solid rgb(220, 220, 220) thin; */
     border-radius: 8px;
-    background-color:white;
+    background-color: white;
     text-align: left;
 }
 
 .activity-content p {
     font-size: large;
 }
-  
+
 .activity-content:hover {
     background-color: lightblue;
     box-shadow: 1px 1px 5px rgba(0, 0, 255, 0.295);

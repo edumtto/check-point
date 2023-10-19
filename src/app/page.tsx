@@ -22,15 +22,15 @@ const participantsDB = [
 ];
 
 export default function Home() {
-  
+
   const nullActivity = new Activity("", "", new Date(), 0);
-  const [ selectedActivity, setSelectedActivity ] = useState(nullActivity);
+  const [selectedActivity, setSelectedActivity] = useState(nullActivity);
 
   if (selectedActivity.name != "") {
     return (
       <main>
         <NavigationBar />
-        <SceneHeader title={selectedActivity.name} showBackButton={true} handleBackButtonClick={handleBackButtonClick}/>
+        <SceneHeader title={selectedActivity.name} showBackButton={true} handleBackButtonClick={handleBackButtonClick} />
         <ParticipantsScene activity={selectedActivity} participants={participantsDB} />
       </main>
     )
@@ -38,13 +38,13 @@ export default function Home() {
   return (
     <main>
       <NavigationBar />
-      <SceneHeader title='Activities'/>
-      <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity}/>
+      <SceneHeader title='Activities' />
+      <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity} />
     </main>
   );
 
   function handleBackButtonClick() {
-      setSelectedActivity(nullActivity);
+    setSelectedActivity(nullActivity);
   }
 }
 

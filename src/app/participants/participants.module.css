@@ -10,11 +10,11 @@
 }
 
 
-.participant-list li{
+.participant-list li {
     padding: 8px;
 }
 
-.participant-list li:hover{
+.participant-list li:hover {
     background-color: lightblue;
     box-shadow: 1px 1px 5px rgba(0, 0, 255, 0.295);
 }
