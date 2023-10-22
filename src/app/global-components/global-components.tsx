@@ -1,6 +1,7 @@
 import styles from './global-components.module.css'
 import Image from 'next/image'
 import { useState } from 'react';
+import classNames from 'classnames';
 
 export function NavigationBar() {
     return (
@@ -39,9 +40,11 @@ export function ModalBox({ children, hidden, onClose }:{ children: JSX.Element, 
     if (hidden) {
         return <>hidden</>;
     }
+
+    const contentClasses = classNames(styles["modal-content"], styles["animate-zoom"])
     return (
         <div className={styles["modal"]}>
-            <div className={styles["modal-content"]}>
+            <div className={contentClasses}>
                 <button className={styles["close-modal"]} onClick={onClose}>x</button>
                 {children}
             </div>

@@ -4,7 +4,7 @@ import styles from './participants.module.css'
 import { Activity } from '../activities/activities';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
-import { ModalBox } from '../global-components/global-components';
+import { FrameCard, ModalBox } from '../global-components/global-components';
 import CheckinScene from '../checkin/checkin';
 
 export class PersonName {
@@ -62,11 +62,11 @@ export function ParticipantsScene({ activity, participants }: { activity: Activi
 
     const checkinScene = () => {
         if (selected.fullName() != "  ") {
-            return <CheckinScene participant={selected} onClose={() => setSelected(nullParticipant)} />
+            const children = <CheckinScene participant={selected} /> 
+            return <ModalBox children={children} hidden={false} onClose={ () => setSelected(nullParticipant)} />
         }
         return <></>
     }
-    // const isCheckinHidden = selected.name == nullParticipant.name;
 
     let items = participants.map((p) => <ParticipantItem participant={p} onSelect={onSelectParticipant} />)
 
@@ -77,7 +77,6 @@ export function ParticipantsScene({ activity, participants }: { activity: Activi
                 {items}
             </ul>
             {checkinScene()}
-            {/* <ModalBox children={checkinScene} hidden={isCheckinHidden} onClose={ () => setSelected(nullParticipant)} /> */}
         </div>
     )
 }
