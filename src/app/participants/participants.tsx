@@ -63,7 +63,7 @@ export function ParticipantsScene({ activity, participants }: { activity: Activi
     const checkinScene = () => {
         if (selected.fullName() != "  ") {
             const children = <CheckinScene participant={selected} /> 
-            return <ModalBox children={children} hidden={false} onClose={ () => setSelected(nullParticipant)} />
+            return <ModalBox title={selected.fullName()} children={children} hidden={false} onClose={ () => setSelected(nullParticipant)} />
         }
         return <></>
     }

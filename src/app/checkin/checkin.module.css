@@ -1,0 +1,29 @@
+
+
+.check-container {
+    display: flex;
+    height: 48px;
+    justify-content: space-between;
+}
+
+.check-container button {
+    border-radius: 8px;
+    flex: 0 0 49%;
+    font-weight: bold;
+}
+
+.checkin-bt {
+    background-color: rgb(120, 223, 120);
+}
+
+.checkin-bt:hover {
+    background-color: rgb(133, 253, 133);
+}
+
+.checkout-bt {
+    background-color: rgb(255, 192, 74);
+}
+
+.checkout-bt:hover {
+    background-color: rgb(253, 225, 111);
+}

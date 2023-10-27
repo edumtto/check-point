@@ -36,17 +36,23 @@ export function SceneHeader(
     );
 }
 
-export function ModalBox({ children, hidden, onClose }:{ children: JSX.Element, hidden: Boolean, onClose: () => void}) {
+export function ModalBox({ title, children, hidden, onClose }:{ title: string, children: JSX.Element, hidden: Boolean, onClose: () => void}) {
     if (hidden) {
         return <>hidden</>;
     }
 
     const contentClasses = classNames(styles["modal-content"], styles["animate-zoom"])
     return (
-        <div className={styles["modal"]}>
-            <div className={contentClasses}>
-                <button className={styles["close-modal"]} onClick={onClose}>x</button>
-                {children}
+        <div className={styles["modal-background"]}>
+            <div className={styles["modal-container"]}>
+                <div className={contentClasses}>
+                    <div className={styles["modal-title-bar"]}>
+                    <h2>{title}</h2>
+                    <button className={styles["close-modal"]} onClick={onClose}>x</button>
+                    </div>
+                   
+                    {children}
+                </div>
             </div>
         </div>
     )
