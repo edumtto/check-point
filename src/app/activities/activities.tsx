@@ -1,13 +1,13 @@
 'use client';
-import { Participant } from '../participants/participants';
+import { Member } from '../participants/participants';
 import styles from './activities.module.css'
 
-enum ActionType {
+export enum ActionType {
   CHECKIN,
   CHECKOUT
 }
 
-class ParticipantAction {
+export class ParticipantAction {
   actionType: ActionType;
   time: number; // Timestamp type
   
@@ -17,12 +17,12 @@ class ParticipantAction {
   }
 }
 
-class ActivityParticipant {
-  participant: Participant;
+export class Participant {
+  member: Member;
   actions: Array<ParticipantAction>;
 
-  constructor(participant: Participant) {
-    this.participant = participant;
+  constructor(member: Member) {
+    this.member = member;
     this.actions = [];
   }
 
@@ -40,19 +40,19 @@ export class Activity {
   description: string;
   dateTime: Date;
   lengthInMinutes: number;
-  participants: Array<ActivityParticipant>;
+  participants: Array<Participant>;
   // TODO: id, date, time, room, numberOfParticipants
 
-  constructor(name: string, description: string, dateTime: Date, lengthInMinutes: number) {
+  constructor(name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Array<Participant>) {
     this.name = name;
     this.description = description;
     this.dateTime = dateTime;
     this.lengthInMinutes = lengthInMinutes;
-    this.participants = [];
+    this.participants = participants;
   }
 
-  addParticipant(participant: Participant) {
-    this.participants.push(new ActivityParticipant(participant));
+  addParticipant(participant: Member) {
+    this.participants.push(new Participant(participant));
   }
 }
 

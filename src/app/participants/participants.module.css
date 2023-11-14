@@ -9,7 +9,6 @@
     overflow: hidden;
 }
 
-
 .participant-list li {
     padding: 8px;
 }
@@ -26,4 +25,12 @@
 .participant-item {
     padding: 8px;
     background-color: lightblue;
+}
+
+.participant-checked-in {
+    background-color: rgb(190, 255, 190);
+}
+
+.participant-checked-out {
+    background-color: rgb(210, 210, 209);
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './participants.module.css'
-import { Activity } from '../activities/activities';
+import { Activity, Participant, ActionType } from '../activities/activities';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { FrameCard, ModalBox } from '../global-components/global-components';
@@ -23,7 +23,7 @@ export class PersonName {
     }
 }
 
-export class Participant {
+export class Member {
     id: uuidv4;
     name: PersonName;
 
@@ -38,15 +38,32 @@ export class Participant {
 }
 
 function ParticipantItem({ participant, onSelect }: { participant: Participant, onSelect: (participant: Participant) => void }) {
+    const className = () => {
+        if (participant.actions.length == 0) {
+            return " "
+        }
+
+        const lastAction = participant.actions[participant.actions.length - 1];
+        switch(lastAction.actionType) {
+            case ActionType.CHECKIN: 
+                return "participant-checked-in"
+            case ActionType.CHECKOUT:
+                return "participant-checked-out"
+            default:
+                return " "
+        }
+    };
+
     return (
-        <li key={participant.id} onClick={() => onSelect(participant)}>
-            {participant.fullName()}
+        <li className={styles[className()]} key={participant.member.id} onClick={() => onSelect(participant)}>
+            {participant.member.fullName()}
         </li>
     )
 }
 
-export function ParticipantsScene({ activity, participants }: { activity: Activity, participants: Array<Participant> }) {
-    if (participants.length == 0) {
+export function ParticipantsScene({ activity }: { activity: Activity }) {
+    console.log(activity);
+    if (activity.participants.length == 0) {
         return (
             <div>
                 <p>No participants registered.</p>
@@ -54,25 +71,25 @@ export function ParticipantsScene({ activity, participants }: { activity: Activi
         )
     }
 
-    const nullParticipant = new Participant(0, new PersonName("", "", ""));
+    const nullParticipant = new Participant(new Member(0, new PersonName("", "", "")));
     const [selected, setSelected] = useState(nullParticipant);
     const onSelectParticipant = (participant: Participant) => {
         setSelected(participant);
     };
 
     const checkinScene = () => {
-        if (selected.fullName() != "  ") {
-            const children = <CheckinScene participant={selected} /> 
-            return <ModalBox title={selected.fullName()} children={children} hidden={false} onClose={ () => setSelected(nullParticipant)} />
+        if (selected.member.fullName() != "  ") {
+            const children = <CheckinScene participant={selected} onCheck={ () => setSelected(nullParticipant)}/> 
+            return <ModalBox title={selected.member.fullName()} children={children} hidden={false} onClose={ () => setSelected(nullParticipant)} />
         }
         return <></>
     }
 
-    let items = participants.map((p) => <ParticipantItem participant={p} onSelect={onSelectParticipant} />)
+    let items = activity.participants.map((p) => <ParticipantItem participant={p} onSelect={onSelectParticipant} />)
 
     return (
         <div className={styles["participants-content"]}>
-            <p>{participants.length} participants</p>
+            <p>{activity.participants.length} participants</p>
             <ul className={styles["participant-list"]}>
                 {items}
             </ul>
