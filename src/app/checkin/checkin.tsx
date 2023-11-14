@@ -18,10 +18,13 @@ class ParticipantAction {
 }
 
 export default function CheckinScene({ participant }: { participant: Participant }) {
+    const checkIn = (participant: Participant) => {
+        participant
+    }
     return (
         <div className={styles["checkin-scene"]}>
                 <div className={styles["check-container"]}>
-                <button className={styles["checkin-bt"]}>Check In</button>
+                <button className={styles["checkin-bt"]} onClick={() => checkIn(participant)}>Check In</button>
                 <button className={styles["checkout-bt"]}>Check Out</button>
                 </div>
                 

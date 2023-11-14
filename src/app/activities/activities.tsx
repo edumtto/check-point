@@ -9,9 +9,9 @@ enum ActionType {
 
 class ParticipantAction {
   actionType: ActionType;
-  time: string; // Timestamp type
+  time: number; // Timestamp type
   
-  constructor(actionType: ActionType, time: string) {
+  constructor(actionType: ActionType, time: number) {
     this.actionType = actionType;
     this.time = time;
   }
@@ -24,6 +24,14 @@ class ActivityParticipant {
   constructor(participant: Participant) {
     this.participant = participant;
     this.actions = [];
+  }
+
+  checkIn() {
+    this.actions.push(new ParticipantAction(ActionType.CHECKIN, Date.now()))
+  }
+
+  checkOut() {
+    this.actions.push(new ParticipantAction(ActionType.CHECKOUT, Date.now()))
   }
 }
 
@@ -41,6 +49,10 @@ export class Activity {
     this.dateTime = dateTime;
     this.lengthInMinutes = lengthInMinutes;
     this.participants = [];
+  }
+
+  addParticipant(participant: Participant) {
+    this.participants.push(new ActivityParticipant(participant));
   }
 }
 
