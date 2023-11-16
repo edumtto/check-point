@@ -4,23 +4,31 @@ import classNames from 'classnames';
 
 export function NavigationBar() {
     return (
-      <div className={styles["navbar"]}>
-          <h1 className={styles["navbar-title"]}>CheckPoint</h1>
-      </div>
+        <div className={styles["navbar"]}>
+            <h1 className={styles["navbar-title"]}>CheckPoint</h1>
+        </div>
     );
-  }
+}
 
-export function BackButton({ onClick }:{ onClick: () => void}) {
+export function BackButton({ onClick }: { onClick: () => void }) {
     return (
         <button className={styles['back-button']} onClick={onClick}>
-            <Image src='/arrow-left-solid.svg' alt='back' width={22} height={22}/>
-        </button> 
+            <Image src='/arrow-left-solid.svg' alt='back' width={22} height={22} />
+        </button>
+    )
+}
+
+export function CloseButton({ onClick }: { onClick: () => void }) {
+    return (
+        <button className={styles['close-button']} onClick={onClick}>
+            <Image src='/xmark-solid.svg' alt='close' width={18} height={18} />
+        </button>
     )
 }
 
 export function SceneHeader(
-    { title , showBackButton = false, handleBackButtonClick = () => undefined}
-    :{ title: string, showBackButton: Boolean, handleBackButtonClick: () => void}
+    { title, showBackButton = false, handleBackButtonClick = () => undefined }
+        : { title: string, showBackButton: Boolean, handleBackButtonClick: () => void }
 ) {
     if (showBackButton) {
         return <div className={styles["header"]}>
@@ -35,7 +43,7 @@ export function SceneHeader(
     );
 }
 
-export function ModalBox({ title, children, hidden, onClose }:{ title: string, children: JSX.Element, hidden: Boolean, onClose: () => void}) {
+export function ModalBox({ title, children, hidden, onClose }: { title: string, children: JSX.Element, hidden: Boolean, onClose: () => void }) {
     if (hidden) {
         return <>hidden</>;
     }
@@ -46,10 +54,10 @@ export function ModalBox({ title, children, hidden, onClose }:{ title: string, c
             <div className={styles["modal-container"]}>
                 <div className={contentClasses}>
                     <div className={styles["modal-title-bar"]}>
-                    <h2>{title}</h2>
-                    <button className={styles["close-modal"]} onClick={onClose}>x</button>
+                        <h2>{title}</h2>
+                        <CloseButton onClick={() => onClose() } />
                     </div>
-                   
+
                     {children}
                 </div>
             </div>

@@ -32,6 +32,10 @@
   padding: 10px;
 }
 
+.close-button img {
+  padding: 10px;
+}
+
 .modal-background {
   z-index: 100;
   display: block;
