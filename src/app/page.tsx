@@ -2,8 +2,10 @@
 'use client';
 import styles from './page.module.css'
 import { v4 as uuidv4 } from 'uuid';
-import { Activity, Participant, ActivitiesScene } from './activities/activities';
-import { Member, ParticipantsScene, PersonName } from './participants/participants';
+import { Activity, Participant } from './models/activity';
+import { Member, PersonName } from './models/member';
+import { ActivitiesScene } from './activities/activities';
+import { ParticipantsScene } from './participants/participants';
 import { NavigationBar, SceneHeader } from './global-components/global-components';
 import { useState } from 'react';
 
@@ -61,7 +63,3 @@ export default function Home() {
     setSelectedActivity(nullActivity);
   }
 }
-
-
-
-

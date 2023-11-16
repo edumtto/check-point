@@ -1,6 +1,5 @@
 'use client';
-import { Activity, Participant } from '../activities/activities';
-import { Member } from '../participants/participants';
+import { Activity, Participant } from '../models/activity';
 import styles from './checkin.module.css'
 
 enum ParticipantActionType { CheckIn, CheckOut }

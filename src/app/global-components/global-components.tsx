@@ -1,6 +1,5 @@
 import styles from './global-components.module.css'
 import Image from 'next/image'
-import { useState } from 'react';
 import classNames from 'classnames';
 
 export function NavigationBar() {

@@ -1,41 +1,11 @@
 'use client';
 
 import styles from './participants.module.css'
-import { Activity, Participant, ActionType } from '../activities/activities';
-import { v4 as uuidv4 } from 'uuid';
+import { Activity, Participant, ActionType } from '../models/activity';
+import { Member, PersonName } from '../models/member';
 import { useState } from 'react';
-import { FrameCard, ModalBox } from '../global-components/global-components';
+import { ModalBox } from '../global-components/global-components';
 import CheckinScene from '../checkin/checkin';
-
-export class PersonName {
-    firstName: string;
-    middleName: string;
-    lastName: string;
-
-    constructor(firstName: string, middleName: string, lastName: string) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-    }
-
-    fullName() {
-        return this.firstName + " " + this.middleName + " " + this.lastName;
-    }
-}
-
-export class Member {
-    id: uuidv4;
-    name: PersonName;
-
-    constructor(id: uuidv4, name: PersonName) {
-        this.id = id;
-        this.name = name;
-    }
-
-    fullName() {
-        return this.name.fullName();
-    }
-}
 
 function ParticipantItem({ participant, onSelect }: { participant: Participant, onSelect: (participant: Participant) => void }) {
     const className = () => {
