@@ -44,6 +44,18 @@ export function SceneHeader (
   )
 }
 
+export function SideBar ({ items }: { title: string, items: string[] }): JSX.Element {
+  return <div className={styles.sidebar}>
+    {/* <h2>{title}</h2> */}
+    {/* <h2>Eduardo M. O.</h2> */}
+    <ul>
+    <li>Activities</li>
+    <li>Members</li>
+    <li>About</li>
+    </ul>
+  </div>
+}
+
 export function ModalBox (
   { title, children, hidden, onClose }:
   { title: string, children: JSX.Element, hidden: boolean, onClose: () => void }

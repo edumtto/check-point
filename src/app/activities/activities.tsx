@@ -36,6 +36,8 @@ export function ActivitiesScene({ activities, setSelectedActivity }: { activitie
   );
 
   return (
-    <ul>{activityItems}</ul>
+    <div className={styles.fullh}>
+      <ul>{activityItems}</ul>
+    </div>
   );
 }

@@ -5,7 +5,8 @@ import { Activity, Participant } from './models/activity'
 import { Member, PersonName } from './models/member'
 import { ActivitiesScene } from './activities/activities'
 import { ParticipantsScene } from './participants/participants'
-import { NavigationBar, SceneHeader } from './global-components/global-components'
+import { NavigationBar, SceneHeader, SideBar } from './global-components/global-components'
+import styles from './global-components/global-components.module.css'
 
 const membersDB = [
   new Member(uuidv4(), new PersonName('Maria', '', 'Gomez')),
@@ -50,8 +51,13 @@ export default function Home (): JSX.Element {
   return (
     <main>
       <NavigationBar />
-      <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
-      <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity} />
+        <div className={styles.flex}>
+          <SideBar items={[]}/>
+          <div>
+            <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
+            <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity} />
+          </div>
+        </div>
     </main>
   )
 
