@@ -1,7 +1,8 @@
 import styles from './global-components.module.css'
 import React from 'react'
-import Image from 'next/image'
 import classNames from 'classnames'
+import { Button } from 'antd'
+import { ArrowLeftOutlined, CloseOutlined } from '@ant-design/icons'
 
 export function NavigationBar (): JSX.Element {
   return (
@@ -13,17 +14,13 @@ export function NavigationBar (): JSX.Element {
 
 export function BackButton ({ onClick }: { onClick: () => void }): JSX.Element {
   return (
-    <button className={styles['back-button']} onClick={onClick}>
-      <Image src='/arrow-left-solid.svg' alt='back' width={22} height={22} />
-    </button>
+    <Button type="primary" shape="circle" icon={<ArrowLeftOutlined />} size="large" onClick={onClick} />
   )
 }
 
 export function CloseButton ({ onClick }: { onClick: () => void }): JSX.Element {
   return (
-    <button className={styles['close-button']} onClick={onClick}>
-      <Image src='/xmark-solid.svg' alt='close' width={16} height={16} />
-    </button>
+    <Button type="primary" shape="circle" icon={<CloseOutlined />} size="small" onClick={onClick} />
   )
 }
 
@@ -44,39 +41,14 @@ export function SceneHeader (
   )
 }
 
-export function SideBar ({ items }: { title: string, items: string[] }): JSX.Element {
+export function SideBar ({ items }: { items: string[] }): JSX.Element {
+  const itemsMenu = items.map(function (value, index) {
+    return <li key={value}>{value}</li>
+  })
+
   return <div className={styles.sidebar}>
-    {/* <h2>{title}</h2> */}
-    {/* <h2>Eduardo M. O.</h2> */}
     <ul>
-    <li>Activities</li>
-    <li>Members</li>
-    <li>About</li>
+    {itemsMenu}
     </ul>
   </div>
-}
-
-export function ModalBox (
-  { title, children, hidden, onClose }:
-  { title: string, children: JSX.Element, hidden: boolean, onClose: () => void }
-): JSX.Element {
-  if (hidden) {
-    return <>hidden</>
-  }
-
-  const contentClasses = classNames(styles['modal-content'], styles['animate-zoom'])
-  return (
-    <div className={styles['modal-background']}>
-      <div className={styles['modal-container']}>
-        <div className={contentClasses}>
-          <div className={styles['modal-title-bar']}>
-            <h2>{title}</h2>
-            <CloseButton onClick={onClose} />
-          </div>
-
-          {children}
-        </div>
-      </div>
-    </div>
-  )
 }

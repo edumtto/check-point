@@ -52,7 +52,7 @@ export default function Home (): JSX.Element {
     <main>
       <NavigationBar />
         <div className={styles.flex}>
-          <SideBar items={[]}/>
+          <SideBar items={['Activities', 'Members', 'About']} handleClick={() => undefined}/>
           <div>
             <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
             <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity} />

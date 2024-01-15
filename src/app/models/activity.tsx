@@ -26,6 +26,14 @@ export class Participant {
         this.actions = [];
     }
 
+    isCheckedIn() {
+      if (this.actions.length == 0)
+        return false 
+      else {
+       return (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN)
+      }
+    }
+
     checkIn() {
         this.actions.push(new ParticipantAction(ActionType.CHECKIN, Date.now()))
     }

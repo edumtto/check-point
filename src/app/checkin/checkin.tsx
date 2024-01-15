@@ -17,22 +17,29 @@ class ParticipantAction {
 }
 
 export default function CheckinScene({ participant, onCheck }: { participant: Participant , onCheck: () => void}) {
-    const onClickCheckIn = () => {
-        participant.checkIn();
-        onCheck();
-    };
-
-    const onClickCheckOut = () => {
+    if (participant.isCheckedIn() == true) {
+      const onClickCheckOut = () => {
         participant.checkOut();
         onCheck();
-    };
-
-    return (
+      };
+      return (
         <div className={styles["checkin-scene"]}>
             <div className={styles["check-container"]}>
-            <button className={styles["checkin-bt"]} onClick={() => onClickCheckIn()}>Check In</button>
             <button className={styles["checkout-bt"]} onClick={() => onClickCheckOut()}>Check Out</button>
             </div>
         </div>
-    )
+      )
+    } else {
+      const onClickCheckIn = () => {
+        participant.checkIn();
+        onCheck();
+      };
+      return (
+        <div className={styles["checkin-scene"]}>
+            <div className={styles["check-container"]}>
+            <button className={styles["checkin-bt"]} onClick={() => onClickCheckIn()}>Check In</button>
+            </div>
+        </div>
+      )
+    }
 }

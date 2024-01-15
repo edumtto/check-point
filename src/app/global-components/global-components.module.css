@@ -19,18 +19,18 @@
   font-size: xx-large;
 }
 
-.back-button {
+/* .back-button {
   background-color: white;
   width: 42px;
   height: 42px;
   border-radius: 100%;
-  /* border: 1px solid gray; */
+  border: 1px solid gray;
   box-shadow: 0px 0px 8px gray;
-}
+} */
 
-.back-button img {
+/* .back-button img {
   padding: 10px;
-}
+} */
 
 .close-button img {
   padding: 10px;
@@ -43,13 +43,11 @@
   /* overflow-x: hidden; */
   z-index: 10;
   transition: 0.5s;
-  /* padding-top: 60px; */
 }
 
 .sidebar li {
   padding: 16px;
   background-image: url(../../../public/chevron-right-solid.svg);
-  /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7.41' height='12' viewBox='0 0 7.41 12'%3E%3Cpath d='M10,6,8.59,7.41,13.17,12,8.59,16.59,10,18l6-6Z' transform='translate(-8.59 -6)' fill='%23fff'/%3E%3C/svg%3E"); */
   background-size: 8px;
   background-repeat: no-repeat;
   background-position: right 16px center;
