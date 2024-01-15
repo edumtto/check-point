@@ -1,5 +1,3 @@
-
-
 .check-container {
     display: flex;
     height: 48px;
@@ -8,7 +6,7 @@
 
 .check-container button {
     border-radius: 8px;
-    flex: 0 0 49%;
+    flex: 0 0 100%;
     font-weight: bold;
 }
 

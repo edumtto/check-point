@@ -23,11 +23,11 @@ export default function CheckinScene({ participant, onCheck }: { participant: Pa
         onCheck();
       };
       return (
-        <div className={styles["checkin-scene"]}>
+        <>
             <div className={styles["check-container"]}>
             <button className={styles["checkout-bt"]} onClick={() => onClickCheckOut()}>Check Out</button>
             </div>
-        </div>
+        </>
       )
     } else {
       const onClickCheckIn = () => {
@@ -35,11 +35,11 @@ export default function CheckinScene({ participant, onCheck }: { participant: Pa
         onCheck();
       };
       return (
-        <div className={styles["checkin-scene"]}>
+        <>
             <div className={styles["check-container"]}>
             <button className={styles["checkin-bt"]} onClick={() => onClickCheckIn()}>Check In</button>
             </div>
-        </div>
+        </>
       )
     }
 }

@@ -1,6 +1,5 @@
 import styles from './global-components.module.css'
 import React from 'react'
-import classNames from 'classnames'
 import { Button } from 'antd'
 import { ArrowLeftOutlined, CloseOutlined } from '@ant-design/icons'
 
@@ -12,25 +11,13 @@ export function NavigationBar (): JSX.Element {
   )
 }
 
-export function BackButton ({ onClick }: { onClick: () => void }): JSX.Element {
-  return (
-    <Button type="primary" shape="circle" icon={<ArrowLeftOutlined />} size="large" onClick={onClick} />
-  )
-}
-
-export function CloseButton ({ onClick }: { onClick: () => void }): JSX.Element {
-  return (
-    <Button type="primary" shape="circle" icon={<CloseOutlined />} size="small" onClick={onClick} />
-  )
-}
-
 export function SceneHeader (
   { title, showBackButton = false, handleBackButtonClick = () => undefined }:
   { title: string, showBackButton: boolean, handleBackButtonClick: () => void }
 ): JSX.Element {
   if (showBackButton) {
     return <div className={styles.header}>
-      <BackButton onClick={handleBackButtonClick} />
+      <Button type="primary" shape="circle" icon={<ArrowLeftOutlined />} size="large" onClick={handleBackButtonClick} />
       <h2 className={styles['header-title']}>{title}</h2>
     </div>
   }
