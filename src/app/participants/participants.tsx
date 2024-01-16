@@ -4,7 +4,7 @@ import styles from './participants.module.css'
 import { Participant, ActionType } from '../models/activity'
 import type { Activity } from '../models/activity'
 import { Member, PersonName } from '../models/member'
-import { Modal } from 'antd'
+import { Modal, Table, Space, Button } from 'antd'
 import CheckinScene from '../checkin/checkin'
 
 function ParticipantItem ({ participant, onSelect }: { participant: Participant, onSelect: (participant: Participant) => void }): JSX.Element {
@@ -66,16 +66,43 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     </>
   }
 
-  const items = activity.participants.map(
-    (p) => <ParticipantItem key={p.member.id} participant={p} onSelect={onSelectParticipant} />
-  )
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name'
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (_, record) => (
+          <Button
+            onClick={
+              () => {
+                onSelectParticipant(record.participant)
+                return false
+              }
+            }
+            >
+              {record.participant.status()}
+            </Button>
+      )
+    }
+  ]
+
+  const items = activity.participants.map(function (p) {
+    return {
+      participant: p,
+      name: p.member.fullName()
+      // participant={p} onSelect={onSelectParticipant} />
+    }
+  })
 
   return (
     <div className={styles['participants-content']}>
-      <p>{activity.participants.length} participants</p>
-      <ul className={styles['participant-list']}>
-        {items}
-      </ul>
+      {/* <p>{activity.participants.length} participants</p> */}
+      <Table columns={columns} dataSource={items} />
       {checkinScene()}
     </div>
   )

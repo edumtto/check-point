@@ -34,6 +34,16 @@ export class Participant {
       }
     }
 
+    status() {
+      if (this.actions.length == 0)
+        return "unchecked" 
+      else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
+       return "checked in"
+      } else {
+        return "checked out"
+      }
+    }
+
     checkIn() {
         this.actions.push(new ParticipantAction(ActionType.CHECKIN, Date.now()))
     }
