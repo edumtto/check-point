@@ -1,6 +1,7 @@
 'use client';
 import { Activity } from '../models/activity';
 import styles from './activities.module.css'
+import { Timeline, TimelineItemProps } from 'antd';
 
 export enum ActionType {
   CHECKIN,
@@ -31,13 +32,33 @@ function ActivityItem({ activity, setSelectedActivity }: { activity: Activity, s
 
 export function ActivitiesScene({ activities, setSelectedActivity }: { activities: Array<Activity>, setSelectedActivity: (value: Activity) => void }) {
 
-  const activityItems = activities.map((val, index) =>
-    <ActivityItem activity={val} setSelectedActivity={setSelectedActivity} />
+  // const activityItems = activities.map((val, index) =>
+  //   <ActivityItem activity={val} setSelectedActivity={setSelectedActivity} />
+  // );
+
+
+  const timelineItems = activities.map((val, index) =>
+    <Timeline.Item 
+      color="green" 
+      // label={val.dateTime.getHours() + ":" + val.dateTime.getMinutes()} 
+      children={
+        <div>
+          <p>{val.dateTime.getHours() + ":" + val.dateTime.getMinutes()}</p>
+          <button className={styles['activity-content']} onClick={() => setSelectedActivity(val)}>
+            <h4>{val.name}</h4>
+            <p>{val.description}</p>
+          </button>
+        </div>
+          
+      } 
+    />
   );
 
   return (
     <div className={styles.fullh}>
-      <ul>{activityItems}</ul>
+      <Timeline mode="left">
+        {timelineItems}
+      </Timeline>
     </div>
   );
 }

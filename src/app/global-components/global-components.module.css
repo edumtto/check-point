@@ -37,15 +37,15 @@
 }
 
 .sidebar {
-  width: 120px;
-  background-color: #dddddd;
-  color: rgb(69, 69, 69);
+  width: 140px;
+  /* background-color: #dddddd;
+  color: rgb(69, 69, 69); */
   /* overflow-x: hidden; */
-  z-index: 10;
-  transition: 0.5s;
+  /* z-index: 10;
+  transition: 0.5s; */
 }
 
-.sidebar li {
+/* .sidebar li {
   padding: 16px;
   background-image: url(../../../public/chevron-right-solid.svg);
   background-size: 8px;
@@ -55,10 +55,14 @@
 
 .sidebar li:hover{
   background-color: #ffffff;
-}
+} */
 
 .flex {
   display: flex;
+}
+
+.flex div {
+  flex-grow: 1;
 }
 
 .fixed {

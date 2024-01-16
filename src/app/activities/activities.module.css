@@ -6,7 +6,7 @@
 
 .activity-content {
     background-color: white;
-    font-size: large;
+    /* font-size: large; */
     padding: 8px;
     /* width: 70%; */
     /* border: solid rgb(220, 220, 220) thin; */
@@ -15,9 +15,10 @@
     text-align: left;
 }
 
-.activity-content p {
+/* .activity-content p {
     font-size: large;
-}
+} */
+
 
 .activity-content:hover {
     background-color: lightblue;
@@ -31,4 +32,6 @@
 
 .fullh {
   height: 100vh;
+  margin-left: 16px;
+  margin-right: 16px;
 }

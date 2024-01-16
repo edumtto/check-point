@@ -5,7 +5,8 @@ import { Activity, Participant } from './models/activity'
 import { Member, PersonName } from './models/member'
 import { ActivitiesScene } from './activities/activities'
 import { ParticipantsScene } from './participants/participants'
-import { NavigationBar, SceneHeader, SideBar } from './global-components/global-components'
+import { NavigationBar, SceneHeader } from './global-components/global-components'
+import { Menu } from 'antd'
 import styles from './global-components/global-components.module.css'
 
 const membersDB = [
@@ -48,11 +49,17 @@ export default function Home (): JSX.Element {
       </main>
     )
   }
+
   return (
     <main>
       <NavigationBar />
         <div className={styles.flex}>
-          <SideBar items={['Activities', 'Members', 'About']} handleClick={() => undefined}/>
+          {/* <SideBar items={['Activities', 'Members', 'About']} handleClick={() => undefined}/> */}
+          <Menu className={styles.sidebar} onClick={onMenuItemClick} defaultSelectedKeys={['0']} mode="inline">
+            <Menu.Item key="0">Activities</Menu.Item>
+            <Menu.Item key="1">Members</Menu.Item>
+            <Menu.Item key="2">About</Menu.Item>
+          </Menu>
           <div>
             <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
             <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity} />
@@ -64,4 +71,15 @@ export default function Home (): JSX.Element {
   function handleBackButtonClick (): void {
     setSelectedActivity(nullActivity)
   }
+
+  function onMenuItemClick (item: any): void {
+    console.log('click ', item)
+  }
 }
+
+// const onClick = (e: string) => {
+//   console.log('click ', e);
+// };
+
+// }
+// const items = ['Activities', 'Members', 'About']
