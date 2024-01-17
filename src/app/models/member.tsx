@@ -1,6 +1,6 @@
 'use client'
 
-import { v4 as uuidv4 } from 'uuid'
+import type { v4 as uuidv4 } from 'uuid'
 
 export class PersonName {
   firstName: string
@@ -14,7 +14,7 @@ export class PersonName {
   }
 
   fullName (): string {
-    return this.firstName + ' ' + this.middleName + ' ' + this.lastName;
+    return this.firstName + ' ' + this.middleName + ' ' + this.lastName
   }
 }
 
