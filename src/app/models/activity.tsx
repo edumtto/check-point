@@ -7,13 +7,19 @@ export enum ActionType {
   CHECKOUT
 }
 
+export const ParticipantState = {
+  CHECKED_IN: 'Checked in',
+  CHECKED_OUT: 'Checked out',
+  UNCHECKED: 'Unchecked'
+}
+
 export class ParticipantAction {
   actionType: ActionType
-  time: number // Timestamp type
+  dateTime: Date
 
-  constructor (actionType: ActionType, time: number) {
+  constructor (actionType: ActionType, dateTime: Date) {
     this.actionType = actionType
-    this.time = time
+    this.dateTime = dateTime
   }
 }
 
@@ -39,17 +45,27 @@ export class Participant {
       return 'unchecked'
     } else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
       return 'checked in'
-    } else {
-      return 'checked out'
     }
+    return 'checked out'
+  }
+
+  lastAction (): ParticipantAction | null {
+    if (this.actions.length === 0) {
+      return null
+    }
+    return this.actions[this.actions.length - 1]
+  }
+
+  undoLastAction (): void {
+    this.actions.pop()
   }
 
   checkIn (): void {
-    this.actions.push(new ParticipantAction(ActionType.CHECKIN, Date.now()))
+    this.actions.push(new ParticipantAction(ActionType.CHECKIN, new Date()))
   }
 
   checkOut (): void {
-    this.actions.push(new ParticipantAction(ActionType.CHECKOUT, Date.now()))
+    this.actions.push(new ParticipantAction(ActionType.CHECKOUT, new Date()))
   }
 }
 

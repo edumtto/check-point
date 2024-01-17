@@ -2,6 +2,7 @@
 import React from 'react'
 import type { Participant } from '../models/activity'
 import styles from './checkin.module.css'
+import { Card, Button } from 'antd'
 
 // enum ParticipantActionType { CheckIn, CheckOut }
 
@@ -20,29 +21,48 @@ import styles from './checkin.module.css'
 export default function CheckinScene (
   { participant, onCheck }: { participant: Participant, onCheck: () => void }
 ): React.JSX.Element {
+  let checkButton: React.JSX.Element
+  let lastCheck: React.JSX.Element = <></>
+
   if (participant.isCheckedIn()) {
-    const onClickCheckOut = (): void => {
-      participant.checkOut()
-      onCheck()
-    }
-    return (
-      <>
-        <div className={styles['check-container']}>
-          <button className={styles['checkout-bt']} onClick={() => onClickCheckOut()}>Check Out</button>
-        </div>
-      </>
+    checkButton = (
+        <button className={styles['checkout-bt']} onClick={onClickCheckOut}>Check Out</button>
     )
   } else {
-    const onClickCheckIn = (): void => {
-      participant.checkIn()
-      onCheck()
-    }
-    return (
-      <>
-        <div className={styles['check-container']}>
-          <button className={styles['checkin-bt']} onClick={() => onClickCheckIn()}>Check In</button>
-        </div>
-      </>
+    checkButton = (
+        <button className={styles['checkin-bt']} onClick={onClickCheckIn}>Check In</button>
     )
+  }
+
+  if (participant.lastAction() !== null) {
+    const actionName = participant.isCheckedIn() ? 'Check in' : 'Checkout'
+    const actionTime = participant.lastAction()?.dateTime.toDateString()
+    lastCheck = (
+      <Card size='small'>
+        <div>
+          <p>{'Last action: ' + actionName + ' at ' + actionTime}</p>
+          <Button className={styles['float-right']}>Undo</Button>
+        </div>
+      </Card>
+    )
+  }
+
+  return (
+    <>
+      {lastCheck}
+      <div className={styles['check-container']}>
+        {checkButton}
+      </div>
+    </>
+  )
+
+  function onClickCheckOut (): void {
+    participant.checkOut()
+    onCheck()
+  }
+
+  function onClickCheckIn (): void {
+    participant.checkIn()
+    onCheck()
   }
 }

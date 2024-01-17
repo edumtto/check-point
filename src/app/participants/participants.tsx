@@ -73,11 +73,6 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       key: 'name'
     },
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id'
-    },
-    {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
@@ -89,9 +84,9 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
                 return false
               }
             }
-            >
-              {record.participant.status()}
-            </Button>
+          >
+            {record.status}
+          </Button>
       )
     }
   ]
@@ -100,7 +95,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     return {
       participant: p,
       name: p.member.fullName(),
-      id: p.member.id
+      status: p.status()
       // participant={p} onSelect={onSelectParticipant} />
     }
   })

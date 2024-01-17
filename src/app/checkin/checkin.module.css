@@ -2,6 +2,7 @@
     display: flex;
     height: 48px;
     justify-content: space-between;
+    padding-top: 16px;
 }
 
 .check-container button {
@@ -24,4 +25,12 @@
 
 .checkout-bt:hover {
     background-color: rgb(253, 225, 111);
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
