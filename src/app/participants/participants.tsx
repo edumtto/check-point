@@ -1,39 +1,39 @@
 'use client'
 import { React, useState } from 'react'
 import styles from './participants.module.css'
-import { Participant, ActionType } from '../models/activity'
+import { Participant } from '../models/activity'
 import type { Activity } from '../models/activity'
 import { Member, PersonName } from '../models/member'
-import { Modal, Table, Space, Button } from 'antd'
+import { Modal, Table, Button } from 'antd'
 import CheckinScene from '../checkin/checkin'
 
-function ParticipantItem ({ participant, onSelect }: { participant: Participant, onSelect: (participant: Participant) => void }): JSX.Element {
-  function className (): string {
-    if (participant.actions.length === 0) {
-      return ' '
-    }
+// function ParticipantItem ({ participant, onSelect }: { participant: Participant, onSelect: (participant: Participant) => void }): JSX.Element {
+//   function className (): string {
+//     if (participant.actions.length === 0) {
+//       return ' '
+//     }
 
-    const lastAction = participant.actions[participant.actions.length - 1]
-    switch (lastAction.actionType) {
-      case ActionType.CHECKIN:
-        return 'participant-checked-in'
-      case ActionType.CHECKOUT:
-        return 'participant-checked-out'
-      default:
-        return ' '
-    }
-  }
+//     const lastAction = participant.actions[participant.actions.length - 1]
+//     switch (lastAction.actionType) {
+//       case ActionType.CHECKIN:
+//         return 'participant-checked-in'
+//       case ActionType.CHECKOUT:
+//         return 'participant-checked-out'
+//       default:
+//         return ' '
+//     }
+//   }
 
-  function onClick (): void {
-    onSelect(participant)
-  }
+//   function onClick (): void {
+//     onSelect(participant)
+//   }
 
-  return (
-    <li className={styles[className()]} key={participant.member.id} onClick={onClick}>
-      {participant.member.fullName()}
-    </li>
-  )
-}
+//   return (
+//     <li className={styles[className()]} key={participant.member.id} onClick={onClick}>
+//       {participant.member.fullName()}
+//     </li>
+//   )
+// }
 
 export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.Element {
   if (activity.participants.length === 0) {
@@ -73,6 +73,11 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       key: 'name'
     },
     {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id'
+    },
+    {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
@@ -94,7 +99,8 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
   const items = activity.participants.map(function (p) {
     return {
       participant: p,
-      name: p.member.fullName()
+      name: p.member.fullName(),
+      id: p.member.id
       // participant={p} onSelect={onSelectParticipant} />
     }
   })

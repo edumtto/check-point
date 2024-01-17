@@ -1,7 +1,7 @@
 import styles from './global-components.module.css'
 import React from 'react'
 import { Button } from 'antd'
-import { ArrowLeftOutlined, CloseOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 
 export function NavigationBar (): JSX.Element {
   return (

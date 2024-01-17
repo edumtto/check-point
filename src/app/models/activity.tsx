@@ -1,75 +1,75 @@
-'use client';
+'use client'
 
-import { Member } from './member';
+import type { Member } from './member'
 
 export enum ActionType {
-    CHECKIN,
-    CHECKOUT
+  CHECKIN,
+  CHECKOUT
 }
 
 export class ParticipantAction {
-    actionType: ActionType;
-    time: number; // Timestamp type
+  actionType: ActionType
+  time: number // Timestamp type
 
-    constructor(actionType: ActionType, time: number) {
-        this.actionType = actionType;
-        this.time = time;
-    }
+  constructor (actionType: ActionType, time: number) {
+    this.actionType = actionType
+    this.time = time
+  }
 }
 
 export class Participant {
-    member: Member;
-    actions: Array<ParticipantAction>;
+  member: Member
+  actions: ParticipantAction[]
 
-    constructor(member: Member) {
-        this.member = member;
-        this.actions = [];
-    }
+  constructor (member: Member) {
+    this.member = member
+    this.actions = []
+  }
 
-    isCheckedIn() {
-      if (this.actions.length == 0)
-        return false 
-      else {
-       return (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN)
-      }
+  isCheckedIn (): boolean {
+    if (this.actions.length === 0) {
+      return false
+    } else {
+      return (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN)
     }
+  }
 
-    status() {
-      if (this.actions.length == 0)
-        return "unchecked" 
-      else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
-       return "checked in"
-      } else {
-        return "checked out"
-      }
+  status (): string {
+    if (this.actions.length === 0) {
+      return 'unchecked'
+    } else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
+      return 'checked in'
+    } else {
+      return 'checked out'
     }
+  }
 
-    checkIn() {
-        this.actions.push(new ParticipantAction(ActionType.CHECKIN, Date.now()))
-    }
+  checkIn (): void {
+    this.actions.push(new ParticipantAction(ActionType.CHECKIN, Date.now()))
+  }
 
-    checkOut() {
-        this.actions.push(new ParticipantAction(ActionType.CHECKOUT, Date.now()))
-    }
+  checkOut (): void {
+    this.actions.push(new ParticipantAction(ActionType.CHECKOUT, Date.now()))
+  }
 }
 
 export class Activity {
-    name: string;
-    description: string;
-    dateTime: Date;
-    lengthInMinutes: number;
-    participants: Array<Participant>;
-    // TODO: id, date, time, room, numberOfParticipants
+  name: string
+  description: string
+  dateTime: Date
+  lengthInMinutes: number
+  participants: Participant[]
+  // TODO: id, date, time, room, numberOfParticipants
 
-    constructor(name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Array<Participant>) {
-        this.name = name;
-        this.description = description;
-        this.dateTime = dateTime;
-        this.lengthInMinutes = lengthInMinutes;
-        this.participants = participants;
-    }
+  constructor (name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Array<Participant>) {
+    this.name = name
+    this.description = description
+    this.dateTime = dateTime
+    this.lengthInMinutes = lengthInMinutes
+    this.participants = participants
+  }
 
-    addParticipant(participant: Member) {
-        this.participants.push(new Participant(participant));
-    }
+  addParticipant (participant: Member): void {
+    this.participants.push(new Participant(participant))
+  }
 }
