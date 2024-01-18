@@ -8,6 +8,7 @@ import { ParticipantsScene } from './participants/participants'
 import { NavigationBar, SceneHeader } from './global-components/global-components'
 import { Menu } from 'antd'
 import styles from './global-components/global-components.module.css'
+// import { RightCircleFilled } from '@ant-design/icons'
 
 const membersDB = [
   new Member(uuidv4(), new PersonName('Maria', '', 'Gomez')),
@@ -39,6 +40,7 @@ const activitiesDB = [
 export default function Home (): JSX.Element {
   const nullActivity = new Activity('', '', new Date(), 0, [])
   const [selectedActivity, setSelectedActivity] = useState(nullActivity)
+  const [selectedMenuItem, setSelectedMenuItem] = useState('0')
 
   if (selectedActivity.name !== '') {
     return (
@@ -50,19 +52,53 @@ export default function Home (): JSX.Element {
     )
   }
 
+  const menuItems: any[] = [
+    {
+      key: 'g0',
+      label: 'Check In',
+      type: 'group',
+      children: [
+        { key: '0', label: 'Activities' },
+        { key: '1', label: 'Members' }
+      ]
+    },
+    {
+      key: 'g1',
+      label: 'Manage',
+      type: 'group',
+      children: [
+        { key: '2', label: 'Activities' },
+        { key: '3', label: 'Members' }
+      ]
+    },
+    {
+      key: 'g2',
+      label: 'About',
+      type: 'group',
+      children: [
+        { key: '4', label: 'FAQ' },
+        { key: '5', label: 'Support' }
+      ]
+    }
+  ]
+
+  let mainScene: React.JSX.Element
+  if (selectedMenuItem === '0') {
+    mainScene = <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity}/>
+  } else {
+    mainScene = <></>
+  }
+
   return (
     <main>
       <NavigationBar />
         <div className={styles.flex}>
-          {/* <SideBar items={['Activities', 'Members', 'About']} handleClick={() => undefined}/> */}
-          <Menu className={styles.sidebar} onClick={onMenuItemClick} defaultSelectedKeys={['0']} mode="inline">
-            <Menu.Item key="0">Activities</Menu.Item>
-            <Menu.Item key="1">Members</Menu.Item>
-            <Menu.Item key="2">About</Menu.Item>
-          </Menu>
+          <Menu className={styles.sidebar} onClick={onMenuItemClick} defaultSelectedKeys={['0']} mode="inline" items={menuItems}/>
           <div>
             <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
-            <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity} />
+            <div className={styles['main-scene']}>
+             {mainScene}
+            </div>
           </div>
         </div>
     </main>
@@ -73,13 +109,7 @@ export default function Home (): JSX.Element {
   }
 
   function onMenuItemClick (item: any): void {
-    console.log('click ', item)
+    // console.log('click ', item.key)
+    setSelectedMenuItem(item.key)
   }
 }
-
-// const onClick = (e: string) => {
-//   console.log('click ', e);
-// };
-
-// }
-// const items = ['Activities', 'Members', 'About']

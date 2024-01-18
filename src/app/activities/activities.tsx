@@ -55,10 +55,8 @@ export function ActivitiesScene (
   )
 
   return (
-    <div className={styles.fullh}>
-      <Timeline mode="left">
-        {timelineItems}
-      </Timeline>
-    </div>
+    <Timeline mode="left">
+      {timelineItems}
+    </Timeline>
   )
 }
