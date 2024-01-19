@@ -40,13 +40,13 @@ export class Participant {
     }
   }
 
-  status (): string {
+  status (): [string, string] {
     if (this.actions.length === 0) {
-      return 'unchecked'
+      return ['unchecked', 'white']
     } else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
-      return 'checked in'
+      return ['checked in', 'rgb(190, 255, 190)']
     }
-    return 'checked out'
+    return ['checked out', 'rgb(210, 210, 209)']
   }
 
   lastAction (): ParticipantAction | null {

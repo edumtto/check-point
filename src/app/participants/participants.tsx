@@ -78,6 +78,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       key: 'status',
       render: (_, record) => (
           <Button
+          style={{ backgroundColor: record.status[1] }}
             onClick={
               () => {
                 onSelectParticipant(record.participant)
@@ -85,9 +86,14 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
               }
             }
           >
-            {record.status}
+            {record.status[0]}
           </Button>
       )
+    },
+    {
+      title: 'Time',
+      dataIndex: 'time',
+      key: 'time'
     }
   ]
 
@@ -95,7 +101,8 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     return {
       participant: p,
       name: p.member.fullName(),
-      status: p.status()
+      status: p.status(),
+      time: p.lastAction()?.dateTime.toLocaleTimeString()
       // participant={p} onSelect={onSelectParticipant} />
     }
   })
@@ -103,7 +110,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
   return (
     <div className={styles['participants-content']}>
       {/* <p>{activity.participants.length} participants</p> */}
-      <Table columns={columns} dataSource={items} />
+      <Table size='small' columns={columns} dataSource={items} />
       {checkinScene()}
     </div>
   )
