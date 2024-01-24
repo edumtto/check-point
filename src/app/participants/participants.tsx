@@ -42,28 +42,35 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     {
       title: 'Name',
       dataIndex: 'name',
-      key: 'name'
+      key: 'name',
+      sorter: { compare: (a, b) => a.name.localeCompare(b.name) },
+      defaultSortOrder: 'ascend',
+      sortDirections: ['ascend', 'descend', 'ascend']
     },
     {
       title: 'Check in Time',
       dataIndex: 'checkInTime',
-      key: 'checkInTime'
+      key: 'checkInTime',
+      // sorter: { compare: (a, b) => a.checkInTime.localeCompare(b.checkInTime) }
     },
     {
       title: 'Check out Time',
       dataIndex: 'checkOutTime',
-      key: 'checkOutTime'
+      key: 'checkOutTime',
+      // sorter: { compare: (a, b) => a.checkOutTime.localeCompare(b.checkOutTime) }
     }
   ]
 
-  const items = activity.participants.map(function (p) {
-    return {
-      participant: p,
-      name: p.member.fullName(),
-      checkInTime: p.checkInDate?.toLocaleTimeString(),
-      checkOutTime: p.checkOutDate?.toLocaleTimeString()
-    }
-  })
+  const items = activity.participants
+    .map(function (p) {
+      return {
+        participant: p,
+        name: p.member.fullName(),
+        checkInTime: p.checkInDate?.toLocaleTimeString(),
+        checkOutTime: p.checkOutDate?.toLocaleTimeString()
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <div className={styles['participants-content']}>

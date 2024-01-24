@@ -4,20 +4,6 @@ import type { Participant } from '../models/activity'
 import styles from './checkin.module.css'
 import { Card, Button } from 'antd'
 
-// enum ParticipantActionType { CheckIn, CheckOut }
-
-// class ParticipantAction {
-//   type: ParticipantActionType
-//   dateTime: Date
-//   activity: Activity
-
-//   constructor (type: ParticipantActionType, dateTime: Date, activity: Activity) {
-//     this.type = type
-//     this.dateTime = dateTime
-//     this.activity = activity
-//   }
-// }
-
 export default function CheckinScene (
   { participant, onCheck }: { participant: Participant, onCheck: () => void }
 ): React.JSX.Element {

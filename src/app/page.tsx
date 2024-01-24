@@ -11,10 +11,10 @@ import styles from './global-components/global-components.module.css'
 // import { RightCircleFilled } from '@ant-design/icons'
 
 const membersDB = [
-  new Member(uuidv4(), new PersonName('Maria', '', 'Gomez')),
-  new Member(uuidv4(), new PersonName('Robert', '', 'Rodriguez')),
-  new Member(uuidv4(), new PersonName('James', '', 'Smith')),
-  new Member(uuidv4(), new PersonName('Olivia', '', 'Rodrigo')),
+  new Member(uuidv4(), new PersonName('Antonio', '', 'Gomez')),
+  new Member(uuidv4(), new PersonName('Carlos', '', 'Rodriguez')),
+  new Member(uuidv4(), new PersonName('Barbara', '', 'Smith')),
+  new Member(uuidv4(), new PersonName('Daniel', '', 'Rodrigo')),
   new Member(uuidv4(), new PersonName('Marc', '', 'Lopes'))
 ]
 
