@@ -3,14 +3,8 @@
 import type { Member } from './member'
 
 export enum ActionType {
-  CHECKIN,
-  CHECKOUT
-}
-
-export const ParticipantState = {
-  CHECKED_IN: 'Checked in',
-  CHECKED_OUT: 'Checked out',
-  UNCHECKED: 'Unchecked'
+  CHECK_IN,
+  CHECK_OUT
 }
 
 export class ParticipantAction {
@@ -21,51 +15,67 @@ export class ParticipantAction {
     this.actionType = actionType
     this.dateTime = dateTime
   }
+
+  description (): string {
+    const actionName = this.actionType === ActionType.CHECK_IN ? 'Check In' : 'Check Out'
+    const actionTime = this.dateTime.toLocaleTimeString()
+    return actionName + ' at ' + actionTime
+  }
 }
 
 export class Participant {
   member: Member
-  actions: ParticipantAction[]
+  // actions: ParticipantAction[]
+  checkInDate: Date | null
+  checkOutDate: Date | null
 
   constructor (member: Member) {
     this.member = member
-    this.actions = []
+    this.checkInDate = null
+    this.checkOutDate = null
   }
 
   isCheckedIn (): boolean {
-    if (this.actions.length === 0) {
-      return false
-    } else {
-      return (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN)
-    }
+    return this.checkInDate !== null
   }
 
-  status (): [string, string] {
-    if (this.actions.length === 0) {
-      return ['unchecked', 'white']
-    } else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
-      return ['checked in', 'rgb(190, 255, 190)']
-    }
-    return ['checked out', 'rgb(210, 210, 209)']
+  isCheckedOut (): boolean {
+    return this.checkOutDate !== null
   }
+
+  // action (): [string, string] {
+  //   if (this.actions.length === 0) {
+  //     return ['Check in', 'rgb(190, 255, 190)']
+  //   } else if (this.actions[this.actions.length - 1].actionType === ActionType.CHECKIN) {
+  //     return ['Check out', 'rgb(210, 210, 209)']
+  //   }
+  //   return ['Undo', 'white']
+  // }
 
   lastAction (): ParticipantAction | null {
-    if (this.actions.length === 0) {
+    if (this.checkOutDate !== null) {
+      return new ParticipantAction(ActionType.CHECK_OUT, this.checkOutDate)
+    } else if (this.checkInDate !== null) {
+      return new ParticipantAction(ActionType.CHECK_IN, this.checkInDate)
+    } else {
       return null
     }
-    return this.actions[this.actions.length - 1]
   }
 
   undoLastAction (): void {
-    this.actions.pop()
+    if (this.checkOutDate !== null) {
+      this.checkOutDate = null
+    } else if (this.checkInDate !== null) {
+      this.checkInDate = null
+    }
   }
 
   checkIn (): void {
-    this.actions.push(new ParticipantAction(ActionType.CHECKIN, new Date()))
+    this.checkInDate = new Date()
   }
 
   checkOut (): void {
-    this.actions.push(new ParticipantAction(ActionType.CHECKOUT, new Date()))
+    this.checkOutDate = new Date()
   }
 }
 

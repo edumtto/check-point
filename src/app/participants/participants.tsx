@@ -7,34 +7,6 @@ import { Member, PersonName } from '../models/member'
 import { Modal, Table, Button } from 'antd'
 import CheckinScene from '../checkin/checkin'
 
-// function ParticipantItem ({ participant, onSelect }: { participant: Participant, onSelect: (participant: Participant) => void }): JSX.Element {
-//   function className (): string {
-//     if (participant.actions.length === 0) {
-//       return ' '
-//     }
-
-//     const lastAction = participant.actions[participant.actions.length - 1]
-//     switch (lastAction.actionType) {
-//       case ActionType.CHECKIN:
-//         return 'participant-checked-in'
-//       case ActionType.CHECKOUT:
-//         return 'participant-checked-out'
-//       default:
-//         return ' '
-//     }
-//   }
-
-//   function onClick (): void {
-//     onSelect(participant)
-//   }
-
-//   return (
-//     <li className={styles[className()]} key={participant.member.id} onClick={onClick}>
-//       {participant.member.fullName()}
-//     </li>
-//   )
-// }
-
 export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.Element {
   if (activity.participants.length === 0) {
     return (
@@ -57,7 +29,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     return <>
       <Modal
         title={selected.member.fullName()}
-        open={selected.member.fullName() !== '  '}
+        open={selected.member.id !== nullParticipant.member.id}
         onCancel={onClose}
         footer={[]}
       >
@@ -73,27 +45,14 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       key: 'name'
     },
     {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (_, record) => (
-          <Button
-          style={{ backgroundColor: record.status[1] }}
-            onClick={
-              () => {
-                onSelectParticipant(record.participant)
-                return false
-              }
-            }
-          >
-            {record.status[0]}
-          </Button>
-      )
+      title: 'Check in Time',
+      dataIndex: 'checkInTime',
+      key: 'checkInTime'
     },
     {
-      title: 'Time',
-      dataIndex: 'time',
-      key: 'time'
+      title: 'Check out Time',
+      dataIndex: 'checkOutTime',
+      key: 'checkOutTime'
     }
   ]
 
@@ -101,16 +60,25 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     return {
       participant: p,
       name: p.member.fullName(),
-      status: p.status(),
-      time: p.lastAction()?.dateTime.toLocaleTimeString()
-      // participant={p} onSelect={onSelectParticipant} />
+      checkInTime: p.checkInDate?.toLocaleTimeString(),
+      checkOutTime: p.checkOutDate?.toLocaleTimeString()
     }
   })
 
   return (
     <div className={styles['participants-content']}>
       {/* <p>{activity.participants.length} participants</p> */}
-      <Table size='small' columns={columns} dataSource={items} />
+      <Table
+        size='small'
+        columns={columns}
+        dataSource={items}
+        onRow={(record, rowIndex) => {
+          return {
+            className: 'participants-row',
+            onClick: event => { onSelectParticipant(record.participant) }
+          }
+        }}
+      />
       {checkinScene()}
     </div>
   )
