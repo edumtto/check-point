@@ -2,25 +2,19 @@
     margin: 8px 16px 8px 16px;
 }
 
-/* .participants-row:hover {
-  background-color: brown !important;
-  color: pink;
+.participants-statistics {
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
 }
 
-.participants-row {
-  background-color: rgb(42, 165, 138);
+.participants-content tr:hover > td {
+  background-color: rgb(255, 232, 201) !important;
 }
 
-h1 {
-  color: black;
+.checkin-icon {
+  color:rgb(94, 179, 94);
 }
 
-table:hover,
-tr:hover,
-thead:hover {
-    background: #20293c !important;
+.checkout-icon {
+  color: rgb(204, 158, 72);
 }
-
-.ant-table-tbody > tr.ant-table-row:hover > td {
-    background: none !important;
-} */

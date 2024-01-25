@@ -4,8 +4,9 @@ import styles from './participants.module.css'
 import { Participant } from '../models/activity'
 import type { Activity } from '../models/activity'
 import { Member, PersonName } from '../models/member'
-import { Modal, Table, Button } from 'antd'
+import { Modal, Table, Statistic, Space } from 'antd'
 import CheckinScene from '../checkin/checkin'
+import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
 
 export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.Element {
   if (activity.participants.length === 0) {
@@ -43,7 +44,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      sorter: { compare: (a, b) => a.name.localeCompare(b.name) },
+      sorter: { compare: (a: any, b: any) => a.name.localeCompare(b.name) },
       defaultSortOrder: 'ascend',
       sortDirections: ['ascend', 'descend', 'ascend']
     },
@@ -51,13 +52,13 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       title: 'Check in Time',
       dataIndex: 'checkInTime',
       key: 'checkInTime',
-      // sorter: { compare: (a, b) => a.checkInTime.localeCompare(b.checkInTime) }
+      sorter: { compare: (a: any, b: any) => a.checkInTime.localeCompare(b.checkInTime) }
     },
     {
       title: 'Check out Time',
       dataIndex: 'checkOutTime',
       key: 'checkOutTime',
-      // sorter: { compare: (a, b) => a.checkOutTime.localeCompare(b.checkOutTime) }
+      sorter: { compare: (a: any, b: any) => a.checkOutTime.localeCompare(b.checkOutTime) }
     }
   ]
 
@@ -66,22 +67,45 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       return {
         participant: p,
         name: p.member.fullName(),
-        checkInTime: p.checkInDate?.toLocaleTimeString(),
-        checkOutTime: p.checkOutDate?.toLocaleTimeString()
+        checkInTime: p.checkInDate?.toLocaleTimeString() ?? '',
+        checkOutTime: p.checkOutDate?.toLocaleTimeString() ?? ''
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name))
 
+  const checkedInNumber = items
+    .reduce(function (total, item) {
+      return item.participant.isCheckedIn() ? total + 1 : total
+    }, 0)
+
+  const checkedOutNumber = items
+    .reduce(function (total, item) {
+      return item.participant.isCheckedOut() ? total + 1 : total
+    }, 0)
+
   return (
     <div className={styles['participants-content']}>
-      {/* <p>{activity.participants.length} participants</p> */}
+      {/* <h4 className={styles['participants-content']}><CheckSquareTwoTone twoToneColor="#52c41a"/>{checkedInNumber}/{activity.participants.length} participants</h4> */}
+      <Space size={'large'} className={styles['participants-statistics']}>
+          <Statistic
+            title='Checked In'
+            value={checkedInNumber}
+            prefix={<LoginOutlined className={styles['checkin-icon']}/>}
+            suffix={ '/ ' + activity.participants.length }
+            />
+          <Statistic
+            title='Checked Out'
+            value={checkedOutNumber}
+            prefix={<LogoutOutlined className={styles['checkout-icon']}/>}
+            suffix={ '/ ' + activity.participants.length }
+          />
+      </Space>
       <Table
         size='small'
         columns={columns}
         dataSource={items}
         onRow={(record, rowIndex) => {
           return {
-            className: 'participants-row',
             onClick: event => { onSelectParticipant(record.participant) }
           }
         }}
