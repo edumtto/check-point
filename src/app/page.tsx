@@ -6,8 +6,9 @@ import { Member, PersonName } from './models/member'
 import { ActivitiesScene } from './activities/activities'
 import { ParticipantsScene } from './participants/participants'
 import { NavigationBar, SceneHeader } from './global-components/global-components'
-import { Menu } from 'antd'
-import styles from './global-components/global-components.module.css'
+import { Menu, Layout } from 'antd'
+const { Header, Sider } = Layout
+import styles from './page.module.css'
 // import { RightCircleFilled } from '@ant-design/icons'
 
 const membersDB = [
@@ -34,7 +35,17 @@ const chairACiseParticipants: Participant[] = [
 
 const activitiesDB = [
   new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
-  new Activity('Chair-a-cise', 'Exercises in a chair.', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants)
+  new Activity('Chair-a-cise and a long name for the type of activity so we know if the page is rending it correctly', 'Exercises in a chair.', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
+  new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
+  new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
+  new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
+  new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
+  new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
+  new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
+  new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
+  new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
+  new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
+  new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants)
 ]
 
 export default function Home (): JSX.Element {
@@ -46,8 +57,10 @@ export default function Home (): JSX.Element {
     return (
       <main>
         <NavigationBar />
-        <SceneHeader title={selectedActivity.name} showBackButton={true} handleBackButtonClick={handleBackButtonClick} />
-        <ParticipantsScene activity={selectedActivity} />
+        <Layout className={styles.content}>
+          <SceneHeader title={selectedActivity.name} showBackButton={true} handleBackButtonClick={handleBackButtonClick} />
+          <ParticipantsScene activity={selectedActivity} />
+        </Layout>
       </main>
     )
   }
@@ -90,17 +103,20 @@ export default function Home (): JSX.Element {
   }
 
   return (
-    <main>
+    <main className={styles.main}>
       <NavigationBar />
-        <div className={styles.flex}>
-          <Menu className={styles.sidebar} onClick={onMenuItemClick} defaultSelectedKeys={['0']} mode="inline" items={menuItems}/>
+      {/* <Header>AAA</Header> */}
+        <Layout className={styles.content}>
+          <Sider className={styles['side-menu']}>
+          <Menu className={styles['side-menu-content']} onClick={onMenuItemClick} defaultSelectedKeys={['0']} mode="inline" items={menuItems}/>
+          </Sider>
           <div>
             <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
             <div className={styles['main-scene']}>
              {mainScene}
             </div>
           </div>
-        </div>
+        </Layout>
     </main>
   )
 

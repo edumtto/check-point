@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Activity } from '../models/activity'
 import styles from './activities.module.css'
-import { Timeline, Card } from 'antd'
+import { Timeline, Card, Space } from 'antd'
 
 export enum ActionType {
   CHECKIN,
@@ -44,12 +44,15 @@ export function ActivitiesScene (
       color="green"
       key={val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}
     >
-      <div>
+      <Space>
+        <p>{val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}</p>
         <Card size='small' className={styles['activity-content']} onClick={() => setSelectedActivity(val)}>
+        <Space>
         <h3>{val.name}</h3>
-        <p>{val.dateTime.getHours() + ':' + val.dateTime.getMinutes() + ' | Natomas room | 23 registered'}</p>
+        <p>{'Natomas room | 23 registered'}</p>
+        </Space>
         </Card>
-      </div>
+      </Space>
     </Timeline.Item>
   )
 

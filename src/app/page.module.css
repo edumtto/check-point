@@ -1,0 +1,39 @@
+.main {
+  position:fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.content {
+  max-width: 800px;
+  margin: 8px auto 8px auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); */
+}
+
+.main-scene {
+  margin: 16px;
+  overflow-y: auto;
+  /* height: 800px; */
+}
+
+.side-menu {
+  height: 100%;
+  border-radius: 8px;
+  padding: 12px;
+  background: transparent !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.side-menu-content {
+  border-radius: 8px;
+}
+
