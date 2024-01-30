@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Activity } from '../models/activity'
 import styles from './activities.module.css'
-import { Timeline, Card, Space } from 'antd'
+import { List, Card, Space } from 'antd'
 
 export enum ActionType {
   CHECKIN,
@@ -40,8 +40,7 @@ export function ActivitiesScene (
   //   <ActivityItem activity={val} setSelectedActivity={setSelectedActivity} />
   // );
   const timelineItems = activities.map((val, index) =>
-    <Timeline.Item
-      color="green"
+    <List.Item
       key={val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}
     >
       <Space>
@@ -53,12 +52,12 @@ export function ActivitiesScene (
         </Space>
         </Card>
       </Space>
-    </Timeline.Item>
+    </List.Item>
   )
 
   return (
-    <Timeline mode="left">
-      {timelineItems}
-    </Timeline>
+    <List split={false}>
+        {timelineItems}
+    </List>
   )
 }
