@@ -5,6 +5,7 @@ import { Activity, Participant } from './models/activity'
 import { Member, PersonName } from './models/member'
 import { ActivitiesScene } from './activities/activities'
 import { ParticipantsScene } from './participants/participants'
+import { MembersScene } from './members/members'
 import { NavigationBar, SceneHeader } from './global-components/global-components'
 import { Menu, Layout } from 'antd'
 const { Header, Sider } = Layout
@@ -99,7 +100,7 @@ export default function Home (): JSX.Element {
   if (selectedMenuItem === '0') {
     mainScene = <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity}/>
   } else {
-    mainScene = <></>
+    mainScene = <MembersScene members={membersDB} />
   }
 
   return (

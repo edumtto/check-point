@@ -19,20 +19,6 @@ export class ParticipantAction {
   }
 }
 
-// function ActivityItem (
-//   { activity, setSelectedActivity }: { activity: Activity, setSelectedActivity: (value: Activity) => void }
-// ): React.JSX.Element {
-//   return (
-//     <li className={styles['activity-item']} key={activity.name}>
-//       <p className={styles['activity-time']}>{activity.dateTime.getHours()}:{activity.dateTime.getMinutes()}</p>
-//       <button className={styles['activity-content']} onClick={() => setSelectedActivity(activity)}>
-//         <h4>{activity.name}</h4>
-//         <p>{activity.description}</p>
-//       </button>
-//     </li>
-//   )
-// }
-
 export function ActivitiesScene (
   { activities, setSelectedActivity }: { activities: Activity[], setSelectedActivity: (value: Activity) => void }
 ): React.JSX.Element {

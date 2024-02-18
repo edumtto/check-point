@@ -69,11 +69,6 @@
   display: flex;
 }
 
-.main-scene {
-  height: 100vh;
-  margin: 16px;
-}
-
 .modal-background {
   z-index: 100;
   display: block;

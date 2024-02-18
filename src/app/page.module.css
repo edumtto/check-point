@@ -4,21 +4,26 @@
   top: 0;
   bottom: 0;
   height: 100%;
+  display: flex;
+  flex-flow: column;
 }
 
 .content {
-  max-width: 800px;
+  width: 768px;
   margin: 8px auto 8px auto;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   /* backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px); */
+  flex-grow: 1;
+  /* overflow: auto; */
+  
 }
 
 .main-scene {
   margin: 16px;
-  overflow-y: auto;
+  overflow: auto;
   /* height: 800px; */
 }
 
@@ -37,3 +42,8 @@
   border-radius: 8px;
 }
 
+@media screen and (max-width: 768px) {
+  .content {
+    width: 100%;
+  }
+}
