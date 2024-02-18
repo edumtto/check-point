@@ -30,8 +30,8 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
 
   return (
     <div>
-      <Space size={'large'}>
-        <Button>Test</Button>
+      <Space size={'large'} style={{ float: 'right' }}>
+        <Button>Add</Button>
       </Space>
       <Table
         size='small'

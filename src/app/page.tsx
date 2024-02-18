@@ -53,6 +53,7 @@ export default function Home (): JSX.Element {
   const nullActivity = new Activity('', '', new Date(), 0, [])
   const [selectedActivity, setSelectedActivity] = useState(nullActivity)
   const [selectedMenuItem, setSelectedMenuItem] = useState('0')
+  let mainTitle = 'Activities'
 
   if (selectedActivity.name !== '') {
     return (
@@ -98,8 +99,10 @@ export default function Home (): JSX.Element {
 
   let mainScene: React.JSX.Element
   if (selectedMenuItem === '0') {
+    mainTitle = 'Activities'
     mainScene = <ActivitiesScene activities={activitiesDB} setSelectedActivity={setSelectedActivity}/>
   } else {
+    mainTitle = 'Members'
     mainScene = <MembersScene members={membersDB} />
   }
 
@@ -112,7 +115,7 @@ export default function Home (): JSX.Element {
           <Menu className={styles['side-menu-content']} onClick={onMenuItemClick} defaultSelectedKeys={['0']} mode="inline" items={menuItems}/>
           </Sider>
           <div>
-            <SceneHeader title='Activities' showBackButton={false} handleBackButtonClick={() => undefined} />
+            <SceneHeader title={mainTitle} showBackButton={false} handleBackButtonClick={() => undefined} />
             <div className={styles['main-scene']}>
              {mainScene}
             </div>
