@@ -1,6 +1,7 @@
 'use client'
 
 import type { Member } from './member'
+import type { v4 as uuidv4 } from 'uuid'
 
 export enum ActionType {
   CHECK_IN,
@@ -80,6 +81,7 @@ export class Participant {
 }
 
 export class Activity {
+  id: uuidv4
   name: string
   description: string
   dateTime: Date
@@ -87,7 +89,7 @@ export class Activity {
   participants: Participant[]
   // TODO: id, date, time, room, numberOfParticipants
 
-  constructor (name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Array<Participant>) {
+  constructor (id: uuidv4, name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Array<Participant>) {
     this.name = name
     this.description = description
     this.dateTime = dateTime

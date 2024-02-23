@@ -1,6 +1,7 @@
 'use client'
 import { React, useState } from 'react'
 import { Member } from '../models/member'
+import { useRouter } from 'next/navigation'
 // import styles from './participants.module.css'
 // import { Participant } from '../models/activity'
 // import type { Activity } from '../models/activity'
@@ -9,6 +10,8 @@ import { Space, Table, Button } from 'antd'
 // import CheckinScene from '../checkin/checkin'
 
 export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
+  const router = useRouter()
+
   const columns = [
     {
       title: 'Name',
@@ -31,7 +34,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   return (
     <div>
       <Space size={'large'} style={{ float: 'right' }}>
-        <Button>Add</Button>
+        <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
       <Table
         size='small'
@@ -46,7 +49,13 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
     </div>
   )
 
-  function onSelectMember(): void {
+  function onAddMember (): boolean {
+    console.log('add')
+    router.push('/members/add')
+    return true
+  }
+
+  function onSelectMember (): void {
     console.log('ok')
   }
 }
