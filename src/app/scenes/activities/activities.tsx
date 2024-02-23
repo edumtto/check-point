@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import type { Activity } from '../models/activity'
+import type { Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
 import { List, Card, Space } from 'antd'
 

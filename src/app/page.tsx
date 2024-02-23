@@ -1,15 +1,16 @@
 'use client'
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Activity, Participant } from './models/activity'
-import { Member, PersonName } from './models/member'
-import { ActivitiesScene } from './activities/activities'
-import { ParticipantsScene } from './participants/participants'
-import { MembersScene } from './members/members'
-import { NavigationBar, SceneHeader } from './global-components/global-components'
+import styles from './page.module.css'
+import { Activity, Participant } from './globals/models/activity'
+import { Member, PersonName } from './globals/models/member'
+import { ActivitiesScene } from './scenes/activities/activities'
+import { ParticipantsScene } from './scenes/participants/participants'
+import { MembersScene } from './scenes/members/members'
+import { NavigationBar, SceneHeader } from './globals/components/global-components'
 import { Menu, Layout } from 'antd'
 const { Header, Sider } = Layout
-import styles from './page.module.css'
+
 // import { RightCircleFilled } from '@ant-design/icons'
 
 const membersDB = [
@@ -36,7 +37,7 @@ const chairACiseParticipants: Participant[] = [
 
 const activitiesDB = [
   new Activity(uuidv4(), 'Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
-  new Activity(uuidv4(), 'Chair-a-cise and a long name for the type of activity so we know if the page is rending it correctly', 'Exercises in a chair.', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
+  new Activity(uuidv4(), 'Chair-a-cise and a long name for the type of activity', 'Exercises in a chair.', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
   new Activity(uuidv4(), 'Zumba Gold', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
   new Activity(uuidv4(), 'Yoga', 'Mind and body practice that can build strength and flexibility', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants),
   new Activity(uuidv4(), 'Line Dancing', 'Choreographed group dance.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),

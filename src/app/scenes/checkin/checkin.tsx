@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import type { Participant } from '../models/activity'
+import type { Participant } from '../../globals/models/activity'
 import styles from './checkin.module.css'
 import { Card, Button } from 'antd'
 

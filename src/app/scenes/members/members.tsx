@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import type { Member } from '../models/member'
+import type { Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
 // import styles from './participants.module.css'
 // import { Participant } from '../models/activity'
