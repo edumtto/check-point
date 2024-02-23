@@ -1,5 +1,5 @@
 'use client'
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './participants.module.css'
 import { Participant } from '../models/activity'
 import type { Activity } from '../models/activity'
@@ -39,7 +39,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     </>
   }
 
-  const columns = [
+  const tableColumns = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -62,23 +62,24 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     }
   ]
 
-  const items = activity.participants
+  const tableData = activity.participants
     .map(function (p) {
       return {
-        participant: p,
+        key: p.member.id,
         name: p.member.fullName(),
         checkInTime: p.checkInDate?.toLocaleTimeString() ?? '',
-        checkOutTime: p.checkOutDate?.toLocaleTimeString() ?? ''
+        checkOutTime: p.checkOutDate?.toLocaleTimeString() ?? '',
+        participant: p
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name))
 
-  const checkedInNumber = items
+  const checkedInNumber = tableData
     .reduce(function (total, item) {
       return item.participant.isCheckedIn() ? total + 1 : total
     }, 0)
 
-  const checkedOutNumber = items
+  const checkedOutNumber = tableData
     .reduce(function (total, item) {
       return item.participant.isCheckedOut() ? total + 1 : total
     }, 0)
@@ -102,8 +103,8 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
       </Space>
       <Table
         size='small'
-        columns={columns}
-        dataSource={items}
+        columns={tableColumns}
+        dataSource={tableData}
         onRow={(record, rowIndex) => {
           return {
             onClick: event => { onSelectParticipant(record.participant) }

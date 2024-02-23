@@ -1,5 +1,5 @@
 'use client'
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { Activity, Participant } from './models/activity'
 import { Member, PersonName } from './models/member'

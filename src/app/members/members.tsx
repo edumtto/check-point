@@ -1,6 +1,6 @@
 'use client'
-import { React, useState } from 'react'
-import { Member } from '../models/member'
+import React from 'react'
+import type { Member } from '../models/member'
 import { useRouter } from 'next/navigation'
 // import styles from './participants.module.css'
 // import { Participant } from '../models/activity'
@@ -26,6 +26,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   const items = members
     .map(function (member) {
       return {
+        key: member.id,
         name: member.fullName()
       }
     })
