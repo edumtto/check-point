@@ -1,6 +1,8 @@
 'use client'
-import React from 'react'
-import type { Activity } from '../../globals/models/activity'
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { v4 as uuidv4 } from 'uuid'
+import { Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
 import { List, Card, Space } from 'antd'
 
@@ -20,18 +22,31 @@ export class ParticipantAction {
 }
 
 export function ActivitiesScene (
-  { activities, setSelectedActivity }: { activities: Activity[], setSelectedActivity: (value: Activity) => void }
+  { activities }: { activities: Activity[] }
 ): React.JSX.Element {
+  const router = useRouter()
+  
+  // if (selectedActivity.name !== '') {
+  //   // return (
+  //   //   <main>
+  //   //     <NavigationBar />
+  //   //     <Layout className={styles.content}>
+  //   //       <SceneHeader title={selectedActivity.name} showBackButton={true} handleBackButtonClick={handleBackButtonClick} />
+  //   //       <ParticipantsScene activity={selectedActivity} />
+  //   //     </Layout>
+  //   //   </main>
+  //   // )
+    
+  //   return </>
+  // }
   // const activityItems = activities.map((val, index) =>
   //   <ActivityItem activity={val} setSelectedActivity={setSelectedActivity} />
   // );
   const timelineItems = activities.map((val, index) =>
-    <List.Item
-      key={val.id}
-    >
+    <List.Item key={val.id}>
       <Space>
         <p>{val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}</p>
-        <Card size='small' className={styles['activity-content']} onClick={() => setSelectedActivity(val)}>
+        <Card size='small' className={styles['activity-content']} onClick={() => { handleSelectActivity(val) }}>
         <Space>
         <h3>{val.name}</h3>
         <p>{'Natomas room | 23 registered'}</p>
@@ -46,4 +61,12 @@ export function ActivitiesScene (
         {timelineItems}
     </List>
   )
+
+  function handleSelectActivity (activity: Activity): void {
+    router.push('/scenes/members/add')
+  }
+
+  // function handleBackButtonClick (): void {
+  //   setSelectedActivity(nullActivity)
+  // }
 }
