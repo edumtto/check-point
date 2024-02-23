@@ -7,7 +7,6 @@ import { NavigationBar, SceneHeader } from './globals/components/global-componen
 import { Menu, Layout } from 'antd'
 import { activitiesDB, membersDB } from './globals/database'
 const { Sider } = Layout
-
 export default function Home (): JSX.Element {
   const [selectedMenuItem, setSelectedMenuItem] = useState('0')
   let mainTitle = 'Activities'

@@ -38,3 +38,8 @@ export const activitiesDB: Activity[] = [
   new Activity(uuidv4(), 'Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, zumbaParticipants),
   new Activity(uuidv4(), 'Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, chairACiseParticipants)
 ]
+
+// export const database = {
+//   members: membersDB,
+//   activities: activitiesDB
+// }

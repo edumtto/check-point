@@ -1,6 +1,7 @@
 import styles from './global-components.module.css'
-import React from 'react'
-import { Button } from 'antd'
+import React, { type ReactNode } from 'react'
+
+import { Button, Layout } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 
 export function NavigationBar (): JSX.Element {
@@ -35,7 +36,34 @@ export function SideBar ({ items }: { items: string[] }): JSX.Element {
 
   return <div className={styles.sidebar}>
     <ul>
-    {itemsMenu}
+      {itemsMenu}
     </ul>
   </div>
+}
+
+export function MainContainerWithTitle (
+  { title, handleBackButtonClick, children }: { title: string, handleBackButtonClick: () => void, children: ReactNode }
+): JSX.Element {
+  return (
+    <main>
+      <NavigationBar />
+      <Layout className={styles.content}>
+        <SceneHeader title={title} showBackButton={true} handleBackButtonClick={handleBackButtonClick} />
+        {children}
+      </Layout>
+    </main>
+  )
+}
+
+export function MainContainer ({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <div>
+      <NavigationBar />
+      <main>
+        <Layout className={styles.content}>
+          {children}
+        </Layout>
+      </main>
+    </div>
+  )
 }

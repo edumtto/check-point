@@ -1,14 +1,21 @@
 'use client'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import styles from './participants.module.css'
-import { Participant } from '../../globals/models/activity'
-import type { Activity } from '../../globals/models/activity'
-import { Member, PersonName } from '../../globals/models/member'
+import { Participant } from '../../../globals/models/activity'
+import { MainContainerWithTitle } from '../../../globals/components/global-components'
+import { Member, PersonName } from '../../../globals/models/member'
 import { Modal, Table, Statistic, Space } from 'antd'
-import CheckinScene from '../checkin/checkin'
+import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
+import { activitiesDB } from '../../../globals/database'
 
-export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.Element {
+export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
+  const router = useRouter()
+
+  console.log(params)
+  const activity = activitiesDB[0]
+
   if (activity.participants.length === 0) {
     return (
       <div>
@@ -20,11 +27,11 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
   const nullParticipant = new Participant(new Member(0, new PersonName('', '', '')))
   const [selected, setSelected] = useState(nullParticipant)
 
-  function onSelectParticipant (participant: Participant): void {
+  function onSelectParticipant(participant: Participant): void {
     setSelected(participant)
   }
 
-  function checkinScene (): JSX.Element {
+  function checkinScene(): JSX.Element {
     const onClose = function (): void { setSelected(nullParticipant) }
     const children = <CheckinScene participant={selected} onCheck={onClose} />
     return <>
@@ -34,7 +41,7 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
         onCancel={onClose}
         footer={[]}
       >
-          {children}
+        {children}
       </Modal>
     </>
   }
@@ -85,33 +92,34 @@ export function ParticipantsScene ({ activity }: { activity: Activity }): JSX.El
     }, 0)
 
   return (
-    <div className={styles['participants-content']}>
-      {/* <h4 className={styles['participants-content']}><CheckSquareTwoTone twoToneColor="#52c41a"/>{checkedInNumber}/{activity.participants.length} participants</h4> */}
-      <Space size={'large'} className={styles['participants-statistics']}>
+    <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.push('/') }}>
+      <div className={styles['participants-content']}>
+        <Space size={'large'} className={styles['participants-statistics']}>
           <Statistic
             title='Checked In'
             value={checkedInNumber}
-            prefix={<LoginOutlined className={styles['checkin-icon']}/>}
-            suffix={ '/ ' + activity.participants.length }
-            />
+            prefix={<LoginOutlined className={styles['checkin-icon']} />}
+            suffix={'/ ' + activity.participants.length}
+          />
           <Statistic
             title='Checked Out'
             value={checkedOutNumber}
-            prefix={<LogoutOutlined className={styles['checkout-icon']}/>}
-            suffix={ '/ ' + activity.participants.length }
+            prefix={<LogoutOutlined className={styles['checkout-icon']} />}
+            suffix={'/ ' + activity.participants.length}
           />
-      </Space>
-      <Table
-        size='small'
-        columns={tableColumns}
-        dataSource={tableData}
-        onRow={(record, rowIndex) => {
-          return {
-            onClick: event => { onSelectParticipant(record.participant) }
-          }
-        }}
-      />
-      {checkinScene()}
-    </div>
+        </Space>
+        <Table
+          size='small'
+          columns={tableColumns}
+          dataSource={tableData}
+          onRow={(record, rowIndex) => {
+            return {
+              onClick: event => { onSelectParticipant(record.participant) }
+            }
+          }}
+        />
+        {checkinScene()}
+      </div>
+    </MainContainerWithTitle>
   )
 }
