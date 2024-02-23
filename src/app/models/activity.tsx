@@ -89,7 +89,8 @@ export class Activity {
   participants: Participant[]
   // TODO: id, date, time, room, numberOfParticipants
 
-  constructor (id: uuidv4, name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Array<Participant>) {
+  constructor (id: uuidv4, name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
+    this.id = id
     this.name = name
     this.description = description
     this.dateTime = dateTime

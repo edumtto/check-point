@@ -27,7 +27,7 @@ export function ActivitiesScene (
   // );
   const timelineItems = activities.map((val, index) =>
     <List.Item
-      key={val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}
+      key={val.id}
     >
       <Space>
         <p>{val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}</p>
