@@ -2,12 +2,7 @@
 import React from 'react'
 import type { Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
-// import styles from './participants.module.css'
-// import { Participant } from '../models/activity'
-// import type { Activity } from '../models/activity'
-// import { Member, PersonName } from '../models/member'
 import { Space, Table, Button } from 'antd'
-// import CheckinScene from '../checkin/checkin'
 
 export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   const router = useRouter()
@@ -17,8 +12,8 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      sorter: { compare: (a: any, b: any) => a.name.localeCompare(b.name) },
       defaultSortOrder: 'ascend',
+      sorter: (a: any, b: any) => a.name.localeCompare(b.name),
       sortDirections: ['ascend', 'descend', 'ascend']
     }
   ]
@@ -34,7 +29,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
 
   return (
     <div>
-      <Space size={'large'} style={{ float: 'right' }}>
+      <Space size={'large'} style={{ float: 'right', paddingBottom: 8 }}>
         <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
       <Table
@@ -51,8 +46,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   )
 
   function onAddMember (): boolean {
-    console.log('add')
-    router.push('/members/add')
+    router.push('/scenes/members/add')
     return true
   }
 

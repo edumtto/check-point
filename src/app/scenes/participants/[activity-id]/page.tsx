@@ -27,11 +27,11 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
   const nullParticipant = new Participant(new Member(0, new PersonName('', '', '')))
   const [selected, setSelected] = useState(nullParticipant)
 
-  function onSelectParticipant(participant: Participant): void {
+  function onSelectParticipant (participant: Participant): void {
     setSelected(participant)
   }
 
-  function checkinScene(): JSX.Element {
+  function checkinScene (): JSX.Element {
     const onClose = function (): void { setSelected(nullParticipant) }
     const children = <CheckinScene participant={selected} onCheck={onClose} />
     return <>
