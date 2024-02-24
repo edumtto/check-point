@@ -5,22 +5,34 @@ import styles from './participants.module.css'
 import { Participant } from '../../../globals/models/activity'
 import { MainContainerWithTitle } from '../../../globals/components/global-components'
 import { Member, PersonName } from '../../../globals/models/member'
-import { Modal, Table, Statistic, Space } from 'antd'
+import { Modal, Table, Statistic, Space, Alert } from 'antd'
 import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
-import { activitiesDB } from '../../../globals/database'
+import Database from '../../../globals/database'
 
 export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
+  const db = new Database()
+  console.log('received: ' + params.activityId)
+  const activity = undefined // db.getActivity(params.activityId)
 
-  console.log(params)
-  const activity = activitiesDB[0]
+  if (activity === undefined) {
+    return (
+      <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.push('/') }}>
+        <div className={styles['participants-content']}>
+          <Alert message='No activity found.' type="error" />
+        </div>
+      </MainContainerWithTitle>
+    )
+  }
 
   if (activity.participants.length === 0) {
     return (
-      <div>
-        <p>No participants registered.</p>
-      </div>
+      <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.push('/') }}>
+        <div className={styles['participants-content']}>
+          <Alert message='No registered participants yet.' type="warning" />
+        </div>
+      </MainContainerWithTitle>
     )
   }
 

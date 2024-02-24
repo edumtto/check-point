@@ -45,7 +45,7 @@ export function ActivitiesScene (
     </List>
   )
 
-  function handleSelectActivity(activity: Activity): void {
-    router.push('/scenes/participants/1234')
+  function handleSelectActivity (activity: Activity): void {
+    router.push('/scenes/participants/' + activity.id)
   }
 }

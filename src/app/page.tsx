@@ -5,11 +5,13 @@ import { ActivitiesScene } from './scenes/activities/activities'
 import { MembersScene } from './scenes/members/members'
 import { MainContainer, SceneHeader } from './globals/components/global-components'
 import { Menu, Layout } from 'antd'
-import { activitiesDB, membersDB } from './globals/database'
+import Database from './globals/database'
 const { Sider, Content } = Layout
+
 export default function Home (): JSX.Element {
   const [selectedMenuItem, setSelectedMenuItem] = useState('0')
   let mainTitle = 'Activities'
+  const db = new Database()
 
   const menuItems: any[] = [
     {
@@ -44,10 +46,10 @@ export default function Home (): JSX.Element {
   let mainScene: React.JSX.Element
   if (selectedMenuItem === '0') {
     mainTitle = 'Activities'
-    mainScene = <ActivitiesScene activities={activitiesDB} />
+    mainScene = <ActivitiesScene activities={db.activities} />
   } else {
     mainTitle = 'Members'
-    mainScene = <MembersScene members={membersDB} />
+    mainScene = <MembersScene members={db.members} />
   }
 
   return (
