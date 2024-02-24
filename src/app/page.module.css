@@ -1,19 +1,15 @@
 
-.main-scene {
+.selected-scene {
   margin: 16px;
-  overflow: auto;
-  /* height: 800px; */
+  height: 80vh;
+  overflow: auto; 
 }
 
 .side-menu {
-  /* height: 100%; */
   border-radius: 8px;
   padding: 12px;
   background: transparent !important;
-  /* position: fixed; */
-  /* top: 0;
-  left: 0; */
-  /* bottom: 0; */
+  overflow: hidden;
 }
 
 .side-menu-content {

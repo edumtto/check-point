@@ -57,13 +57,11 @@ export function MainContainerWithTitle (
 
 export function MainContainer ({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <div>
+    <main>
       <NavigationBar />
-      <main>
-        <Layout className={styles.content}>
-          {children}
-        </Layout>
-      </main>
-    </div>
+      <Layout className={styles.content}>
+        {children}
+      </Layout>
+    </main>
   )
 }

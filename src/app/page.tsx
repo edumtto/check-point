@@ -57,7 +57,7 @@ export default function Home (): JSX.Element {
       </Sider>
       <Content>
         <SceneHeader title={mainTitle} showBackButton={false} handleBackButtonClick={() => undefined} />
-        <div className={styles['main-scene']}>
+        <div className={styles['selected-scene']}>
           {mainScene}
         </div>
       </Content>
