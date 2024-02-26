@@ -8,13 +8,11 @@ import { Member, PersonName } from '../../../globals/models/member'
 import { Modal, Table, Statistic, Space, Alert } from 'antd'
 import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
-import Database from '../../../globals/database'
+import { database } from '../../../globals/database'
 
 export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
-  const db = new Database()
-  console.log('received: ' + params.activityId)
-  const activity = undefined // db.getActivity(params.activityId)
+  const activity = database.getActivity(params.activityId)
 
   if (activity === undefined) {
     return (

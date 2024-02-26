@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Activity, Participant } from './models/activity'
 import { Member, PersonName } from './models/member'
 
-export default class Database {
+class Database {
   members: Member[] = [
     new Member(uuidv4(), new PersonName('Antonio', '', 'Gomez')),
     new Member(uuidv4(), new PersonName('Carlos', '', 'Rodriguez')),
@@ -40,12 +40,9 @@ export default class Database {
     new Activity(uuidv4(), 'Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants)
   ]
 
-  getActivity (id: string): Activity | undefined {
-    // const uuid = uuid.fromString(id)
-    console.log({
-      activityID: id,
-      firstID: this.activities[0].id
-    })
+  getActivity (id: uuidv4): Activity | undefined {
     return this.activities.find((activity) => activity.id === id)
   }
 }
+
+export const database = new Database()
