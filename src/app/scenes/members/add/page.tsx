@@ -119,7 +119,7 @@ export default function MembersScene (): JSX.Element {
       ]}
     >
       <Input
-      placeholder='(000) 0000-0000'
+        placeholder='(000) 0000-0000'
       />
     </Form.Item>
   )
@@ -155,7 +155,7 @@ export default function MembersScene (): JSX.Element {
   )
 
   return (
-    <MainContainerWithTitle title='New Membership' handleBackButtonClick={() => { router.push('/') }}>
+    <MainContainerWithTitle title='New Membership' handleBackButtonClick={() => { router.back() }}>
       <Form
         style={{ padding: 16 }}
         name='basic'

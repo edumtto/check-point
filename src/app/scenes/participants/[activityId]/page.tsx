@@ -16,7 +16,7 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
 
   if (activity === undefined) {
     return (
-      <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.push('/') }}>
+      <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.back() }}>
         <div className={styles['participants-content']}>
           <Alert message='No activity found.' type="error" />
         </div>
@@ -26,7 +26,7 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
 
   if (activity.participants.length === 0) {
     return (
-      <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.push('/') }}>
+      <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.back() }}>
         <div className={styles['participants-content']}>
           <Alert message='No registered participants yet.' type="warning" />
         </div>
@@ -102,7 +102,7 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
     }, 0)
 
   return (
-    <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.push('/') }}>
+    <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.back() }}>
       <div className={styles['participants-content']}>
         <Space size={'large'} className={styles['participants-statistics']}>
           <Statistic
