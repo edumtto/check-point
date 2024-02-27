@@ -18,10 +18,10 @@ export class PersonName {
 }
 
 export class Member {
-  id: uuidv4
+  id: typeof uuidv4
   name: PersonName
 
-  constructor (id: uuidv4, name: PersonName) {
+  constructor (id: typeof uuidv4, name: PersonName) {
     this.id = id
     this.name = name
   }

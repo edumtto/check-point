@@ -81,7 +81,7 @@ export class Participant {
 }
 
 export class Activity {
-  id: uuidv4
+  id: typeof uuidv4
   name: string
   description: string
   dateTime: Date
@@ -89,7 +89,7 @@ export class Activity {
   participants: Participant[]
   // TODO: id, date, time, room, numberOfParticipants
 
-  constructor (id: uuidv4, name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
+  constructor (id: typeof uuidv4, name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
     this.id = id
     this.name = name
     this.description = description
