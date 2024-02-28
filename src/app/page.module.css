@@ -1,17 +1,2 @@
-
 .selected-scene {
-  margin: 16px;
-  height: 80vh;
-  overflow: auto; 
-}
-
-.side-menu {
-  border-radius: 8px;
-  padding: 12px;
-  background: transparent !important;
-  overflow: hidden;
-}
-
-.side-menu-content {
-  border-radius: 8px;
 }
