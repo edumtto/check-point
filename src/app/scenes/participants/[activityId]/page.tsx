@@ -38,7 +38,6 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
     {
       title: 'Name',
       dataIndex: 'name',
-      key: 'name',
       sorter: { compare: (a: any, b: any) => a.name.localeCompare(b.name) },
       defaultSortOrder: 'ascend',
       sortDirections: ['ascend', 'descend', 'ascend']
@@ -46,13 +45,11 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
     {
       title: 'Check in Time',
       dataIndex: 'checkInTime',
-      key: 'checkInTime',
       sorter: { compare: (a: any, b: any) => a.checkInTime.localeCompare(b.checkInTime) }
     },
     {
       title: 'Check out Time',
       dataIndex: 'checkOutTime',
-      key: 'checkOutTime',
       sorter: { compare: (a: any, b: any) => a.checkOutTime.localeCompare(b.checkOutTime) }
     }
   ]
