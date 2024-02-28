@@ -1,5 +1,5 @@
 'use client'
-import type { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 export class PersonName {
   firstName: string
@@ -18,11 +18,11 @@ export class PersonName {
 }
 
 export class Member {
-  id: typeof uuidv4
+  id: string
   name: PersonName
 
-  constructor (id: typeof uuidv4, name: PersonName) {
-    this.id = id
+  constructor (name: PersonName) {
+    this.id = uuidv4()
     this.name = name
   }
 

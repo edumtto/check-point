@@ -2,9 +2,8 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './participants.module.css'
-import { Participant } from '../../../globals/models/activity'
+import type { Participant } from '../../../globals/models/activity'
 import { MainContainerWithTitle } from '../../../globals/components/global-components'
-import { Member, PersonName } from '../../../globals/models/member'
 import { Modal, Table, Statistic, Space, Alert } from 'antd'
 import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
@@ -13,6 +12,7 @@ import { database } from '../../../globals/database'
 export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
   const activity = database.getActivity(params.activityId)
+  const [selectedId, setSelectedId] = useState('')
 
   if (activity === undefined) {
     return (
@@ -32,28 +32,6 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
         </div>
       </MainContainerWithTitle>
     )
-  }
-
-  const nullParticipant = new Participant(new Member(0, new PersonName('', '', '')))
-  const [selected, setSelected] = useState(nullParticipant)
-
-  function onSelectParticipant (participant: Participant): void {
-    setSelected(participant)
-  }
-
-  function checkinScene (): JSX.Element {
-    const onClose = function (): void { setSelected(nullParticipant) }
-    const children = <CheckinScene participant={selected} onCheck={onClose} />
-    return <>
-      <Modal
-        title={selected.member.fullName()}
-        open={selected.member.id !== nullParticipant.member.id}
-        onCancel={onClose}
-        footer={[]}
-      >
-        {children}
-      </Modal>
-    </>
   }
 
   const tableColumns = [
@@ -132,4 +110,26 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
       </div>
     </MainContainerWithTitle>
   )
+
+  function onSelectParticipant (participant: Participant): void {
+    setSelectedId(participant.member.id)
+  }
+
+  function checkinScene (): JSX.Element {
+    const participant = activity?.getParticipant(selectedId)
+    const onClose = function (): void { setSelectedId('') }
+    if (participant === undefined) {
+      return <></>
+    }
+    return <>
+      <Modal
+        title={participant.member.fullName()}
+        open={participant !== undefined}
+        onCancel={onClose}
+        footer={[]}
+      >
+        <CheckinScene participant={participant} onCheck={onClose} />
+      </Modal>
+    </>
+  }
 }

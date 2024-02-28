@@ -1,7 +1,7 @@
 'use client'
 
 import type { Member } from './member'
-import type { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 export enum ActionType {
   CHECK_IN,
@@ -81,7 +81,7 @@ export class Participant {
 }
 
 export class Activity {
-  id: typeof uuidv4
+  id: string
   name: string
   description: string
   dateTime: Date
@@ -89,8 +89,8 @@ export class Activity {
   participants: Participant[]
   // TODO: id, date, time, room, numberOfParticipants
 
-  constructor (id: typeof uuidv4, name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
-    this.id = id
+  constructor (name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
+    this.id = uuidv4()
     this.name = name
     this.description = description
     this.dateTime = dateTime
@@ -100,5 +100,9 @@ export class Activity {
 
   addParticipant (participant: Member): void {
     this.participants.push(new Participant(participant))
+  }
+
+  getParticipant (id: string): Participant | undefined {
+    return this.participants.find((p) => p.member.id === id)
   }
 }
