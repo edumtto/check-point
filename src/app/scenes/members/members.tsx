@@ -10,10 +10,10 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      defaultSortOrder: 'ascend',
-      sorter: (a: any, b: any) => a.name.localeCompare(b.name),
-      sortDirections: ['ascend', 'descend', 'ascend']
+      dataIndex: 'name'
+      // defaultSortOrder: 'ascend',
+      // sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+      // sortDirections: ['ascend', 'descend', 'ascend']
     }
   ]
 
@@ -43,6 +43,12 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
       />
     </div>
   )
+
+  // Type '{ title: string; dataIndex: string; defaultSortOrder: string; sorter: (a: any, b: any) => any; sortDirections: string[]; }[]' is not assignable to type '(ColumnGroupType<{ key: string; name: string; }> | ColumnType<{ key: string; name: string; }>)[]'.
+  // Type '{ title: string; dataIndex: string; defaultSortOrder: string; sorter: (a: any, b: any) => any; sortDirections: string[]; }'   is not assignable to type  'ColumnGroupType<{ key: string; name: string; }> | ColumnType<{ key: string; name: string; }>'.
+  //   Type '{ title: string; dataIndex: string; defaultSortOrder: string; sorter: (a: any, b: any) => any; sortDirections: string[]; }' is not assignable to type 'ColumnType<{ key: string; name: string; }>'.
+  //     Types of property 'defaultSortOrder' are incompatible.
+  //       Type 'string' is not assignable to type 'SortOrder | undefined'.ts(2322)
 
   function onAddMember (): boolean {
     router.push('/scenes/members/add')
