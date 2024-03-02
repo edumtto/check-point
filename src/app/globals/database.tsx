@@ -70,3 +70,13 @@ class Database {
 }
 
 export const database = new Database()
+
+class AppState {
+  lastActiveTab: string
+
+  constructor() {
+    this.lastActiveTab = '0'
+  }
+}
+
+export const appState = new AppState()

@@ -5,7 +5,7 @@ import { ActivitiesScene } from './scenes/activities/activities'
 import { MembersScene } from './scenes/members/members'
 import { MainContainer } from './globals/components/global-components'
 import { Tabs } from 'antd'
-import { database } from './globals/database'
+import { database, appState } from './globals/database'
 
 export default function Home (): JSX.Element {
   const items = [
@@ -34,8 +34,12 @@ export default function Home (): JSX.Element {
   return (
     <MainContainer>
         <div className={styles['selected-scene']}>
-          <Tabs defaultActiveKey="0" items={items}/>
+          <Tabs defaultActiveKey={appState.lastActiveTab} onChange={onTabChange} items={items}/>
         </div>
     </MainContainer>
   )
+
+  function onTabChange (activeKey: string): void {
+    appState.lastActiveTab = activeKey
+  }
 }

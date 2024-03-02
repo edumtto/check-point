@@ -221,11 +221,15 @@ export default function MembersScene (): JSX.Element {
   function onSubmit (): void {
     console.log(formValues)
 
+    // Validate form
+
     const personName = new PersonName(
       formValues.firstname,
       formValues.middlename ?? '',
       formValues.lastname
     )
     database.addMember(new Member(personName))
+
+    router.back()
   }
 }
