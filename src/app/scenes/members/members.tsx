@@ -1,11 +1,30 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import type { Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
-import { Space, Table, Button } from 'antd'
+import { Space, Table, Button, Input } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 
 export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   const router = useRouter()
+  const [search, setSearch] = useState('')
+
+  function filterMember (member: Member, index: any): boolean {
+    if (search === '') {
+      return true
+    }
+    return member.fullName().toLowerCase().startsWith(search.toLowerCase())
+  }
+
+  const items = members
+    .filter(filterMember)
+    .map(function (member) {
+      return {
+        key: member.id,
+        name: member.fullName()
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   const columns = [
     {
@@ -17,18 +36,10 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
     }
   ]
 
-  const items = members
-    .map(function (member) {
-      return {
-        key: member.id,
-        name: member.fullName()
-      }
-    })
-    .sort((a, b) => a.name.localeCompare(b.name))
-
   return (
     <div>
       <Space size={'large'} style={{ float: 'right', paddingBottom: 8 }}>
+        <Input addonBefore={<SearchOutlined />} onChange={onSearchChange} />
         <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
       <Table
@@ -52,5 +63,9 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
 
   function onSelectMember (): void {
     console.log('ok')
+  }
+
+  function onSearchChange (element: any): void {
+    setSearch(element.target.value)
   }
 }
