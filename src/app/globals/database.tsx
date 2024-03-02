@@ -7,21 +7,41 @@ class Database {
     new Member(new PersonName('Carlos', '', 'Rodriguez')),
     new Member(new PersonName('Barbara', '', 'Smith')),
     new Member(new PersonName('Daniel', '', 'Rodrigo')),
-    new Member(new PersonName('Marc', '', 'Lopes'))
+    new Member(new PersonName('Marc', '', 'Lopes')),
+    new Member(new PersonName('Maria', '', 'Christina')),
+    new Member(new PersonName('Emanuele', '', 'Oliveira')),
+    new Member(new PersonName('James', '', 'Smith')),
+    new Member(new PersonName('Frederich', '', 'Scarlet')),
+    new Member(new PersonName('Chris', '', 'Croft')),
+    new Member(new PersonName('Sophia', '', 'Vergara')),
+    new Member(new PersonName('Ed', '', 'Sheeran')),
+    new Member(new PersonName('Simon', '', 'Web')),
+    new Member(new PersonName('Laura', '', 'Pausini')),
+    new Member(new PersonName('Esther', '', 'Dean'))
   ]
 
   zumbaParticipants: Participant[] = [
     new Participant(this.members[0]),
     new Participant(this.members[1]),
     new Participant(this.members[2]),
-    new Participant(this.members[3])
+    new Participant(this.members[3]),
+    new Participant(this.members[4]),
+    new Participant(this.members[5]),
+    new Participant(this.members[6]),
+    new Participant(this.members[7]),
+    new Participant(this.members[8]),
+    new Participant(this.members[9]),
+    new Participant(this.members[10]),
+    new Participant(this.members[11]),
+    new Participant(this.members[12]),
+    new Participant(this.members[13])
   ]
 
   chairACiseParticipants: Participant[] = [
     new Participant(this.members[1]),
     new Participant(this.members[2]),
     new Participant(this.members[3]),
-    new Participant(this.members[4])
+    new Participant(this.members[5])
   ]
 
   activities: Activity[] = [
@@ -41,6 +61,11 @@ class Database {
 
   getActivity (id: string): Activity | undefined {
     return this.activities.find((activity) => activity.id === id)
+  }
+
+  addMember (member: Member): void {
+    this.members.push(member)
+    console.log(this.members)
   }
 }
 

@@ -4,12 +4,12 @@ import { useRouter } from 'next/navigation'
 import styles from './participants.module.css'
 import type { Participant } from '../../../globals/models/activity'
 import { MainContainerWithTitle } from '../../../globals/components/global-components'
-import { Modal, Table, Statistic, Space, Alert } from 'antd'
+import { Modal, Table, Statistic, Space, Alert, TablePaginationConfig } from 'antd'
 import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
 import { database } from '../../../globals/database'
 
-export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
+export default function ParticipantsScene({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
   const activity = database.getActivity(params.activityId)
   const [selectedId, setSelectedId] = useState('')
@@ -76,6 +76,15 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
       return item.participant.isCheckedOut() ? total + 1 : total
     }, 0)
 
+  const paginationConfig: TablePaginationConfig = {
+    // showQuickJumper: false,
+    size: 'small'
+    // responsive: true,
+    // role: '',
+    // totalBoundaryShowSizeChanger: 10
+    // rootClassName: ''
+  }
+
   return (
     <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.back() }}>
       <div className={styles['participants-content']}>
@@ -94,9 +103,11 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
           />
         </Space>
         <Table
-          size='small'
           columns={tableColumns}
           dataSource={tableData}
+          size='small'
+          bordered={false}
+          pagination={{ pageSize: 50 }}
           onRow={(record, rowIndex) => {
             return {
               onClick: event => { onSelectParticipant(record.participant) }

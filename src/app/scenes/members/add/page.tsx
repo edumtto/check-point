@@ -1,13 +1,27 @@
 'use client'
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import { MainContainerWithTitle } from '../../../globals/components/global-components'
+import { MainContainerWithTitle } from '@/app/globals/components/global-components'
+import { database } from '@/app/globals/database'
 import { Input, Form, Select, Button, DatePicker } from 'antd'
+import { Member, PersonName } from '@/app/globals/models/member'
 const { Option } = Select
 
 export default function MembersScene (): JSX.Element {
   const router = useRouter()
-  // const { query: { id } } = router
+  const [form] = Form.useForm()
+
+  let formValues = {
+    address: '',
+    birthday: undefined,
+    email: '',
+    emmergencycontact: undefined,
+    firstname: '',
+    gender: undefined,
+    lastname: '',
+    middlename: '',
+    phone: undefined
+  }
 
   const firstName = (
     <Form.Item
@@ -60,7 +74,7 @@ export default function MembersScene (): JSX.Element {
       name='birthday'
       rules={[
         {
-          required: true,
+          // required: true,
           message: 'Please input your birthday name'
         }
       ]}
@@ -75,8 +89,8 @@ export default function MembersScene (): JSX.Element {
       label='Gender'
       rules={[
         {
-          required: true,
-          message: 'Please select gender!'
+          // required: true,
+          message: 'Please select gender'
         }
       ]}
     >
@@ -95,11 +109,11 @@ export default function MembersScene (): JSX.Element {
       rules={[
         {
           type: 'email',
-          message: 'The input is not valid E-mail!'
+          message: 'The input is not valid E-mail'
         },
         {
-          required: false,
-          message: 'Please input your E-mail!'
+          // required: false,
+          message: 'Please input your E-mail'
         }
       ]}
     >
@@ -113,8 +127,8 @@ export default function MembersScene (): JSX.Element {
       label='Phone Number'
       rules={[
         {
-          required: true,
-          message: 'Please input your phone number!'
+          // required: true,
+          message: 'Please input your phone number'
         }
       ]}
     >
@@ -130,7 +144,7 @@ export default function MembersScene (): JSX.Element {
       name='address'
       rules={[
         {
-          required: true,
+          // required: true,
           message: 'Please input your address'
         }
       ]}
@@ -145,7 +159,7 @@ export default function MembersScene (): JSX.Element {
       name='emmergencycontact'
       rules={[
         {
-          required: true,
+          // required: true,
           message: 'Please input your emmergency contact'
         }
       ]}
@@ -157,6 +171,7 @@ export default function MembersScene (): JSX.Element {
   return (
     <MainContainerWithTitle title='New Membership' handleBackButtonClick={() => { router.back() }}>
       <Form
+        form={form}
         style={{ padding: 16 }}
         name='basic'
         labelWrap
@@ -167,6 +182,7 @@ export default function MembersScene (): JSX.Element {
         wrapperCol={{
           span: 18
         }}
+        onValuesChange={onValuesChange}
       >
         {firstName}
         {middleName}
@@ -179,7 +195,7 @@ export default function MembersScene (): JSX.Element {
         {emmergencyContact}
 
         <Form.Item label=' '>
-          <Button type='primary' htmlType='submit'>Register</Button>
+          <Button type='primary' htmlType='submit' onClick={ onSubmit }>Register</Button>
         </Form.Item>
       </Form>
     </MainContainerWithTitle>
@@ -187,5 +203,29 @@ export default function MembersScene (): JSX.Element {
 
   function onChangeBirthday (): void {
     console.log('birthday')
+  }
+
+  function onValuesChange (oldValues: any, newValues: any): void {
+    formValues = newValues
+  }
+
+  // async function onCheck (): Promise<void> {
+  //   try {
+  //     const values = await form.validateFields()
+  //     console.log('Success:', values)
+  //   } catch (errorInfo) {
+  //     console.log('Failed:', errorInfo)
+  //   }
+  // }
+
+  function onSubmit (): void {
+    console.log(formValues)
+
+    const personName = new PersonName(
+      formValues.firstname,
+      formValues.middlename ?? '',
+      formValues.lastname
+    )
+    database.addMember(new Member(personName))
   }
 }
