@@ -81,7 +81,7 @@ export const database = new Database()
 class AppState {
   lastActiveTab: string
 
-  constructor() {
+  constructor () {
     this.lastActiveTab = '0'
   }
 }

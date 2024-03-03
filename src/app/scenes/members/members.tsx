@@ -31,9 +31,9 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
     {
       title: 'Name',
       dataIndex: 'name',
-      defaultSortOrder: 'ascend',
-      sorter: (a: any, b: any) => a.name.localeCompare(b.name),
-      sortDirections: ['ascend', 'descend', 'ascend']
+      // defaultSortOrder: 'ascend',
+      // sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+      // sortDirections: ['ascend', 'descend', 'ascend']
     }
   ]
 

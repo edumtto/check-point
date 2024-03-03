@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import styles from './participants.module.css'
 import type { Participant } from '../../../globals/models/activity'
 import { MainContainerWithTitle } from '../../../globals/components/global-components'
-import { Modal, Table, Statistic, Space, Alert, Divider } from 'antd'
+import { Modal, Table, Statistic, Space, Alert } from 'antd'
 import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined, TeamOutlined } from '@ant-design/icons'
 import { database } from '../../../globals/database'
@@ -37,20 +37,20 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
   const tableColumns = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      sorter: { compare: (a: any, b: any) => a.name.localeCompare(b.name) },
-      defaultSortOrder: 'ascend',
-      sortDirections: ['ascend', 'descend', 'ascend']
+      dataIndex: 'name'
+      // sorter: { compare: (a: any, b: any) => a.name.localeCompare(b.name) },
+      // defaultSortOrder: 'ascend',
+      // sortDirections: ['ascend', 'descend', 'ascend']
     },
     {
       title: 'Check in Time',
-      dataIndex: 'checkInTime',
-      sorter: { compare: (a: any, b: any) => a.checkInTime.localeCompare(b.checkInTime) }
+      dataIndex: 'checkInTime'
+      // sorter: { compare: (a: any, b: any) => a.checkInTime.localeCompare(b.checkInTime) }
     },
     {
       title: 'Check out Time',
-      dataIndex: 'checkOutTime',
-      sorter: { compare: (a: any, b: any) => a.checkOutTime.localeCompare(b.checkOutTime) }
+      dataIndex: 'checkOutTime'
+      // sorter: { compare: (a: any, b: any) => a.checkOutTime.localeCompare(b.checkOutTime) }
     }
   ]
 
