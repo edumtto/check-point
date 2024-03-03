@@ -6,23 +6,24 @@ import { MembersScene } from './scenes/members/members'
 import { MainContainer } from './globals/components/global-components'
 import { Tabs } from 'antd'
 import { database, appState } from './globals/database'
+import HomeScene from './scenes/home/home'
 
 export default function Home (): JSX.Element {
   const items = [
     {
       key: '0',
+      label: 'Home',
+      children: <HomeScene />
+    },
+    {
+      key: '1',
       label: 'Activities',
       children: <ActivitiesScene activities={database.activities} />
     },
     {
-      key: '1',
+      key: '2',
       label: 'Members',
       children: <MembersScene members={database.members} />
-    },
-    {
-      key: '2',
-      label: 'Analytics',
-      children: 'Analytics data'
     },
     {
       key: '3',
