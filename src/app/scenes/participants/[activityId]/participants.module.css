@@ -3,7 +3,8 @@
 }
 
 .participants-content tr:hover > td {
-  background-color: rgb(255, 232, 201) !important;
+  background-color: var(--highlight) !important;
+  cursor: pointer;
 }
 
 .checkin-icon {

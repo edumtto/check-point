@@ -4,6 +4,7 @@ import type { Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
 import { Space, Table, Button, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
+import styles from './members.module.css'
 
 export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   const router = useRouter()
@@ -43,6 +44,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
         <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
       <Table
+        className={styles.members__list}
         size='small'
         columns={columns}
         dataSource={items}

@@ -1,4 +1,4 @@
-import { Activity, Participant } from './models/activity'
+import { Activity, Participant, Room } from './models/activity'
 import { Member, PersonName } from './models/member'
 
 class Database {
@@ -44,19 +44,26 @@ class Database {
     new Participant(this.members[5])
   ]
 
+  rooms: Room[] = [
+    new Room('Conference Room'),
+    new Room('Natomas Room'),
+    new Room('Dance Room'),
+    new Room('Craft Room')
+  ]
+
   activities: Activity[] = [
-    new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.zumbaParticipants),
-    new Activity('Chair-a-cise and a long name for the type of activity', 'Exercises in a chair.', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants),
-    new Activity('Zumba Gold', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.zumbaParticipants),
-    new Activity('Yoga', 'Mind and body practice that can build strength and flexibility', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants),
-    new Activity('Line Dancing', 'Choreographed group dance.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.zumbaParticipants),
-    new Activity('Book Club', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants),
-    new Activity('Movie Session', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.zumbaParticipants),
-    new Activity('Coffee Social', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants),
-    new Activity('Craft and Chat', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.zumbaParticipants),
-    new Activity('DrumFit', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants),
-    new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.zumbaParticipants),
-    new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.chairACiseParticipants)
+    new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.rooms[0], this.zumbaParticipants),
+    new Activity('Chair-a-cise and a long name for the type of activity', 'Exercises in a chair.', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.rooms[1], this.chairACiseParticipants),
+    new Activity('Zumba Gold', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.rooms[2], this.zumbaParticipants),
+    new Activity('Yoga', 'Mind and body practice that can build strength and flexibility', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.rooms[3], this.chairACiseParticipants),
+    new Activity('Line Dancing', 'Choreographed group dance.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.rooms[2], this.zumbaParticipants),
+    new Activity('Book Club', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.rooms[1], this.chairACiseParticipants),
+    new Activity('Movie Session', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.rooms[1], this.zumbaParticipants),
+    new Activity('Coffee Social', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.rooms[3], this.chairACiseParticipants),
+    new Activity('Craft and Chat', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.rooms[1], this.zumbaParticipants),
+    new Activity('DrumFit', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.rooms[0], this.chairACiseParticipants),
+    new Activity('Zumba', 'Latin music dance class.', new Date(2023, 10, 17, 14, 15, 0, 0), 60, this.rooms[1], this.zumbaParticipants),
+    new Activity('Chair-a-cise', 'bla bla bla', new Date(2023, 10, 18, 11, 15, 0, 0), 60, this.rooms[2], this.chairACiseParticipants)
   ]
 
   getActivity (id: string): Activity | undefined {

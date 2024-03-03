@@ -10,7 +10,8 @@ li {
 }
 
 body {
-  background-color: rgb(198, 205, 213);
+  /* background-color: rgb(198, 205, 213); */
+  background-color: rgb(129, 133, 139);
 }
 
 h1 {
@@ -24,3 +25,7 @@ h1 {
   width: 100vw;
   overflow: hidden;
 } */
+
+:root {
+  --highlight: #d3e2ff;
+}

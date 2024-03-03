@@ -1,5 +1,18 @@
 
-.activity-content:hover {
-    background-color: #f0f0f0;
-    /* box-shadow: 1px 1px 5px rgba(0, 0, 255, 0.295); */
+.activities__list table {
+  /* background-color: white; */
+  /* border-radius: 8px; */
+  border-width: 2px;
+  border-color: black;
+}
+
+.activities__list tr:hover > td {
+  background-color: var(--highlight) !important;
+  cursor: pointer;
+}
+
+.activities__list th {
+  /* font-style: italic !important;
+   */
+   /* font-weight: 900 !important; */
 }

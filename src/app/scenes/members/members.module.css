@@ -1,0 +1,4 @@
+.members__list tr:hover > td {
+  background-color: var(--highlight) !important;
+  cursor: pointer;
+}

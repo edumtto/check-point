@@ -84,7 +84,7 @@ export class Room {
   id: string
   name: string
 
-  constructor(name: string) {
+  constructor (name: string) {
     this.id = uuidv4()
     this.name = name
   }
@@ -97,14 +97,15 @@ export class Activity {
   startDateTime: Date
   lengthInMinutes: number
   participants: Participant[]
-  room?: Room
+  room: Room
 
-  constructor (name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
+  constructor (name: string, description: string, startDateTime: Date, lengthInMinutes: number, room: Room, participants: Participant[]) {
     this.id = uuidv4()
     this.name = name
     this.description = description
-    this.startDateTime = dateTime
+    this.startDateTime = startDateTime
     this.lengthInMinutes = lengthInMinutes
+    this.room = room
     this.participants = participants
   }
 

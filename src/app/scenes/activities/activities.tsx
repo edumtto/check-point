@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { type Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
-import { List, Card, Space } from 'antd'
+import { Table } from 'antd'
 
 export enum ActionType {
   CHECKIN,
@@ -25,27 +25,57 @@ export function ActivitiesScene (
 ): React.JSX.Element {
   const router = useRouter()
 
-  const timelineItems = activities.map((val, index) =>
-    <List.Item key={val.id}>
-      <Space>
-        <p>{val.startDateTime.getHours() + ':' + val.startDateTime.getMinutes()}</p>
-        <Card size='small' className={styles['activity-content']} onClick={() => { handleSelectActivity(val) }}>
-          <Space>
-            <h3>{val.name}</h3>
-            <p>{'Natomas room | 23 registered'}</p>
-          </Space>
-        </Card>
-      </Space>
-    </List.Item>
-  )
+  const tableColumns = [
+    {
+      title: 'Time',
+      dataIndex: 'time'
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      render: (name: string) => (
+        <span style={{ fontWeight: '700' }}>{name}</span>
+      )
+    },
+    {
+      title: 'Room',
+      dataIndex: 'room'
+    },
+    {
+      title: 'Enrolled',
+      dataIndex: 'participants'
+    }
+  ]
+
+  const tableData = activities
+    .map(function (val, index) {
+      return {
+        key: val.id,
+        time: val.startTime() + ' - ' + val.endTime(),
+        name: val.name,
+        room: val.room.name,
+        participants: val.participants.length
+      }
+    })
+    .sort((a, b) => a.time.localeCompare(b.time))
 
   return (
-    <List split={false}>
-      {timelineItems}
-    </List>
+    <Table
+      className={styles.activities__list}
+      columns={tableColumns}
+      dataSource={tableData}
+      size='middle'
+      bordered={false}
+      pagination={{ pageSize: 50, position: [] }}
+      onRow={(record, rowIndex) => {
+        return {
+          onClick: event => { handleSelectActivity(record.key) }
+        }
+      }}
+    />
   )
 
-  function handleSelectActivity (activity: Activity): void {
-    router.push('/scenes/participants/' + activity.id)
+  function handleSelectActivity (activityId: string): void {
+    router.push('/scenes/participants/' + activityId)
   }
 }
