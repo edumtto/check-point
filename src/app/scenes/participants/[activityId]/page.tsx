@@ -4,12 +4,12 @@ import { useRouter } from 'next/navigation'
 import styles from './participants.module.css'
 import type { Participant } from '../../../globals/models/activity'
 import { MainContainerWithTitle } from '../../../globals/components/global-components'
-import { Modal, Table, Statistic, Space, Alert, TablePaginationConfig } from 'antd'
+import { Modal, Table, Statistic, Space, Alert, Divider } from 'antd'
 import CheckinScene from '../../checkin/checkin'
-import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
+import { LoginOutlined, LogoutOutlined, TeamOutlined } from '@ant-design/icons'
 import { database } from '../../../globals/database'
 
-export default function ParticipantsScene({ params }: { params: { activityId: string } }): JSX.Element {
+export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
   const activity = database.getActivity(params.activityId)
   const [selectedId, setSelectedId] = useState('')
@@ -76,30 +76,30 @@ export default function ParticipantsScene({ params }: { params: { activityId: st
       return item.participant.isCheckedOut() ? total + 1 : total
     }, 0)
 
-  const paginationConfig: TablePaginationConfig = {
-    // showQuickJumper: false,
-    size: 'small'
-    // responsive: true,
-    // role: '',
-    // totalBoundaryShowSizeChanger: 10
-    // rootClassName: ''
-  }
-
   return (
-    <MainContainerWithTitle title='Participants' handleBackButtonClick={() => { router.back() }}>
+    <MainContainerWithTitle title={activity.name} handleBackButtonClick={() => { router.back() }}>
       <div className={styles['participants-content']}>
         <Space size={'large'} className={styles['participants-statistics']}>
+          <Statistic
+            title='Activity Time'
+            prefix={activity.startTime()}
+            value={'-'}
+            suffix={activity.endTime()}
+          />
+          <Statistic
+            title='Participants'
+            value={activity.participants.length}
+            prefix={<TeamOutlined className={styles['checkin-icon']} />}
+          />
           <Statistic
             title='Checked In'
             value={checkedInNumber}
             prefix={<LoginOutlined className={styles['checkin-icon']} />}
-            suffix={'/ ' + activity.participants.length}
           />
           <Statistic
             title='Checked Out'
             value={checkedOutNumber}
             prefix={<LogoutOutlined className={styles['checkout-icon']} />}
-            suffix={'/ ' + activity.participants.length}
           />
         </Space>
         <Table

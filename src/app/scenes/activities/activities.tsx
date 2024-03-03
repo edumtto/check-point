@@ -28,7 +28,7 @@ export function ActivitiesScene (
   const timelineItems = activities.map((val, index) =>
     <List.Item key={val.id}>
       <Space>
-        <p>{val.dateTime.getHours() + ':' + val.dateTime.getMinutes()}</p>
+        <p>{val.startDateTime.getHours() + ':' + val.startDateTime.getMinutes()}</p>
         <Card size='small' className={styles['activity-content']} onClick={() => { handleSelectActivity(val) }}>
           <Space>
             <h3>{val.name}</h3>

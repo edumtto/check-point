@@ -80,22 +80,41 @@ export class Participant {
   }
 }
 
+export class Room {
+  id: string
+  name: string
+
+  constructor(name: string) {
+    this.id = uuidv4()
+    this.name = name
+  }
+}
+
 export class Activity {
   id: string
   name: string
   description: string
-  dateTime: Date
+  startDateTime: Date
   lengthInMinutes: number
   participants: Participant[]
-  // TODO: id, date, time, room, numberOfParticipants
+  room?: Room
 
   constructor (name: string, description: string, dateTime: Date, lengthInMinutes: number, participants: Participant[]) {
     this.id = uuidv4()
     this.name = name
     this.description = description
-    this.dateTime = dateTime
+    this.startDateTime = dateTime
     this.lengthInMinutes = lengthInMinutes
     this.participants = participants
+  }
+
+  startTime (): string {
+    return this.startDateTime.getHours() + ':' + this.startDateTime.getMinutes()
+  }
+
+  endTime (): string {
+    const endDate = new Date(this.startDateTime.getTime() + this.lengthInMinutes * 60000)
+    return endDate.getHours() + ':' + endDate.getMinutes()
   }
 
   addParticipant (participant: Member): void {
