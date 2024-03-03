@@ -30,7 +30,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name',
+      dataIndex: 'name'
       // defaultSortOrder: 'ascend',
       // sorter: (a: any, b: any) => a.name.localeCompare(b.name),
       // sortDirections: ['ascend', 'descend', 'ascend']
