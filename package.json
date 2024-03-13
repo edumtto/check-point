@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@vercel/postgres": "^0.7.2",
     "antd": "^5.12.8",
     "classnames": "^2.3.2",
     "next": "^14.0.2",
     "react": "latest",
     "react-dom": "latest",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vercel": "^33.5.5"
   },
   "devDependencies": {
     "@types/node": "latest",
