@@ -2,7 +2,8 @@
 import React from 'react'
 // import { useRouter } from 'next/navigation'
 import { database } from '@/app/globals/database'
-import { Card, Divider, List, Space } from 'antd'
+import { Card, Divider, List, Space, Statistic } from 'antd'
+import { CalendarOutlined, TeamOutlined } from '@ant-design/icons'
 // import { Member, PersonName } from '@/app/globals/models/member'
 
 export default function HomeScene (): JSX.Element {
@@ -12,15 +13,30 @@ export default function HomeScene (): JSX.Element {
     <div>
        <Divider/>
       <Space>
-      <h4>{ database.activities.length + ' activities registered'}</h4>
+      <Statistic
+            title='Activities registered'
+            value={database.activities.length}
+            prefix={<CalendarOutlined />}
+          />
+
       <Divider type='vertical'/>
-      <h4>{ database.members.length + ' members added'}</h4>
+      <Statistic
+            title='Members added'
+            value={database.members.length}
+            prefix={<TeamOutlined />}
+          />
       </Space>
       <Divider/>
       <Card title={'Next activities'} size='small'>
         <List>
           <List.Item>
-            <p>aaa</p>
+            <p>Zumba</p>
+          </List.Item>
+          <List.Item>
+            <p>DrumFit</p>
+          </List.Item>
+          <List.Item>
+            <p>Yoga</p>
           </List.Item>
         </List>
       </Card>

@@ -8,7 +8,11 @@ import { Tabs } from 'antd'
 import { database, appState } from './globals/database'
 import HomeScene from './scenes/home/home'
 
+import { api } from '@/app/globals/api'
+
 export default function Home (): JSX.Element {
+  void api.getNewMembers()
+
   const items = [
     {
       key: '0',
