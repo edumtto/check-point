@@ -1,23 +1,23 @@
 import { Activity, Participant, Room } from './models/activity'
-import { Member, PersonName } from './models/member'
+import { Member } from './models/member'
 
 class Database {
   members: Member[] = [
-    new Member(new PersonName('Antonio', '', 'Gomez')),
-    new Member(new PersonName('Carlos', '', 'Rodriguez')),
-    new Member(new PersonName('Barbara', '', 'Smith')),
-    new Member(new PersonName('Daniel', '', 'Rodrigo')),
-    new Member(new PersonName('Marc', '', 'Lopes')),
-    new Member(new PersonName('Maria', '', 'Christina')),
-    new Member(new PersonName('Emanuele', '', 'Oliveira')),
-    new Member(new PersonName('James', '', 'Smith')),
-    new Member(new PersonName('Frederich', '', 'Scarlet')),
-    new Member(new PersonName('Chris', '', 'Croft')),
-    new Member(new PersonName('Sophia', '', 'Vergara')),
-    new Member(new PersonName('Ed', '', 'Sheeran')),
-    new Member(new PersonName('Simon', '', 'Web')),
-    new Member(new PersonName('Laura', '', 'Pausini')),
-    new Member(new PersonName('Esther', '', 'Dean'))
+    new Member(0, 'Antonio', 'Gomez', 1, '', null),
+    new Member(1, 'Carlos', 'Rodriguez', 1, '', null),
+    new Member(2, 'Barbara', 'Smith', 2, '', null),
+    new Member(3, 'Daniel', 'Rodrigo', 1, '', null),
+    new Member(4, 'Marc', 'Lopes', 1, '', null),
+    new Member(5, 'Maria', 'Christina', 2, '', null),
+    new Member(6, 'Emanuele', 'Oliveira', 2, '', null),
+    new Member(7, 'James', 'Smith', 1, '', null),
+    new Member(8, 'Frederich', 'Scarlet', 1, '', null),
+    new Member(9, 'Chris', 'Croft', 1, '', null),
+    new Member(10, 'Sophia', 'Vergara', 2, '', null),
+    new Member(11, 'Ed', 'Sheeran', 1, '', null),
+    new Member(12, 'Simon', 'Web', 1, '', null),
+    new Member(13, 'Laura', 'Pausini', 2, '', null),
+    new Member(14, 'Esther', 'Dean', 2, '', null)
   ]
 
   zumbaParticipants: Participant[] = [

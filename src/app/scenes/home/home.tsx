@@ -4,7 +4,6 @@ import React from 'react'
 import { database } from '@/app/globals/database'
 import { Card, Divider, List, Space, Statistic } from 'antd'
 import { CalendarOutlined, TeamOutlined } from '@ant-design/icons'
-// import { Member, PersonName } from '@/app/globals/models/member'
 
 export default function HomeScene (): JSX.Element {
   // const router = useRouter()

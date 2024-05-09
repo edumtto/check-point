@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { MainContainerWithTitle } from '@/app/globals/components/global-components'
 import { database } from '@/app/globals/database'
 import { Input, Form, Select, Button, DatePicker } from 'antd'
-import { Member, PersonName } from '@/app/globals/models/member'
+import { Member } from '@/app/globals/models/member'
 const { Option } = Select
 
 export default function MembersScene (): JSX.Element {
@@ -17,9 +17,8 @@ export default function MembersScene (): JSX.Element {
     email: '',
     emmergencycontact: undefined,
     firstname: '',
-    gender: undefined,
+    genderid: 0,
     lastname: '',
-    middlename: '',
     phone: undefined
   }
 
@@ -31,21 +30,6 @@ export default function MembersScene (): JSX.Element {
         {
           required: true,
           message: 'Please input your first name'
-        }
-      ]}
-    >
-      <Input />
-    </Form.Item>
-  )
-
-  const middleName = (
-    <Form.Item
-      label='Middle name'
-      name='middlename'
-      rules={[
-        {
-          required: false,
-          message: 'Please input your middle name'
         }
       ]}
     >
@@ -85,7 +69,7 @@ export default function MembersScene (): JSX.Element {
 
   const gender = (
     <Form.Item
-      name='gender'
+      name='genderid'
       label='Gender'
       rules={[
         {
@@ -95,9 +79,9 @@ export default function MembersScene (): JSX.Element {
       ]}
     >
       <Select placeholder='Select your gender'>
-        <Option value='male'>Male</Option>
-        <Option value='female'>Female</Option>
-        <Option value='other'>Other</Option>
+        <Option value='1'>Male</Option>
+        <Option value='2'>Female</Option>
+        <Option value='3'>Other</Option>
       </Select>
     </Form.Item>
   )
@@ -185,7 +169,6 @@ export default function MembersScene (): JSX.Element {
         onValuesChange={onValuesChange}
       >
         {firstName}
-        {middleName}
         {lastName}
         {birthday}
         {gender}
@@ -222,13 +205,7 @@ export default function MembersScene (): JSX.Element {
     console.log(formValues)
 
     // Validate form
-
-    const personName = new PersonName(
-      formValues.firstname,
-      formValues.middlename ?? '',
-      formValues.lastname
-    )
-    database.addMember(new Member(personName))
+    database.addMember(new Member(100, formValues.firstname, formValues.lastname, formValues.genderid, '', null))
 
     router.back()
   }

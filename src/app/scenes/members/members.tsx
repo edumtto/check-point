@@ -5,16 +5,30 @@ import { useRouter } from 'next/navigation'
 import { Space, Table, Button, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import styles from './members.module.css'
+import { api } from '@/app/globals/api'
 
-export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
+export function MembersScene ({ membersProp }: { membersProp: Member[] | null }): JSX.Element {
   const router = useRouter()
   const [search, setSearch] = useState('')
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [members, setMembers] = useState<Member[]>([])
 
-  function filterMember (member: Member, index: any): boolean {
-    if (search === '') {
-      return true
+  if (!isLoaded) {
+    if (membersProp !== null) {
+      setIsLoaded(true)
+      setMembers(membersProp)
+    } else {
+      api.getNewMembers()
+        .then((value) => {
+          console.log(value)
+          setIsLoaded(true)
+          setMembers(value)
+        })
+        .catch((reason) => {
+          setIsLoaded(true)
+          console.log(reason)
+        })
     }
-    return member.fullName().toLowerCase().startsWith(search.toLowerCase())
   }
 
   const items = members
@@ -48,7 +62,7 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
         size='small'
         columns={columns}
         dataSource={items}
-        pagination={{ pageSize: 50 }}
+        pagination={{ pageSize: 15 }}
         onRow={(record, rowIndex) => {
           return {
             onClick: event => { onSelectMember() }
@@ -57,6 +71,13 @@ export function MembersScene ({ members }: { members: Member[] }): JSX.Element {
       />
     </div>
   )
+
+  function filterMember (member: Member, index: any): boolean {
+    if (search === '') {
+      return true
+    }
+    return member.fullName().toLowerCase().startsWith(search.toLowerCase())
+  }
 
   function onAddMember (): boolean {
     router.push('/scenes/members/add')

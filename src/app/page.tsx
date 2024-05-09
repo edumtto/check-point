@@ -27,7 +27,7 @@ export default function Home (): JSX.Element {
     {
       key: '2',
       label: 'Members',
-      children: <MembersScene members={database.members} />
+      children: <MembersScene membersProp={null} /> // {database.members} />
     },
     {
       key: '3',

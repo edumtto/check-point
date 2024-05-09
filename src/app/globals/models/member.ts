@@ -1,32 +1,36 @@
 'use client'
-import { v4 as uuidv4 } from 'uuid'
-
-export class PersonName {
-  firstName: string
-  middleName: string
-  lastName: string
-
-  constructor (firstName: string, middleName: string, lastName: string) {
-    this.firstName = firstName
-    this.middleName = middleName
-    this.lastName = lastName
-  }
-
-  fullName (): string {
-    return this.firstName + ' ' + this.middleName + ' ' + this.lastName
-  }
-}
 
 export class Member {
-  id: string
-  name: PersonName
+  id: number
+  firstName: string
+  lastName: string
+  genderId: number
+  address: string
+  comments: string | null
 
-  constructor (name: PersonName) {
-    this.id = uuidv4()
-    this.name = name
+  constructor (id: number, firstName: string, lastName: string, genderId: number, address: string, comments: string | null) {
+    this.id = id
+    this.firstName = firstName
+    this.lastName = lastName
+    this.genderId = genderId
+    this.address = address
+    this.comments = comments
   }
 
   fullName (): string {
-    return this.name.fullName()
+    return this.firstName + ' ' + this.lastName
+  }
+
+  gender (): string {
+    switch (this.genderId) {
+      case 1:
+        return 'Male'
+      case 2:
+        return 'Female'
+      case 3:
+        return 'Other'
+      default:
+        return ''
+    }
   }
 }
