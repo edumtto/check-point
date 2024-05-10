@@ -7,13 +7,17 @@ export class Member {
   genderId: number
   address: string
   comments: string | null
+  birthday: Date
+  createdAt: Date
 
-  constructor (id: number, firstName: string, lastName: string, genderId: number, address: string, comments: string | null) {
+  constructor (id: number, firstName: string, lastName: string, genderId: number, address: string, birthday: string, createdAt: string, comments: string | null) {
     this.id = id
     this.firstName = firstName
     this.lastName = lastName
     this.genderId = genderId
     this.address = address
+    this.birthday = new Date(birthday)
+    this.createdAt = new Date(createdAt)
     this.comments = comments
   }
 
@@ -32,5 +36,14 @@ export class Member {
       default:
         return ''
     }
+  }
+
+  age (): string {
+    const currentDate = new Date()
+    const ageInMilliseconds = currentDate.getTime() - this.birthday.getTime()
+    const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25 // Account for leap years
+    const ageInYears = ageInMilliseconds / millisecondsInYear
+    const age = Math.floor(ageInYears)
+    return age.toString()
   }
 }

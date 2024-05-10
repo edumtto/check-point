@@ -20,13 +20,17 @@ class Api {
   async getAllMembers (): Promise<Member[]> {
     const members: Member[] = []
 
+    function formatAddress (addressData: any): string {
+      return addressData.slice(1, -1).split(',').join(', ').replaceAll('"', '')
+    }
+
     try {
       const { rows } = await pool.sql`SELECT * FROM member;`
       const json = JSON.stringify(rows)
       const data = JSON.parse(json)
       // const camelCaseData = camelcaseKeysDeep(data)
       data.forEach((row: any) => {
-        const member = new Member(row.id, row.first_name, row.last_name, row.gender_id, row.address, row.comments)
+        const member = new Member(row.id, row.first_name, row.last_name, row.gender_id, formatAddress(row.address), row.birthday, row.created_at, row.comments)
         members.push(member)
       })
     } catch (error) {

@@ -19,14 +19,34 @@ export default function MemberScene (
       children: member.lastName
     },
     {
+      key: '5',
+      label: 'Gender',
+      children: member.gender()
+    },
+    {
+      key: '6',
+      label: 'Birthday',
+      children: formatDate(member.birthday)
+    },
+    {
+      key: '4',
+      label: 'Age',
+      children: member.age()
+    },
+    {
       key: '3',
       label: 'Address',
       children: member.address
     },
     {
-      key: '4',
-      label: 'Gender',
-      children: member.gender()
+      key: '7',
+      label: 'Created at',
+      children: formatDate(member.createdAt)
+    },
+    {
+      key: '7',
+      label: 'Comments',
+      children: member.comments
     }
   ]
 
@@ -54,6 +74,10 @@ export default function MemberScene (
     <Button danger onClick={onDeleteMember}>Delete</Button>
   </div>
   )
+
+  function formatDate (date: Date): string {
+    return `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`
+  }
 
   function onDeleteMember (): void {
     setIsDeleteConfirmed(false)
