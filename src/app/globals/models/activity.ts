@@ -122,7 +122,7 @@ export class Activity {
     this.participants.push(new Participant(participant))
   }
 
-  getParticipant (id: string): Participant | undefined {
+  getParticipant (id: number): Participant | undefined {
     return this.participants.find((p) => p.member.id === id)
   }
 }

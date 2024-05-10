@@ -17,7 +17,7 @@ class Api {
   //   return undefined
   // }
 
-  async getNewMembers (): Promise<Member[]> {
+  async getAllMembers (): Promise<Member[]> {
     const members: Member[] = []
 
     try {
@@ -34,6 +34,15 @@ class Api {
     }
 
     return members
+  }
+
+  async deleteMember (memberId: number): Promise<null> {
+    try {
+      await pool.sql`DELETE FROM member WHERE id = ${memberId};`
+    } catch (error) {
+      console.log(error)
+    }
+    return null
   }
 }
 

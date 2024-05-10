@@ -11,7 +11,7 @@ import HomeScene from './scenes/home/home'
 import { api } from '@/app/globals/api'
 
 export default function Home (): JSX.Element {
-  void api.getNewMembers()
+  void api.getAllMembers()
 
   const items = [
     {

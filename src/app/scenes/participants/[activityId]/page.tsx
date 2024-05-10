@@ -12,7 +12,7 @@ import { database } from '../../../globals/database'
 export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
   const activity = database.getActivity(params.activityId)
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedId, setSelectedId] = useState<number | undefined>(undefined)
 
   if (activity === undefined) {
     return (
@@ -124,11 +124,16 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
   }
 
   function checkinScene (): JSX.Element {
+    if (selectedId === undefined) {
+      return <></>
+    }
     const participant = activity?.getParticipant(selectedId)
-    const onClose = function (): void { setSelectedId('') }
+
     if (participant === undefined) {
       return <></>
     }
+
+    const onClose = function (): void { setSelectedId(undefined) }
     return <>
       <Modal
         title={participant.member.fullName()}
