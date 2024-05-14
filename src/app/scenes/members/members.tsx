@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
 import { Space, Table, Button, Input, Modal } from 'antd'
@@ -8,23 +8,31 @@ import styles from './members.module.css'
 import { api } from '@/app/globals/api'
 import MemberScene from './[memberId]/page'
 
-export function MembersScene({ membersProp }: { membersProp: Member[] | null }): JSX.Element {
+export function MembersScene ({ membersProp }: { membersProp: Member[] | null }): JSX.Element {
   const router = useRouter()
   const [search, setSearch] = useState('')
+  const [isFetching, setIsFetching] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [members, setMembers] = useState<Member[]>([])
   const [selectedMember, setSelectedMember] = useState<Member | undefined>(undefined)
 
-  if (!isLoaded) {
+  useEffect(() => {
+    console.log('use effect - Members')
+  }, [])
+
+  if (!isFetching) {
+    setIsFetching(true)
+
     if (membersProp !== null) {
-      setIsLoaded(true)
       setMembers(membersProp)
     } else {
       api.getAllMembers()
         .then((value) => {
+          // setTimeout(() => {
           console.log(value)
-          setIsLoaded(true)
           setMembers(value)
+          setIsLoaded(true)
+          // }, 3000)
         })
         .catch((reason) => {
           setIsLoaded(true)
@@ -62,6 +70,7 @@ export function MembersScene({ membersProp }: { membersProp: Member[] | null }):
       </Space>
       <Table
         className={styles.members__list}
+        loading={!isLoaded}
         size='small'
         columns={columns}
         dataSource={items}
@@ -76,23 +85,23 @@ export function MembersScene({ membersProp }: { membersProp: Member[] | null }):
     </div>
   )
 
-  function filterMember(member: Member, index: any): boolean {
+  function filterMember (member: Member, index: any): boolean {
     if (search === '') {
       return true
     }
     return member.fullName().toLowerCase().startsWith(search.toLowerCase())
   }
 
-  function onAddMember(): boolean {
+  function onAddMember (): boolean {
     router.push('/scenes/members/add')
     return true
   }
 
-  function onSearchChange(element: any): void {
+  function onSearchChange (element: any): void {
     setSearch(element.target.value)
   }
 
-  function memberScene(): JSX.Element {
+  function memberScene (): JSX.Element {
     if (selectedMember === undefined) {
       return <></>
     }

@@ -29,6 +29,11 @@ export function SceneHeader (
   )
 }
 
+export function Loader ({ isHidden }: { isHidden: boolean }): JSX.Element {
+  const visibilityProp = isHidden ? 'hidden' : 'visible'
+  return <div className={styles.loader} style={{ visibility: visibilityProp }}></div>
+}
+
 export function SideBar ({ items }: { items: string[] }): JSX.Element {
   const itemsMenu = items.map(function (value, index) {
     return <li key={value}>{value}</li>
