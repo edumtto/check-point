@@ -7,10 +7,10 @@ import { MainContainer } from './globals/components/global-components'
 import { Tabs } from 'antd'
 import { database, appState } from './globals/database'
 import HomeScene from './scenes/home/home'
-
 import { api } from '@/app/globals/api'
+import { ContextProvider } from './globals/appContext'
 
-export default function Home (): JSX.Element {
+export default function StartScene (): JSX.Element {
   void api.getAllMembers()
 
   const items = [
@@ -38,9 +38,11 @@ export default function Home (): JSX.Element {
 
   return (
     <MainContainer>
-        <div className={styles['selected-scene']}>
+      <ContextProvider>
+      <div className={styles['selected-scene']}>
           <Tabs defaultActiveKey={appState.lastActiveTab} onChange={onTabChange} items={items}/>
         </div>
+      </ContextProvider>
     </MainContainer>
   )
 

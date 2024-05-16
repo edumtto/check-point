@@ -1,12 +1,14 @@
 'use client'
-import React from 'react'
+import React, { useContext } from 'react'
 // import { useRouter } from 'next/navigation'
 import { database } from '@/app/globals/database'
 import { Card, Divider, List, Space, Statistic } from 'antd'
 import { CalendarOutlined, TeamOutlined } from '@ant-design/icons'
+import { AppContext } from '@/app/globals/appContext'
 
 export default function HomeScene (): JSX.Element {
   // const router = useRouter()
+  const { members } = useContext(AppContext)
 
   return (
     <div>
@@ -21,7 +23,7 @@ export default function HomeScene (): JSX.Element {
       <Divider type='vertical'/>
       <Statistic
             title='Members added'
-            value={database.members.length}
+            value={members.length}
             prefix={<TeamOutlined />}
           />
       </Space>

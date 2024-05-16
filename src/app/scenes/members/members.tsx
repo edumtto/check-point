@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import type { Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
 import { Space, Table, Button, Input, Modal } from 'antd'
@@ -7,31 +7,36 @@ import { SearchOutlined } from '@ant-design/icons'
 import styles from './members.module.css'
 import { api } from '@/app/globals/api'
 import MemberScene from './[memberId]/page'
+import { appState } from '@/app/globals/database'
+import { AppContext } from '@/app/globals/appContext'
 
 export function MembersScene ({ membersProp }: { membersProp: Member[] | null }): JSX.Element {
+  const { members, updateMembers } = useContext(AppContext)
   const router = useRouter()
   const [search, setSearch] = useState('')
   const [isFetching, setIsFetching] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [members, setMembers] = useState<Member[]>([])
   const [selectedMember, setSelectedMember] = useState<Member | undefined>(undefined)
 
   useEffect(() => {
-    console.log('use effect - Members')
+    console.log('use effect - Members -- isLoaded: ' + isLoaded + ' ,isFetching: ' + isFetching)
   }, [])
+
+  console.log('-- isLoaded: ' + isLoaded + ' ,isFetching: ' + isFetching)
 
   if (!isFetching) {
     setIsFetching(true)
 
     if (membersProp !== null) {
-      setMembers(membersProp)
+      updateMembers(membersProp)
     } else {
       api.getAllMembers()
         .then((value) => {
           // setTimeout(() => {
           console.log(value)
-          setMembers(value)
+          updateMembers(value)
           setIsLoaded(true)
+          appState.members = value
           // }, 3000)
         })
         .catch((reason) => {
@@ -43,14 +48,14 @@ export function MembersScene ({ membersProp }: { membersProp: Member[] | null })
 
   const items = members
     .filter(filterMember)
-    .map(function (member) {
+    .map(function (member: Member) {
       return {
         key: member.id,
         name: member.fullName(),
         data: member
       }
     })
-    .sort((a, b) => a.name.localeCompare(b.name))
+    .sort((a: any, b: any) => a.name.localeCompare(b.name))
 
   const columns = [
     {
