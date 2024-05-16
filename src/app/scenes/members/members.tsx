@@ -10,7 +10,7 @@ import MemberScene from './[memberId]/page'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
 
-export function MembersScene ({ membersProp }: { membersProp: Member[] | null }): JSX.Element {
+export function MembersScene (): JSX.Element {
   const { members, updateMembers } = useContext(AppContext)
   const router = useRouter()
   const [search, setSearch] = useState('')
@@ -27,23 +27,19 @@ export function MembersScene ({ membersProp }: { membersProp: Member[] | null })
   if (!isFetching) {
     setIsFetching(true)
 
-    if (membersProp !== null) {
-      updateMembers(membersProp)
-    } else {
-      api.getAllMembers()
-        .then((value) => {
-          // setTimeout(() => {
-          console.log(value)
-          updateMembers(value)
-          setIsLoaded(true)
-          appState.members = value
-          // }, 3000)
-        })
-        .catch((reason) => {
-          setIsLoaded(true)
-          console.log(reason)
-        })
-    }
+    api.getAllMembers()
+      .then((value) => {
+        // setTimeout(() => {
+        console.log(value)
+        updateMembers(value)
+        setIsLoaded(true)
+        appState.members = value
+        // }, 3000)
+      })
+      .catch((reason) => {
+        setIsLoaded(true)
+        console.log(reason)
+      })
   }
 
   const items = members

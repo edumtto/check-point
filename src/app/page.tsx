@@ -27,7 +27,7 @@ export default function StartScene (): JSX.Element {
     {
       key: '2',
       label: 'Members',
-      children: <MembersScene membersProp={null} /> // {database.members} />
+      children: <MembersScene /> // {database.members} />
     },
     {
       key: '3',
