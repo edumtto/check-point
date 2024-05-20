@@ -30,7 +30,7 @@ class Api {
       const data = JSON.parse(json)
       // const camelCaseData = camelcaseKeysDeep(data)
       data.forEach((row: any) => {
-        const member = new Member(row.id, row.first_name, row.last_name, row.gender_id, formatAddress(row.address), row.birthday, row.created_at, row.comments)
+        const member = new Member(row.id, row.first_name, row.last_name, row.gender_id, formatAddress(row.address), row.email, row.birthday, row.created_at, row.comments)
         members.push(member)
       })
     } catch (error) {
@@ -48,6 +48,32 @@ class Api {
     }
     return null
   }
+
+  async createMember (member: Member): Promise<null> {
+    console.log('>>>>Member: ' + member.firstName)
+    const query = `INSERT INTO member (first_name, last_name, email, birthday, address, gender_id) VALUES (
+    '${member.firstName}', 
+    '${member.lastName}', 
+    '${member.email}',
+    '${formatDateToPostgress(member.birthday)}',
+    '${member.address}',
+    '${member.genderId}'
+    );`
+
+    console.log('>>>>Query:\n' + query)
+
+    await pool.query(query)
+
+    return null
+  }
+}
+
+function formatDateToPostgress (date: Date): string {
+  const year = date.getFullYear().toString()
+  const month = ('0' + (date.getMonth() + 1)).slice(-2)
+  const day = ('0' + date.getDate()).slice(-2)
+
+  return [year, month, day].join('-')
 }
 
 export const api = new Api()

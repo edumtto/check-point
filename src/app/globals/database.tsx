@@ -80,6 +80,7 @@ export const database = new Database()
 
 class AppState {
   lastActiveTab: string
+  members: Member[] = []
 
   constructor () {
     this.lastActiveTab = '0'

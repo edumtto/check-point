@@ -1,28 +1,40 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MainContainerWithTitle } from '@/app/globals/components/global-components'
-import { database } from '@/app/globals/database'
-import { Input, Form, Select, Button, DatePicker } from 'antd'
+import { api } from '@/app/globals/api'
+import { Input, Form, Select, Button, DatePicker, Result } from 'antd'
 import { Member } from '@/app/globals/models/member'
 const { Option } = Select
+
+interface FormValues {
+  firstname: string
+  lastname: string
+  address: string
+  birthday: Date
+  email: string
+  emmergencycontact: string | null
+  genderid: number
+  phone: string | null
+}
 
 export default function MembersScene (): JSX.Element {
   const router = useRouter()
   const [form] = Form.useForm()
+  const [isMemberAdded, setIsMemberAdded] = useState(false)
 
-  let formValues = {
-    address: '',
-    birthday: undefined,
-    email: '',
-    emmergencycontact: undefined,
+  let formValues: FormValues = {
     firstname: '',
-    genderid: 0,
     lastname: '',
-    phone: undefined
+    birthday: new Date(),
+    address: '',
+    email: '',
+    emmergencycontact: null,
+    genderid: 0,
+    phone: null
   }
 
-  const firstName = (
+  const FirstNameInput = (
     <Form.Item
       label='First name'
       name='firstname'
@@ -33,11 +45,11 @@ export default function MembersScene (): JSX.Element {
         }
       ]}
     >
-      <Input />
+      <Input onChange={(event) => { formValues.firstname = event.target.value } }/>
     </Form.Item>
   )
 
-  const lastName = (
+  const LastNameInput = (
     <Form.Item
       label='Last name'
       name='lastname'
@@ -48,37 +60,37 @@ export default function MembersScene (): JSX.Element {
         }
       ]}
     >
-      <Input />
+      <Input onChange={(event) => { formValues.lastname = event.target.value } }/>
     </Form.Item>
   )
 
-  const birthday = (
+  const BirthdayInput = (
     <Form.Item
       label='Birthday'
       name='birthday'
       rules={[
         {
-          // required: true,
-          message: 'Please input your birthday name'
+          required: true,
+          message: 'Please input your birthday'
         }
       ]}
     >
-      <DatePicker onChange={onChangeBirthday} />
+      <DatePicker onChange={(date, _) => { onChangeBirthday(date?.toDate()) }} />
     </Form.Item>
   )
 
-  const gender = (
+  const GenderInput = (
     <Form.Item
       name='genderid'
       label='Gender'
       rules={[
         {
-          // required: true,
+          required: true,
           message: 'Please select gender'
         }
       ]}
     >
-      <Select placeholder='Select your gender'>
+      <Select placeholder='Select your gender' onChange={(value) => { formValues.genderid = value } }>
         <Option value='1'>Male</Option>
         <Option value='2'>Female</Option>
         <Option value='3'>Other</Option>
@@ -86,7 +98,7 @@ export default function MembersScene (): JSX.Element {
     </Form.Item>
   )
 
-  const email = (
+  const EmailInput = (
     <Form.Item
       name='email'
       label='E-mail'
@@ -96,65 +108,62 @@ export default function MembersScene (): JSX.Element {
           message: 'The input is not valid E-mail'
         },
         {
-          // required: false,
+          required: false,
           message: 'Please input your E-mail'
         }
       ]}
     >
-      <Input />
+      <Input onChange={(event) => { formValues.email = event.target.value } }/>
     </Form.Item>
   )
 
-  const phone = (
+  const PhoneInput = (
     <Form.Item
       name='phone'
       label='Phone Number'
       rules={[
         {
-          // required: true,
+          required: false,
           message: 'Please input your phone number'
         }
       ]}
     >
-      <Input
-        placeholder='(000) 0000-0000'
-      />
+      <Input placeholder='(000) 0000-0000' onChange={(event) => { formValues.phone = event.target.value } }/>
     </Form.Item>
   )
 
-  const address = (
+  const AddressInput = (
     <Form.Item
       label='Address'
       name='address'
       rules={[
         {
-          // required: true,
+          required: false,
           message: 'Please input your address'
         }
       ]}
     >
-      <Input placeholder='1234 Royal Way, Sacramento, CA' />
+      <Input placeholder='1234 Royal Way, Sacramento, CA' onChange={(event) => { formValues.address = event.target.value } }/>
     </Form.Item>
   )
 
-  const emmergencyContact = (
+  const EmmergencyContactInput = (
     <Form.Item
       label='Emmergency Contact'
       name='emmergencycontact'
       rules={[
         {
-          // required: true,
+          required: false,
           message: 'Please input your emmergency contact'
         }
       ]}
     >
-      <Input placeholder='John Smith, (000) 0000-0000, Husband' />
+      <Input placeholder='John Smith, (000) 0000-0000, Husband' onChange={(event) => { formValues.emmergencycontact = event.target.value } }/>
     </Form.Item>
   )
 
-  return (
-    <MainContainerWithTitle title='New Membership' handleBackButtonClick={() => { router.back() }}>
-      <Form
+  const MemberForm =
+    <Form
         form={form}
         style={{ padding: 16 }}
         name='basic'
@@ -167,46 +176,80 @@ export default function MembersScene (): JSX.Element {
           span: 18
         }}
         onValuesChange={onValuesChange}
+        hidden={isMemberAdded}
       >
-        {firstName}
-        {lastName}
-        {birthday}
-        {gender}
-        {address}
-        {phone}
-        {email}
-        {emmergencyContact}
+        {FirstNameInput}
+        {LastNameInput}
+        {BirthdayInput}
+        {GenderInput}
+        {AddressInput}
+        {PhoneInput}
+        {EmailInput}
+        {EmmergencyContactInput}
 
         <Form.Item label=' '>
           <Button type='primary' htmlType='submit' onClick={ onSubmit }>Register</Button>
         </Form.Item>
       </Form>
+
+  const SuccessResult =
+    <Result
+      status='success'
+      title='Member Successfully Registered'
+      extra={[
+        <Button key='close' onClick={close}>Close</Button>
+      ]}
+    />
+
+  return (
+    <MainContainerWithTitle title='New Membership' handleBackButtonClick={() => { router.back() }}>
+      { isMemberAdded ? SuccessResult : MemberForm }
     </MainContainerWithTitle>
   )
 
-  function onChangeBirthday (): void {
-    console.log('birthday')
+  function onChangeBirthday (date: Date | undefined): void {
+    if (date !== undefined) {
+      formValues.birthday = date
+    }
   }
 
   function onValuesChange (oldValues: any, newValues: any): void {
     formValues = newValues
   }
 
-  // async function onCheck (): Promise<void> {
-  //   try {
-  //     const values = await form.validateFields()
-  //     console.log('Success:', values)
-  //   } catch (errorInfo) {
-  //     console.log('Failed:', errorInfo)
-  //   }
-  // }
+  function close (): void {
+    router.back()
+  }
 
   function onSubmit (): void {
-    console.log(formValues)
+    form.validateFields()
+      .then(() => { registerNewMember() })
+      .catch((error) => { console.log('Failed:', error) })
+  }
 
-    // Validate form
-    database.addMember(new Member(100, formValues.firstname, formValues.lastname, formValues.genderid, '', null))
+  function registerNewMember (): void {
+    const newMember = new Member(
+      -1,
+      formValues.firstname,
+      formValues.lastname,
+      formValues.genderid,
+      formValues.address,
+      formValues.email,
+      formValues.birthday,
+      new Date(),
+      null
+    )
 
-    router.back()
+    console.log(newMember)
+
+    api.createMember(newMember)
+      .then(() => {
+        console.log('ok')
+        setIsMemberAdded(true)
+      })
+      .catch((error) => {
+        console.log('error')
+        console.log(error)
+      })
   }
 }

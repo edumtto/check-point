@@ -6,18 +6,30 @@ export class Member {
   lastName: string
   genderId: number
   address: string
+  email: string
   comments: string | null
   birthday: Date
   createdAt: Date
 
-  constructor (id: number, firstName: string, lastName: string, genderId: number, address: string, birthday: string, createdAt: string, comments: string | null) {
+  constructor (
+    id: number,
+    firstName: string,
+    lastName: string,
+    genderId: number,
+    address: string,
+    email: string,
+    birthday: Date,
+    createdAt: Date,
+    comments: string | null
+  ) {
     this.id = id
     this.firstName = firstName
     this.lastName = lastName
     this.genderId = genderId
     this.address = address
-    this.birthday = new Date(birthday)
-    this.createdAt = new Date(createdAt)
+    this.email = email
+    this.birthday = birthday
+    this.createdAt = createdAt
     this.comments = comments
   }
 

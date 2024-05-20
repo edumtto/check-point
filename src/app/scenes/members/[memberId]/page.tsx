@@ -40,11 +40,16 @@ export default function MemberScene (
     },
     {
       key: '7',
+      label: 'Email',
+      children: member.email
+    },
+    {
+      key: '8',
       label: 'Created at',
       children: formatDate(member.createdAt)
     },
     {
-      key: '7',
+      key: '9',
       label: 'Comments',
       children: member.comments
     }
