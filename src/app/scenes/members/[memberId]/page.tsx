@@ -3,8 +3,14 @@ import React, { useState } from 'react'
 import type { Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
+interface MemberSceneProps {
+  member: Member
+  onClose: () => void
+  onDelete: (id: number) => void
+}
+
 export default function MemberScene (
-  { member, onClose, onDelete }: { member: Member, onClose: () => void, onDelete: (id: number) => void }
+  { member, onClose, onDelete }: MemberSceneProps
 ): JSX.Element {
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
