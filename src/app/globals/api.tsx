@@ -30,7 +30,17 @@ class Api {
       const data = JSON.parse(json)
       // const camelCaseData = camelcaseKeysDeep(data)
       data.forEach((row: any) => {
-        const member = new Member(row.id, row.first_name, row.last_name, row.gender_id, formatAddress(row.address), row.email, row.birthday, row.created_at, row.comments)
+        const member = new Member(
+          row.id,
+          row.first_name,
+          row.last_name,
+          row.gender_id,
+          formatAddress(row.address),
+          row.email,
+          new Date(row.birthday),
+          new Date(row.created_at),
+          row.comments
+        )
         members.push(member)
       })
     } catch (error) {
@@ -50,14 +60,18 @@ class Api {
   }
 
   async createMember (member: Member): Promise<null> {
-    console.log('>>>>Member: ' + member.firstName)
+    // console.log('>>>>Member: ' + member.firstName)
+    // const query = `INSERT INTO member (first_name, last_name, email, birthday, address, gender_id) VALUES (
+    // '${member.firstName}',
+    // '${member.lastName}',
+    // '${member.email}',
+    // '${formatDateToPostgress(member.birthday)}',
+    // '${member.address}',
+    // '${member.genderId}'
+    // );`
+
     const query = `INSERT INTO member (first_name, last_name, email, birthday, address, gender_id) VALUES (
-    '${member.firstName}', 
-    '${member.lastName}', 
-    '${member.email}',
-    '${formatDateToPostgress(member.birthday)}',
-    '${member.address}',
-    '${member.genderId}'
+      'Lara', 'Croft', 'lara@gmail.com','1995-12-10','3500 Mamie Jennings Way, Sacramento, CA','2'
     );`
 
     console.log('>>>>Query:\n' + query)

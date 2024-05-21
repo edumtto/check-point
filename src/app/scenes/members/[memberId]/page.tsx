@@ -5,7 +5,7 @@ import { Button, Descriptions, Result } from 'antd'
 
 export default function MemberScene (
   { member, onClose, onDelete }: { member: Member, onClose: () => void, onDelete: (id: number) => void }
-): React.JSX.Element {
+): JSX.Element {
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
     {
