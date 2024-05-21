@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 'use client'
 import React, { useState } from 'react'
-import type { Member } from '@/app/globals/models/member'
+import { type Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
 interface MemberSceneProps {
@@ -9,9 +10,8 @@ interface MemberSceneProps {
   onDelete: (id: number) => void
 }
 
-export default function MemberScene (
-  { member, onClose, onDelete }: MemberSceneProps
-): JSX.Element {
+const MemberScene = (props: MemberSceneProps): JSX.Element => {
+  const member = props.member
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
     {
@@ -77,7 +77,7 @@ export default function MemberScene (
   }
 
   if (isDeleteConfirmed === true) {
-    onClose()
+    props.onClose()
   }
 
   return (<div>
@@ -95,10 +95,12 @@ export default function MemberScene (
   }
 
   function onConfirmDeleteMember (): void {
-    onDelete(member.id)
+    props.onDelete(member.id)
   }
 
   function onCancelDeleteMember (): void {
     setIsDeleteConfirmed(undefined)
   }
 }
+
+export default MemberScene
