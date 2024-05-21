@@ -6,8 +6,8 @@ import { Button, Descriptions, Result } from 'antd'
 
 interface MemberSceneProps {
   member: Member
-  onClose: () => void
-  onDelete: (id: number) => void
+  // onClose: () => void
+  // onDelete: (id: number) => void
 }
 
 const MemberScene = (props: MemberSceneProps): JSX.Element => {
@@ -77,7 +77,8 @@ const MemberScene = (props: MemberSceneProps): JSX.Element => {
   }
 
   if (isDeleteConfirmed === true) {
-    props.onClose()
+    // props.onClose()
+    console.log('close')
   }
 
   return (<div>
@@ -95,7 +96,8 @@ const MemberScene = (props: MemberSceneProps): JSX.Element => {
   }
 
   function onConfirmDeleteMember (): void {
-    props.onDelete(member.id)
+    // props.onDelete(member.id)
+    console.log('delete')
   }
 
   function onCancelDeleteMember (): void {
