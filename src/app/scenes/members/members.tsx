@@ -6,7 +6,7 @@ import { Space, Table, Button, Input, Modal } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import styles from './members.module.css'
 import { api } from '@/app/globals/api'
-import MemberScene from './[memberId]/page'
+import MemberScene from './member/page'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
 
