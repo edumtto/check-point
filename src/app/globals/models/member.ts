@@ -1,5 +1,3 @@
-'use client'
-
 export interface MemberType {
   id: number
   firstName: string
