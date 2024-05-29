@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 'use client'
 import React, { useState } from 'react'
-import { type MemberType } from '@/app/globals/models/member'
+import { MemberType } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
 interface MemberSceneProps {
