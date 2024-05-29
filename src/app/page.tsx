@@ -2,7 +2,7 @@
 import React from 'react'
 import styles from './page.module.css'
 import { ActivitiesScene } from './scenes/activities/activities'
-import { MembersScene } from './scenes/members/members'
+import MembersScene from './scenes/members/members'
 import { MainContainer } from './globals/components/global-components'
 import { Tabs } from 'antd'
 import { database, appState } from './globals/database'

@@ -10,7 +10,7 @@ import MemberScene from './member/page'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
 
-export function MembersScene (): JSX.Element {
+export default function MembersScene (): JSX.Element {
   const { members, updateMembers } = useContext(AppContext)
   const router = useRouter()
   const [search, setSearch] = useState('')

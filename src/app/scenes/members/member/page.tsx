@@ -9,7 +9,7 @@ interface MemberSceneProps {
   onDelete: (id: number) => void
 }
 
-const MemberScene = (props: MemberSceneProps): JSX.Element => {
+export default function MemberScene (props: MemberSceneProps): JSX.Element {
   const member = new Member(15, 'Luan', 'Santana', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null)
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
@@ -103,5 +103,3 @@ const MemberScene = (props: MemberSceneProps): JSX.Element => {
     setIsDeleteConfirmed(undefined)
   }
 }
-
-export default MemberScene
