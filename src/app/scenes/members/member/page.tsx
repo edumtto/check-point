@@ -3,14 +3,22 @@ import React, { useState } from 'react'
 import { Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
-// interface MemberSceneProps {
-//   // member: MemberType
-//   onClose: () => void
-//   onDelete: (id: number) => void
-// }
-
-export default function MemberScene (): React.JSX.Element {
-  const member = new Member(15, 'Luan', 'Santana', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null)
+export default function MemberScene ({
+  onClose
+}: {
+  onClose: () => void
+}): React.JSX.Element {
+  const member = new Member(
+    15,
+    'Luan',
+    'Santana',
+    1,
+    'Abc St.',
+    'abc@getMaxListeners.com',
+    new Date(),
+    new Date(),
+    null
+  )
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
     {
@@ -67,8 +75,12 @@ export default function MemberScene (): React.JSX.Element {
           status='warning'
           title='Are you sure you want to delete this member?'
           extra={[
-            <Button danger key='delete' onClick={onConfirmDeleteMember}>Delete</Button>,
-            <Button key='cancel' onClick={onCancelDeleteMember}>Cancel</Button>
+            <Button danger key='delete' onClick={onConfirmDeleteMember}>
+              Delete
+            </Button>,
+            <Button key='cancel' onClick={onCancelDeleteMember}>
+              Cancel
+            </Button>
           ]}
         />
       </div>
@@ -76,14 +88,17 @@ export default function MemberScene (): React.JSX.Element {
   }
 
   if (isDeleteConfirmed === true) {
-    // onClose()
+    onClose()
     console.log('close')
   }
 
-  return (<div>
-    <Descriptions items={items} column={1} style={{ paddingTop: 32 }} />
-    <Button danger onClick={onDeleteMember}>Delete</Button>
-  </div>
+  return (
+    <div>
+      <Descriptions items={items} column={1} style={{ paddingTop: 32 }} />
+      <Button danger onClick={onDeleteMember}>
+        Delete
+      </Button>
+    </div>
   )
 
   function formatDate (date: Date): string {
