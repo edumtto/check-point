@@ -82,12 +82,12 @@ class Api {
   }
 }
 
-function formatDateToPostgress (date: Date): string {
-  const year = date.getFullYear().toString()
-  const month = ('0' + (date.getMonth() + 1)).slice(-2)
-  const day = ('0' + date.getDate()).slice(-2)
+// function formatDateToPostgress (date: Date): string {
+//   const year = date.getFullYear().toString()
+//   const month = ('0' + (date.getMonth() + 1)).slice(-2)
+//   const day = ('0' + date.getDate()).slice(-2)
 
-  return [year, month, day].join('-')
-}
+//   return [year, month, day].join('-')
+// }
 
 export const api = new Api()
