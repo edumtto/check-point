@@ -3,13 +3,15 @@ import React, { useState } from 'react'
 import { Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
-interface MemberSceneProps {
-  // member: MemberType
-  onClose: () => void
-  onDelete: (id: number) => void
-}
+// interface MemberSceneProps {
+//   // member: MemberType
+//   onClose: () => void
+//   onDelete: (id: number) => void
+// }
 
-export default function MemberScene (props: MemberSceneProps): JSX.Element {
+export default function MemberScene (
+  { onClose, onDelete }: { onClose: () => void, onDelete: (id: number) => void }
+): JSX.Element {
   const member = new Member(15, 'Luan', 'Santana', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null)
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
@@ -76,7 +78,7 @@ export default function MemberScene (props: MemberSceneProps): JSX.Element {
   }
 
   if (isDeleteConfirmed === true) {
-    props.onClose()
+    onClose()
     console.log('close')
   }
 
@@ -95,7 +97,7 @@ export default function MemberScene (props: MemberSceneProps): JSX.Element {
   }
 
   function onConfirmDeleteMember (): void {
-    props.onDelete(member.id)
+    onDelete(member.id)
     console.log('delete')
   }
 
