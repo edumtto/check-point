@@ -107,16 +107,16 @@ export default function MembersScene (): JSX.Element {
       return <></>
     }
     const onClose = function (): void { setSelectedMember(undefined) }
-    const onDelete = function (id: number): void {
-      onClose()
-      api.deleteMember(id)
-        .then((value) => {
-          setIsLoaded(false)
-        })
-        .catch((reason) => {
-          console.log(reason)
-        })
-    }
+    // const onDelete = function (id: number): void {
+    //   onClose()
+    //   api.deleteMember(id)
+    //     .then((value) => {
+    //       setIsLoaded(false)
+    //     })
+    //     .catch((reason) => {
+    //       console.log(reason)
+    //     })
+    // }
 
     return <>
       <Modal
@@ -125,7 +125,7 @@ export default function MembersScene (): JSX.Element {
         onCancel={onClose}
         footer={[]}
       >
-        <MemberScene onClose={onClose} onDelete={onDelete}/>
+        <MemberScene/>
       </Modal>
     </>
   }
