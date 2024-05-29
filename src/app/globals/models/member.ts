@@ -1,6 +1,21 @@
 'use client'
 
-export class Member {
+export interface MemberType {
+  id: number
+  firstName: string
+  lastName: string
+  genderId: number
+  address: string
+  email: string
+  comments: string | null
+  birthday: Date
+  createdAt: Date
+  fullName: () => string
+  gender: () => string
+  age: () => string
+}
+
+export class Member implements MemberType {
   id: number
   firstName: string
   lastName: string

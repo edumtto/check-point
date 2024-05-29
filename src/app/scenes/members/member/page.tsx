@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 'use client'
 import React, { useState } from 'react'
-import { type Member } from '@/app/globals/models/member'
+import { type MemberType } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
 interface MemberSceneProps {
-  member: Member
+  member: MemberType
   // onClose: () => void
   // onDelete: (id: number) => void
 }
