@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import type { Member } from '../../globals/models/member'
+import { type Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
 import { Space, Table, Button, Input, Modal } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
@@ -107,16 +107,16 @@ export function MembersScene (): JSX.Element {
       return <></>
     }
     const onClose = function (): void { setSelectedMember(undefined) }
-    // const onDelete = function (id: number): void {
-    //   onClose()
-    //   api.deleteMember(id)
-    //     .then((value) => {
-    //       setIsLoaded(false)
-    //     })
-    //     .catch((reason) => {
-    //       console.log(reason)
-    //     })
-    // }
+    const onDelete = function (id: number): void {
+      onClose()
+      api.deleteMember(id)
+        .then((value) => {
+          setIsLoaded(false)
+        })
+        .catch((reason) => {
+          console.log(reason)
+        })
+    }
 
     return <>
       <Modal
@@ -125,7 +125,7 @@ export function MembersScene (): JSX.Element {
         onCancel={onClose}
         footer={[]}
       >
-        <MemberScene/>
+        <MemberScene onClose={onClose} onDelete={onDelete}/>
       </Modal>
     </>
   }
