@@ -1,16 +1,16 @@
 'use client'
 import React, { useState } from 'react'
-import { type MemberType } from '@/app/globals/models/member'
+import { Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 
 interface MemberSceneProps {
-  member: MemberType
-  // onClose: () => void
-  // onDelete: (id: number) => void
+  // member: MemberType
+  onClose: () => void
+  onDelete: (id: number) => void
 }
 
 const MemberScene = (props: MemberSceneProps): JSX.Element => {
-  const member = props.member
+  const member = new Member(15, 'Luan', 'Santana', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null)
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean | undefined>(undefined)
   const items = [
     {

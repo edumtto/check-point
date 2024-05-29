@@ -125,7 +125,7 @@ export function MembersScene (): JSX.Element {
         onCancel={onClose}
         footer={[]}
       >
-        <MemberScene member={selectedMember}/>
+        <MemberScene onClose={onClose} onDelete={onDelete}/>
       </Modal>
     </>
   }

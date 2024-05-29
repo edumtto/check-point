@@ -3,21 +3,22 @@ import { Member } from './models/member'
 
 class Database {
   members: Member[] = [
-    new Member(0, 'Antonio', 'Gomez', 1, '', '', '', null),
-    new Member(1, 'Carlos', 'Rodriguez', 1, '', '', '', null),
-    new Member(2, 'Barbara', 'Smith', 2, '', '', '', null),
-    new Member(3, 'Daniel', 'Rodrigo', 1, '', '', '', null),
-    new Member(4, 'Marc', 'Lopes', 1, '', '', '', null),
-    new Member(5, 'Maria', 'Christina', 2, '', '', '', null),
-    new Member(6, 'Emanuele', 'Oliveira', 2, '', '', '', null),
-    new Member(7, 'James', 'Smith', 1, '', '', '', null),
-    new Member(8, 'Frederich', 'Scarlet', 1, '', '', '', null),
-    new Member(9, 'Chris', 'Croft', 1, '', '', '', null),
-    new Member(10, 'Sophia', 'Vergara', 2, '', '', '', null),
-    new Member(11, 'Ed', 'Sheeran', 1, '', '', '', null),
-    new Member(12, 'Simon', 'Web', 1, '', '', '', null),
-    new Member(13, 'Laura', 'Pausini', 2, '', '', '', null),
-    new Member(14, 'Esther', 'Dean', 2, '', '', '', null)
+    new Member(0, 'Antonio', 'Gomez', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(1, 'Carlos', 'Rodriguez', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(2, 'Barbara', 'Smith', 2, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(3, 'Daniel', 'Rodrigo', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(4, 'Marc', 'Lopes', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(5, 'Maria', 'Christina', 2, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(6, 'Emanuele', 'Oliveira', 2, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(7, 'James', 'Smith', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(8, 'Frederich', 'Scarlet', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(9, 'Chris', 'Croft', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(10, 'Sophia', 'Vergara', 2, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(11, 'Ed', 'Sheeran', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(12, 'Simon', 'Web', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(13, 'Laura', 'Pausini', 2, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null),
+    new Member(14, 'Esther', 'Dean', 2, 'Abc St.', '', new Date(), new Date(), null),
+    new Member(15, 'Luan', 'Santana', 1, 'Abc St.', 'abc@getMaxListeners.com', new Date(), new Date(), null)
   ]
 
   zumbaParticipants: Participant[] = [
