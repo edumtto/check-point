@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+
+<img width="50px" src="https://github.com/user-attachments/assets/d8b21e86-d9c4-4166-9810-17822517b1dd"> 
+
+# Checkpoint App
+
+<mark>Efficiently manage participants in activities!</mark>
+
+
+Driven by the restrictions and unsatisfactory user experience encountered with an attendance system I have personally utilized,
+I embarked on a project with a dual purpose: to deepen my knowledge of React.js and UX design. 
+The primary aim of this endeavor is to develop an initial prototype that possesses the potential for future expansion, 
+incorporating additional features such as face check-in, while ensuring seamless performance on mobile devices.
+
+
+[App demo](https://check-point-theta.vercel.app/)
+
+
+## Running
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
