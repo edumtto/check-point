@@ -51,29 +51,29 @@ export default function HomeScene (): JSX.Element {
 
       {/* Total Metrics Section */}
       <Card title="Total Metrics" className={styles.metricCard}>
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={8} lg={4}>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
               title="Total Enrolled"
               value={dashboardMetrics.totalMetrics.totalEnrolled}
               prefix={<TeamOutlined />}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={4}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
               title="Total Classes"
               value={dashboardMetrics.totalMetrics.totalClasses}
               prefix={<CalendarOutlined />}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={4}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
               title="Avg. Enrolled/Class"
               value={dashboardMetrics.totalMetrics.averageEnrolledPerClass}
               prefix={<UserOutlined />}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={4}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
               title="Active Participation"
               value={dashboardMetrics.totalMetrics.activeParticipation}
@@ -81,14 +81,14 @@ export default function HomeScene (): JSX.Element {
               suffix={`/ ${dashboardMetrics.totalMetrics.totalEnrolled}`}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={4}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
               title="Total Registration Cost"
               value={formatCurrency(dashboardMetrics.totalMetrics.totalRegistrationCost)}
               prefix={<DollarOutlined />}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={4}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
               title="Classes per Month"
               value={dashboardMetrics.totalMetrics.classesPerMonth}
@@ -100,15 +100,15 @@ export default function HomeScene (): JSX.Element {
 
       {/* Class Metrics Section */}
       <Card title="Class Metrics" className={styles.metricCard}>
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={8}>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} sm={12} md={8} lg={8} xl={6}>
             <Statistic
               title="Average Attendance/Week"
               value={dashboardMetrics.classMetrics.averageAttendancePerWeek}
               prefix={<BarChartOutlined />}
             />
           </Col>
-          <Col xs={24} sm={12} md={8}>
+          <Col xs={24} sm={12} md={8} lg={8} xl={6}>
             <Statistic
               title="Active Classes"
               value={dashboardMetrics.classMetrics.activeClasses}
@@ -116,7 +116,7 @@ export default function HomeScene (): JSX.Element {
               valueStyle={{ color: '#52c41a' }}
             />
           </Col>
-          <Col xs={24} sm={12} md={8}>
+          <Col xs={24} sm={12} md={8} lg={8} xl={6}>
             <Statistic
               title="Inactive Classes"
               value={dashboardMetrics.classMetrics.inactiveClasses}
@@ -139,8 +139,8 @@ export default function HomeScene (): JSX.Element {
 
       {/* Participation Metrics Section */}
       <Card title="Participation Analytics" className={styles.metricCard}>
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={8}>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} sm={12} md={8} lg={8} xl={6}>
             <Statistic
               title="Enrolled in Multiple Classes"
               value={dashboardMetrics.participationMetrics.enrolledInMultipleClasses}
@@ -152,8 +152,8 @@ export default function HomeScene (): JSX.Element {
 
         <Divider />
 
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={8}>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} sm={8} md={8} lg={8} xl={6}>
             <Card size="small" className={styles.participationCard}>
               <Statistic
                 title="1 Class"
@@ -163,7 +163,7 @@ export default function HomeScene (): JSX.Element {
               />
             </Card>
           </Col>
-          <Col xs={24} sm={8}>
+          <Col xs={24} sm={8} md={8} lg={8} xl={6}>
             <Card size="small" className={styles.participationCard}>
               <Statistic
                 title="2 Classes"
@@ -173,7 +173,7 @@ export default function HomeScene (): JSX.Element {
               />
             </Card>
           </Col>
-          <Col xs={24} sm={8}>
+          <Col xs={24} sm={8} md={8} lg={8} xl={6}>
             <Card size="small" className={styles.participationCard}>
               <Statistic
                 title="3+ Classes"
