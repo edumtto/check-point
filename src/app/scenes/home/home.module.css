@@ -1,0 +1,76 @@
+.dashboardContainer {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.dashboardTitle {
+  margin-bottom: 24px;
+  color: #1890ff;
+}
+
+.metricCard {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statisticCard {
+  text-align: center;
+  padding: 16px;
+}
+
+.participationCard {
+  text-align: center;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.progressContainer {
+  margin-top: 16px;
+}
+
+.upcomingClassesCard {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.classItem {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.classItem:last-child {
+  border-bottom: none;
+}
+
+.classMeta {
+  width: 100%;
+}
+
+.classTitle {
+  font-weight: 600;
+  color: #1890ff;
+  margin-bottom: 4px;
+}
+
+.classDescription {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.classDetails {
+  color: #999;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 16px;
+  }
+  
+  .metricCard {
+    margin-bottom: 16px;
+  }
+}
