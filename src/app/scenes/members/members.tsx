@@ -64,7 +64,8 @@ export default function MembersScene (): JSX.Element {
   ]
 
   return (
-    <div>
+    <div className={styles.membersContainer}>
+      <h2 className={styles.membersTitle}>Members</h2>
       <Space size={'large'} style={{ float: 'right', paddingBottom: 8 }}>
         <Input addonBefore={<SearchOutlined />} onChange={onSearchChange} />
         <Button onClick={() => onAddMember()}>Add</Button>
@@ -125,7 +126,7 @@ export default function MembersScene (): JSX.Element {
         onCancel={onClose}
         footer={[]}
       >
-        <MemberScene/>
+        <MemberScene onClose={onClose}/>
       </Modal>
     </>
   }

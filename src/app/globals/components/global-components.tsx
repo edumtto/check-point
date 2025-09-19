@@ -53,6 +53,7 @@ export function NavigationBar ({
 }): JSX.Element {
   return (
     <div className={styles.navbar}>
+      <h1 className={styles['navbar-title']}>CheckPoint</h1>
       {items != null && (
         <div className={styles['navbar-tabs']}>
           <Tabs
@@ -63,7 +64,6 @@ export function NavigationBar ({
           />
         </div>
       )}
-      <h1 className={styles['navbar-title']}>CheckPoint</h1>
     </div>
   )
 }

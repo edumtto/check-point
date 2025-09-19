@@ -60,19 +60,22 @@ export function ActivitiesScene (
     .sort((a, b) => a.time.localeCompare(b.time))
 
   return (
-    <Table
-      className={styles.activities__list}
-      columns={tableColumns}
-      dataSource={tableData}
-      size='middle'
-      bordered={false}
-      pagination={{ pageSize: 50, position: [] }}
-      onRow={(record, rowIndex) => {
-        return {
-          onClick: event => { handleSelectActivity(record.key) }
-        }
-      }}
-    />
+    <div className={styles.activitiesContainer}>
+      <h2 className={styles.activitiesTitle}>Activities</h2>
+      <Table
+        className={styles.activities__list}
+        columns={tableColumns}
+        dataSource={tableData}
+        size='middle'
+        bordered={false}
+        pagination={{ pageSize: 50, position: [] }}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: event => { handleSelectActivity(record.key) }
+          }
+        }}
+      />
+    </div>
   )
 
   function handleSelectActivity (activityId: string): void {
