@@ -15,6 +15,7 @@ import {
 } from '@ant-design/icons'
 import { AppContext } from '@/app/globals/appContext'
 import { DashboardCalculator } from '@/app/globals/dashboardUtils'
+import { formatCurrency, formatDate } from '@/app/globals/utils/formatUtils'
 import styles from './home.module.css'
 
 const { Title, Text } = Typography
@@ -27,23 +28,6 @@ export default function HomeScene (): JSX.Element {
     const calculator = new DashboardCalculator(database.activities, members)
     return calculator.calculateMetrics()
   }, [members])
-
-  const formatCurrency = (amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(amount)
-  }
-
-  const formatDate = (date: Date): string => {
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  }
 
   return (
     <div className={styles.dashboardContainer}>

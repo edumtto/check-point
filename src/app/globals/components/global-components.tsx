@@ -4,44 +4,6 @@ import React, { type ReactNode, useState } from 'react'
 import { Button, Layout, Tabs } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 
-export function TabContentManager ({
-  items,
-  defaultActiveKey,
-  onTabChange
-}: {
-  items?: any[]
-  defaultActiveKey?: string
-  onTabChange?: (activeKey: string) => void
-}): JSX.Element {
-  const [activeKey, setActiveKey] = useState(defaultActiveKey ?? '0')
-
-  const handleTabChange = (key: string): void => {
-    setActiveKey(key)
-    onTabChange?.(key)
-  }
-
-  const activeItem = items?.find(item => item.key === activeKey)
-
-  return (
-    <>
-      <div className={styles.navbar}>
-        {items != null && (
-          <div className={styles['navbar-tabs']}>
-            <Tabs
-              activeKey={activeKey}
-              onChange={handleTabChange}
-              items={items.map(item => ({ key: item.key, label: item.label }))}
-              className={styles.tabs}
-            />
-          </div>
-        )}
-        <h1 className={styles['navbar-title']}>CheckPoint</h1>
-      </div>
-      {activeItem?.children}
-    </>
-  )
-}
-
 export function NavigationBar ({
   items,
   defaultActiveKey,
@@ -85,23 +47,6 @@ export function SceneHeader (
   )
 }
 
-export function Loader ({ isHidden }: { isHidden: boolean }): JSX.Element {
-  const visibilityProp = isHidden ? 'hidden' : 'visible'
-  return <div className={styles.loader} style={{ visibility: visibilityProp }}></div>
-}
-
-export function SideBar ({ items }: { items: string[] }): JSX.Element {
-  const itemsMenu = items.map(function (value, index) {
-    return <li key={value}>{value}</li>
-  })
-
-  return <div className={styles.sidebar}>
-    <ul>
-      {itemsMenu}
-    </ul>
-  </div>
-}
-
 export function MainContainerWithTitle (
   { title, handleBackButtonClick, children, tabItems, defaultActiveKey, onTabChange }:
   { title: string, handleBackButtonClick: () => void, children: ReactNode, tabItems?: any[], defaultActiveKey?: string, onTabChange?: (activeKey: string) => void }
@@ -118,22 +63,20 @@ export function MainContainerWithTitle (
 }
 
 export function MainContainer ({ children, tabItems, defaultActiveKey, onTabChange }: { children: ReactNode, tabItems?: any[], defaultActiveKey?: string, onTabChange?: (activeKey: string) => void }): JSX.Element {
-  if (tabItems != null) {
-    return (
-      <main>
-        <TabContentManager items={tabItems} defaultActiveKey={defaultActiveKey} onTabChange={onTabChange} />
-        <Layout className={styles.content}>
-          {children}
-        </Layout>
-      </main>
-    )
+  const [activeKey, setActiveKey] = useState(defaultActiveKey ?? '0')
+
+  const handleTabChange = (key: string): void => {
+    setActiveKey(key)
+    onTabChange?.(key)
   }
+
+  const activeItem = tabItems?.find(item => item.key === activeKey)
 
   return (
     <main>
-      <NavigationBar />
+      <NavigationBar items={tabItems} defaultActiveKey={activeKey} onTabChange={handleTabChange} />
       <Layout className={styles.content}>
-        {children}
+        {tabItems != null ? activeItem?.children : children}
       </Layout>
     </main>
   )

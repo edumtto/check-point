@@ -2,13 +2,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { type Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
-import { Space, Table, Button, Input, Modal } from 'antd'
+import { Space, Button, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import styles from './members.module.css'
 import { api } from '@/app/globals/api'
 import MemberScene from './member/page'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
+import { CommonModal, DataTable } from '@/app/globals/components/common'
 
 export default function MembersScene (): JSX.Element {
   const { members, updateMembers } = useContext(AppContext)
@@ -70,7 +71,7 @@ export default function MembersScene (): JSX.Element {
         <Input addonBefore={<SearchOutlined />} onChange={onSearchChange} />
         <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
-      <Table
+      <DataTable
         className={styles.members__list}
         loading={!isLoaded}
         size='small'
@@ -79,7 +80,7 @@ export default function MembersScene (): JSX.Element {
         pagination={{ pageSize: 15 }}
         onRow={(record, rowIndex) => {
           return {
-            onClick: event => { setSelectedMember(record.data) }
+            onClick: (_event: any) => { setSelectedMember(record.data) }
           }
         }}
       />
@@ -119,15 +120,14 @@ export default function MembersScene (): JSX.Element {
     //     })
     // }
 
-    return <>
-      <Modal
+    return (
+      <CommonModal
         title={selectedMember.fullName()}
         open={selectedMember !== undefined}
-        onCancel={onClose}
-        footer={[]}
+        onClose={onClose}
       >
         <MemberScene onClose={onClose}/>
-      </Modal>
-    </>
+      </CommonModal>
+    )
   }
 }

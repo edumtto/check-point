@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
+import { formatDateShort } from '@/app/globals/utils/formatUtils'
 
 export default function MemberScene ({
   onClose
@@ -39,7 +40,7 @@ export default function MemberScene ({
     {
       key: '6',
       label: 'Birthday',
-      children: formatDate(member.birthday)
+      children: formatDateShort(member.birthday)
     },
     {
       key: '4',
@@ -59,7 +60,7 @@ export default function MemberScene ({
     {
       key: '8',
       label: 'Created at',
-      children: formatDate(member.createdAt)
+      children: formatDateShort(member.createdAt)
     },
     {
       key: '9',
@@ -100,10 +101,6 @@ export default function MemberScene ({
       </Button>
     </div>
   )
-
-  function formatDate (date: Date): string {
-    return `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`
-  }
 
   function onDeleteMember (): void {
     setIsDeleteConfirmed(false)

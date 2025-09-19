@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { type Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
-import { Table } from 'antd'
+import { DataTable } from '@/app/globals/components/common'
 
 export enum ActionType {
   CHECKIN,
@@ -62,7 +62,7 @@ export function ActivitiesScene (
   return (
     <div className={styles.activitiesContainer}>
       <h2 className={styles.activitiesTitle}>Activities</h2>
-      <Table
+      <DataTable
         className={styles.activities__list}
         columns={tableColumns}
         dataSource={tableData}
@@ -71,7 +71,7 @@ export function ActivitiesScene (
         pagination={{ pageSize: 50, position: [] }}
         onRow={(record, rowIndex) => {
           return {
-            onClick: event => { handleSelectActivity(record.key) }
+            onClick: (_event: any) => { handleSelectActivity(record.key) }
           }
         }}
       />
