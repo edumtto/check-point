@@ -75,8 +75,8 @@
 
   /* Semantic Color Variables */
   --color-background: var(--color-neutral-0);
-  --color-surface: var(--color-neutral-50);
-  --color-surface-variant: var(--color-neutral-100);
+  --color-surface: var(--color-neutral-100);
+  --color-surface-variant: var(--color-neutral-50);
   --color-on-background: var(--color-neutral-900);
   --color-on-surface: var(--color-neutral-800);
   --color-on-surface-variant: var(--color-neutral-600);

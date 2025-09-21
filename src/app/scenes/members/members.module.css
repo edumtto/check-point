@@ -11,7 +11,6 @@
 .membersTitle {
   margin-bottom: var(--spacing-6);
   color: var(--color-primary-500);
-  font-size: var(--font-size-2xl);
 }
 
 .members__list tr:hover > td {
@@ -33,12 +32,6 @@
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .membersContainer {
-    padding: var(--spacing-7);
-  }
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
   .membersContainer {
     padding: var(--spacing-5);
@@ -56,3 +49,4 @@
     margin-bottom: var(--spacing-4);
   }
 }
+

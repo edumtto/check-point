@@ -12,7 +12,7 @@ interface DataTableProps {
   className?: string
 }
 
-export function DataTable({
+export function DataTable ({
   columns,
   dataSource,
   loading = false,

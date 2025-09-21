@@ -45,6 +45,7 @@
 
 .progressContainer {
   margin-top: var(--spacing-4);
+  width: 90%;
 }
 
 .upcomingClassesCard {
@@ -86,29 +87,11 @@
   .dashboardContainer {
     padding: var(--spacing-10);
   }
-  
-  .metricCard {
-    margin-bottom: var(--spacing-10);
-  }
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
   .dashboardContainer {
     padding: var(--spacing-8);
-  }
-  
-  .metricCard {
-    margin-bottom: var(--spacing-8);
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .dashboardContainer {
-    padding: var(--spacing-7);
-  }
-  
-  .metricCard {
-    margin-bottom: var(--spacing-7);
   }
 }
 
@@ -116,20 +99,12 @@
   .dashboardContainer {
     padding: var(--spacing-5);
   }
-  
-  .metricCard {
-    margin-bottom: var(--spacing-5);
-  }
 }
 
 @media (max-width: 767px) {
   .dashboardContainer {
     padding: var(--spacing-3);
     min-height: auto;
-  }
-  
-  .metricCard {
-    margin-bottom: var(--spacing-4);
   }
   
   .dashboardTitle {

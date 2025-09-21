@@ -11,6 +11,7 @@ import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
 import { CommonModal, DataTable } from '@/app/globals/components/common'
 import { Heading2 } from '@/app/globals/design-system'
+import { CompactCard } from '@/app/globals/components/common/Card'
 
 export default function MembersScene (): JSX.Element {
   const { members, updateMembers } = useContext(AppContext)
@@ -68,23 +69,30 @@ export default function MembersScene (): JSX.Element {
   return (
     <div className={styles.membersContainer}>
       <Heading2 className={styles.membersTitle}>Members</Heading2>
-      <Space size={'large'} style={{ float: 'right', paddingBottom: 8 }}>
+
+      <Space
+        size={'large'}
+        style={{ paddingBottom: 8, justifyContent: 'flex-end', display: 'flex' }}
+      >
         <Input addonBefore={<SearchOutlined />} onChange={onSearchChange} />
         <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
-      <DataTable
-        className={styles.members__list}
-        loading={!isLoaded}
-        size='small'
-        columns={columns}
-        dataSource={items}
-        pagination={{ pageSize: 15 }}
-        onRow={(record, rowIndex) => {
-          return {
-            onClick: (_event: any) => { setSelectedMember(record.data) }
-          }
-        }}
-      />
+
+      <CompactCard>
+        <DataTable
+          className={styles.members__list}
+          loading={!isLoaded}
+          size='small'
+          columns={columns}
+          dataSource={items}
+          pagination={{ pageSize: 15 }}
+          onRow={(record, rowIndex) => {
+            return {
+              onClick: (_event: any) => { setSelectedMember(record.data) }
+            }
+          }}
+        />
+      </CompactCard>
       {memberScene()}
     </div>
   )

@@ -18,6 +18,7 @@ import { DashboardCalculator } from '@/app/globals/dashboardUtils'
 import { formatCurrency, formatDate } from '@/app/globals/utils/formatUtils'
 import { Heading2, BodySmall } from '@/app/globals/design-system'
 import styles from './home.module.css'
+import { BaseCard } from '@/app/globals/components/common/Card'
 
 const { Text } = Typography
 
@@ -35,7 +36,7 @@ export default function HomeScene (): JSX.Element {
       <Heading2 className={styles.dashboardTitle}>Dashboard Overview</Heading2>
 
       {/* Total Metrics Section */}
-      <Card title="Total Metrics" className={styles.metricCard}>
+      <BaseCard title={'Total Metrics'}>
         <Row gutter={[24, 24]}>
           <Col xs={24} sm={12} md={8} lg={6} xl={4}>
             <Statistic
@@ -81,10 +82,10 @@ export default function HomeScene (): JSX.Element {
             />
           </Col>
         </Row>
-      </Card>
+      </BaseCard>
 
       {/* Class Metrics Section */}
-      <Card title="Class Metrics" className={styles.metricCard}>
+      <BaseCard title={'Class Metrics'}>
         <Row gutter={[24, 24]}>
           <Col xs={24} sm={12} md={8} lg={8} xl={6}>
             <Statistic
@@ -120,10 +121,10 @@ export default function HomeScene (): JSX.Element {
             format={() => `${dashboardMetrics.classMetrics.activeClasses}/${dashboardMetrics.totalMetrics.totalClasses} Active`}
           />
         </div>
-      </Card>
+      </BaseCard>
 
       {/* Participation Metrics Section */}
-      <Card title="Participation Analytics" className={styles.metricCard}>
+      <BaseCard title="Participation Analytics">
         <Row gutter={[24, 24]}>
           <Col xs={24} sm={12} md={8} lg={8} xl={6}>
             <Statistic
@@ -169,10 +170,10 @@ export default function HomeScene (): JSX.Element {
             </Card>
           </Col>
         </Row>
-      </Card>
+      </BaseCard>
 
       {/* Next Classes Section */}
-      <Card title="Next Classes" size="small" className={styles.upcomingClassesCard}>
+      <BaseCard title="Next Classes">
         <List
           dataSource={dashboardMetrics.upcomingClasses}
           renderItem={(activity) => (
@@ -195,7 +196,7 @@ export default function HomeScene (): JSX.Element {
         {dashboardMetrics.upcomingClasses.length === 0 && (
           <BodySmall>No upcoming classes scheduled</BodySmall>
         )}
-      </Card>
+      </BaseCard>
     </div>
   )
 }

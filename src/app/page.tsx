@@ -27,12 +27,12 @@ export default function StartScene (): JSX.Element {
       key: '2',
       label: 'Members',
       children: <MembersScene /> // {database.members} />
-    },
-    {
-      key: '3',
-      label: 'About',
-      children: 'Version 0.10'
     }
+    // {
+    //   key: '3',
+    //   label: 'About',
+    //   children: 'Version 0.10'
+    // }
   ]
 
   return (
