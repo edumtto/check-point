@@ -10,6 +10,7 @@ import { LoginOutlined, LogoutOutlined, TeamOutlined } from '@ant-design/icons'
 import { database } from '../../../globals/database'
 import { CommonModal, DataTable } from '@/app/globals/components/common'
 import { formatTime } from '@/app/globals/utils/formatUtils'
+// import { Heading2, BodySmall } from '@/app/globals/design-system'
 
 export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()

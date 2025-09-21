@@ -16,9 +16,10 @@ import {
 import { AppContext } from '@/app/globals/appContext'
 import { DashboardCalculator } from '@/app/globals/dashboardUtils'
 import { formatCurrency, formatDate } from '@/app/globals/utils/formatUtils'
+import { Heading2, BodySmall } from '@/app/globals/design-system'
 import styles from './home.module.css'
 
-const { Title, Text } = Typography
+const { Text } = Typography
 
 export default function HomeScene (): JSX.Element {
   // const router = useRouter()
@@ -31,7 +32,7 @@ export default function HomeScene (): JSX.Element {
 
   return (
     <div className={styles.dashboardContainer}>
-      <Title level={2} className={styles.dashboardTitle}>Dashboard Overview</Title>
+      <Heading2 className={styles.dashboardTitle}>Dashboard Overview</Heading2>
 
       {/* Total Metrics Section */}
       <Card title="Total Metrics" className={styles.metricCard}>
@@ -192,7 +193,7 @@ export default function HomeScene (): JSX.Element {
           )}
         />
         {dashboardMetrics.upcomingClasses.length === 0 && (
-          <Text type="secondary">No upcoming classes scheduled</Text>
+          <BodySmall>No upcoming classes scheduled</BodySmall>
         )}
       </Card>
     </div>

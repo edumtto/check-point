@@ -10,6 +10,7 @@ import MemberScene from './member/page'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
 import { CommonModal, DataTable } from '@/app/globals/components/common'
+import { Heading2 } from '@/app/globals/design-system'
 
 export default function MembersScene (): JSX.Element {
   const { members, updateMembers } = useContext(AppContext)
@@ -66,7 +67,7 @@ export default function MembersScene (): JSX.Element {
 
   return (
     <div className={styles.membersContainer}>
-      <h2 className={styles.membersTitle}>Members</h2>
+      <Heading2 className={styles.membersTitle}>Members</Heading2>
       <Space size={'large'} style={{ float: 'right', paddingBottom: 8 }}>
         <Input addonBefore={<SearchOutlined />} onChange={onSearchChange} />
         <Button onClick={() => onAddMember()}>Add</Button>

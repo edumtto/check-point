@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { type Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
 import { DataTable } from '@/app/globals/components/common'
+import { Heading2 } from '@/app/globals/design-system'
 
 export enum ActionType {
   CHECKIN,
@@ -61,7 +62,7 @@ export function ActivitiesScene (
 
   return (
     <div className={styles.activitiesContainer}>
-      <h2 className={styles.activitiesTitle}>Activities</h2>
+      <Heading2 className={styles.activitiesTitle}>Activities</Heading2>
       <DataTable
         className={styles.activities__list}
         columns={tableColumns}

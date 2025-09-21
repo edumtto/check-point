@@ -1,5 +1,8 @@
 .navbar-title {
-  padding: 8px;
+  padding: var(--spacing-2);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-0);
 }
 
 .navbar-tabs {
@@ -7,39 +10,44 @@
 }
 
 .tabs {
-  color: white;
+  color: var(--color-neutral-0);
 }
 
 .tabs :global(.ant-tabs-tab) {
-  color: white !important;
+  color: var(--color-neutral-0) !important;
+  font-weight: var(--font-weight-medium);
 }
 
 .tabs :global(.ant-tabs-tab-active) {
-  color: white !important;
+  color: var(--color-neutral-0) !important;
+  font-weight: var(--font-weight-semibold);
 }
 
 .tabs :global(.ant-tabs-ink-bar) {
-  background-color: white !important;
+  background-color: var(--color-neutral-0) !important;
 }
 
 .navbar {
-  background-color: black;
-  color: white;
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-0);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 16px;
+  padding: 0 var(--spacing-4);
+  box-shadow: var(--shadow-sm);
 }
 
 .header {
   display: flex;
   align-items: center;
-  padding: 16px 0px 16px 0px;
-  gap: 16px;
+  padding: var(--spacing-4) 0;
+  gap: var(--spacing-4);
 }
 
 .header-title {
-  font-size: xx-large;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-background);
 }
 
 .close-button img {
@@ -126,11 +134,11 @@
 main .content {
   width: 100%;
   max-width: 1400px;
-  margin: 8px auto 8px auto;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  border: 1px solid rgba(110, 67, 67, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin: var(--spacing-2) auto;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  box-shadow: var(--shadow-lg);
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -139,36 +147,36 @@ main .content {
 @media screen and (min-width: 1600px) {
   main .content {
     max-width: 1600px;
-    padding: 0px 32px 32px 32px;
+    padding: 0 var(--spacing-8) var(--spacing-8);
   }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1599px) {
   main .content {
     max-width: 1400px;
-    padding: 0px 24px 24px 24px;
+    padding: 0 var(--spacing-6) var(--spacing-6);
   }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   main .content {
     max-width: 1200px;
-    padding: 0px 20px 20px 20px;
+    padding: 0 var(--spacing-5) var(--spacing-5);
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
   main .content {
     max-width: 900px;
-    padding: 0px 18px 18px 18px;
+    padding: 0 var(--spacing-4) var(--spacing-4);
   }
 }
 
 @media screen and (max-width: 767px) {
   main .content {
     max-width: 100%;
-    margin: 4px auto 4px auto;
-    padding: 0px 8px 8px 8px;
-    border-radius: 4px;
+    margin: var(--spacing-1) auto;
+    padding: 0 var(--spacing-2) var(--spacing-2);
+    border-radius: var(--border-radius-base);
   }
 }

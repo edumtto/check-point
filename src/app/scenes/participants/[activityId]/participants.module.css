@@ -1,16 +1,17 @@
 .participants-statistics {
-  margin-bottom: 16px !important;
+  margin-bottom: var(--spacing-4) !important;
 }
 
 .participants-content tr:hover > td {
-  background-color: var(--highlight) !important;
+  background-color: var(--color-primary-50) !important;
   cursor: pointer;
+  transition: background-color var(--animation-duration-fast) var(--animation-easing-ease-out);
 }
 
 .checkin-icon {
-  color:rgb(94, 179, 94);
+  color: var(--color-success-500);
 }
 
 .checkout-icon {
-  color: rgb(204, 158, 72);
+  color: var(--color-warning-500);
 }
