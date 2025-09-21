@@ -206,7 +206,7 @@
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-neutral-900);
     --color-surface: var(--color-neutral-800);
@@ -217,7 +217,7 @@
     --color-outline: var(--color-neutral-600);
     --color-outline-variant: var(--color-neutral-700);
   }
-}
+} */
 
 /* Base typography styles */
 body {
