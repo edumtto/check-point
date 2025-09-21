@@ -1,5 +1,5 @@
 /* Import design system CSS variables */
-@import '/src/app/globals/design-system/design-system.css';
+@import './globals/design-system/design-system.css';
 
 /* Reset and base styles */
 * {
