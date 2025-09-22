@@ -35,7 +35,7 @@ export class DashboardCalculator {
     this.members = members
   }
 
-  calculateMetrics(): DashboardMetrics {
+  calculateMetrics (): DashboardMetrics {
     return {
       totalMetrics: this.calculateTotalMetrics(),
       classMetrics: this.calculateClassMetrics(),

@@ -63,7 +63,7 @@ export function ActivitiesScene (
 
   return (
     <div className={styles.activitiesContainer}>
-      <Heading2 className={styles.activitiesTitle}>Activities</Heading2>
+      {/* <Heading2 className={styles.activitiesTitle}>Activities</Heading2> */}
       <CompactCard>
         <DataTable
           className={styles.activities__list}

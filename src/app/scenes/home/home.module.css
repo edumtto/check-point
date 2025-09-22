@@ -31,7 +31,7 @@
 
 .participationCard {
   text-align: center;
-  padding: var(--spacing-4);
+  padding: var(--spacing-1);
   border-radius: var(--border-radius-md);
   margin-bottom: var(--spacing-4);
   transition: transform var(--animation-duration-fast) var(--animation-easing-ease-out), 

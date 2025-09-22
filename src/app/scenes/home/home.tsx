@@ -33,7 +33,7 @@ export default function HomeScene (): JSX.Element {
 
   return (
     <div className={styles.dashboardContainer}>
-      <Heading2 className={styles.dashboardTitle}>Dashboard Overview</Heading2>
+      {/* <Heading2 className={styles.dashboardTitle}>Dashboard Overview</Heading2> */}
 
       {/* Total Metrics Section */}
       <BaseCard title={'Total Metrics'}>

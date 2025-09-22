@@ -23,6 +23,7 @@ export function NavigationBar ({
             onChange={onTabChange}
             items={items.map(item => ({ key: item.key, label: item.label }))}
             className={styles.tabs}
+            centered={true}
           />
         </div>
       )}

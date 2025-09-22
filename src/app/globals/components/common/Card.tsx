@@ -28,7 +28,9 @@ const styles = {
   card: {
     marginBottom: 'var(--spacing-6)',
     borderRadius: 'var(--border-radius-lg)',
+    border: '1px solid var(--color-primary-200',
     boxShadow: 'var(--shadow-sm)',
+    overflow: 'hidden',
     transition: 'box-shadow var(--animation-duration-normal) var(--animation-easing-ease-out)'
   }
 }
