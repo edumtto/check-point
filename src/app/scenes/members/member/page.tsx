@@ -4,11 +4,11 @@ import { Member } from '@/app/globals/models/member'
 import { Button, Descriptions, Result } from 'antd'
 import { formatDateShort } from '@/app/globals/utils/formatUtils'
 
-export default function MemberScene ({
-  onClose
-}: {
+interface MemberSceneProps {
   onClose: () => void
-}): React.JSX.Element {
+}
+
+export default function MemberScene ({ onClose }: MemberSceneProps): React.JSX.Element {
   const member = new Member(
     15,
     'Luan',
