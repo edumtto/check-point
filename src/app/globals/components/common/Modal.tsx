@@ -9,12 +9,12 @@ interface CommonModalProps {
   footer?: React.ReactNode
 }
 
-export function CommonModal({ 
-  title, 
-  open, 
-  onClose, 
-  children, 
-  footer = [] 
+export function CommonModal ({
+  title,
+  open,
+  onClose,
+  children,
+  footer = []
 }: CommonModalProps): JSX.Element {
   return (
     <AntModal
