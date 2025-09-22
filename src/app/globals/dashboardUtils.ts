@@ -1,4 +1,4 @@
-import { Activity, Participant } from './models/activity'
+import { Activity } from './models/activity'
 import { Member } from './models/member'
 
 export interface DashboardMetrics {
@@ -27,10 +27,10 @@ export interface DashboardMetrics {
 }
 
 export class DashboardCalculator {
-  private activities: Activity[]
-  private members: Member[]
+  private readonly activities: Activity[]
+  private readonly members: Member[]
 
-  constructor(activities: Activity[], members: Member[]) {
+  constructor (activities: Activity[], members: Member[]) {
     this.activities = activities
     this.members = members
   }
@@ -44,18 +44,18 @@ export class DashboardCalculator {
     }
   }
 
-  private calculateTotalMetrics() {
+  private calculateTotalMetrics () {
     const totalEnrolled = this.members.length
     const totalClasses = this.activities.length
     const totalParticipants = this.activities.reduce((sum, activity) => sum + activity.participants.length, 0)
     const averageEnrolledPerClass = totalClasses > 0 ? totalParticipants / totalClasses : 0
-    
+
     // Active participation: members who have participated in at least one class in the last month
     const oneMonthAgo = new Date()
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
-    const activeParticipation = this.members.filter(member => 
-      this.activities.some(activity => 
-        activity.startDateTime >= oneMonthAgo && 
+    const activeParticipation = this.members.filter(member =>
+      this.activities.some(activity =>
+        activity.startDateTime >= oneMonthAgo &&
         activity.participants.some(p => p.member.id === member.id)
       )
     ).length
@@ -79,7 +79,7 @@ export class DashboardCalculator {
     }
   }
 
-  private calculateClassMetrics() {
+  private calculateClassMetrics () {
     // Average attendance per week
     const currentWeek = new Date()
     currentWeek.setDate(currentWeek.getDate() - 7)
@@ -98,10 +98,10 @@ export class DashboardCalculator {
     }
   }
 
-  private calculateParticipationMetrics() {
+  private calculateParticipationMetrics () {
     // Calculate how many members are enrolled in multiple classes
     const memberClassCounts = new Map<number, number>()
-    
+
     this.activities.forEach(activity => {
       activity.participants.forEach(participant => {
         const memberId = participant.member.id
@@ -127,7 +127,7 @@ export class DashboardCalculator {
     }
   }
 
-  private getUpcomingClasses(): Activity[] {
+  private getUpcomingClasses (): Activity[] {
     const now = new Date()
     return this.activities
       .filter(activity => activity.startDateTime > now)

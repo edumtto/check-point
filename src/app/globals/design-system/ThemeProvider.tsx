@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useContext, ReactNode } from 'react'
+import React, { createContext, useContext } from 'react'
 import { theme, type Theme } from './tokens'
 
 interface ThemeContextType {
@@ -9,7 +9,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 interface ThemeProviderProps {
-  children: ReactNode
+  children: React.ReactNode
 }
 
 export function ThemeProvider ({ children }: ThemeProviderProps): JSX.Element {
