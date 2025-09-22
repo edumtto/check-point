@@ -19,7 +19,7 @@
     "react": "latest",
     "react-dom": "latest",
     "uuid": "^9.0.1",
-    "vercel": "^34.1.10"
+    "vercel": "^48.1.0"
   },
   "devDependencies": {
     "@types/node": "latest",

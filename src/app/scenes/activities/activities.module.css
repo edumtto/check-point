@@ -1,18 +1,62 @@
 
+.activitiesContainer {
+  padding: var(--spacing-6);
+  background-color: var(--color-surface);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.activitiesTitle {
+  margin-bottom: var(--spacing-6);
+  color: var(--color-primary-500);
+}
+
 .activities__list table {
-  /* background-color: white; */
-  /* border-radius: 8px; */
   border-width: 2px;
-  border-color: black;
+  border-color: var(--color-outline);
 }
 
 .activities__list tr:hover > td {
-  background-color: var(--highlight) !important;
+  background-color: var(--color-primary-50) !important;
   cursor: pointer;
+  transition: background-color var(--animation-duration-fast) var(--animation-easing-ease-out);
 }
 
 .activities__list th {
-  /* font-style: italic !important;
-   */
-   /* font-weight: 900 !important; */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+}
+
+/* Responsive breakpoints for better scaling */
+@media (min-width: 1600px) {
+  .activitiesContainer {
+    padding: var(--spacing-10);
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .activitiesContainer {
+    padding: var(--spacing-8);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .activitiesContainer {
+    padding: var(--spacing-5);
+  }
+}
+
+@media (max-width: 767px) {
+  .activitiesContainer {
+    padding: var(--spacing-3);
+    min-height: auto;
+  }
+  
+  .activitiesTitle {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-4);
+  }
 }

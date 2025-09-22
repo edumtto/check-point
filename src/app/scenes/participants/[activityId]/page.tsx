@@ -4,10 +4,13 @@ import { useRouter } from 'next/navigation'
 import styles from './participants.module.css'
 import type { Participant } from '../../../globals/models/activity'
 import { MainContainerWithTitle } from '../../../globals/components/global-components'
-import { Modal, Table, Statistic, Space, Alert } from 'antd'
+import { Statistic, Space, Alert } from 'antd'
 import CheckinScene from '../../checkin/checkin'
 import { LoginOutlined, LogoutOutlined, TeamOutlined } from '@ant-design/icons'
 import { database } from '../../../globals/database'
+import { CommonModal, DataTable } from '@/app/globals/components/common'
+import { formatTime } from '@/app/globals/utils/formatUtils'
+// import { Heading2, BodySmall } from '@/app/globals/design-system'
 
 export default function ParticipantsScene ({ params }: { params: { activityId: string } }): JSX.Element {
   const router = useRouter()
@@ -59,8 +62,8 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
       return {
         key: p.member.id,
         name: p.member.fullName(),
-        checkInTime: p.checkInDate?.toLocaleTimeString() ?? '',
-        checkOutTime: p.checkOutDate?.toLocaleTimeString() ?? '',
+        checkInTime: p.checkInDate != null ? formatTime(p.checkInDate) : '',
+        checkOutTime: p.checkOutDate != null ? formatTime(p.checkOutDate) : '',
         participant: p
       }
     })
@@ -102,7 +105,7 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
             prefix={<LogoutOutlined className={styles['checkout-icon']} />}
           />
         </Space>
-        <Table
+        <DataTable
           columns={tableColumns}
           dataSource={tableData}
           size='small'
@@ -110,7 +113,7 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
           pagination={{ pageSize: 50 }}
           onRow={(record, rowIndex) => {
             return {
-              onClick: event => { onSelectParticipant(record.participant) }
+              onClick: (_event: any) => { onSelectParticipant(record.participant) }
             }
           }}
         />
@@ -134,15 +137,14 @@ export default function ParticipantsScene ({ params }: { params: { activityId: s
     }
 
     const onClose = function (): void { setSelectedId(undefined) }
-    return <>
-      <Modal
+    return (
+      <CommonModal
         title={participant.member.fullName()}
         open={participant !== undefined}
-        onCancel={onClose}
-        footer={[]}
+        onClose={onClose}
       >
         <CheckinScene participant={participant} onCheck={onClose} />
-      </Modal>
-    </>
+      </CommonModal>
+    )
   }
 }

@@ -2,13 +2,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { type Member } from '../../globals/models/member'
 import { useRouter } from 'next/navigation'
-import { Space, Table, Button, Input, Modal } from 'antd'
+import { Space, Button, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import styles from './members.module.css'
 import { api } from '@/app/globals/api'
 import MemberScene from './member/page'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
+import { CommonModal, DataTable } from '@/app/globals/components/common'
+// import { Heading2 } from '@/app/globals/design-system'
+import { CompactCard } from '@/app/globals/components/common/Card'
 
 export default function MembersScene (): JSX.Element {
   const { members, updateMembers } = useContext(AppContext)
@@ -56,32 +59,40 @@ export default function MembersScene (): JSX.Element {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name'
-      // defaultSortOrder: 'ascend',
-      // sorter: (a: any, b: any) => a.name.localeCompare(b.name),
-      // sortDirections: ['ascend', 'descend', 'ascend']
+      dataIndex: 'name',
+      defaultSortOrder: 'ascend',
+      sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+      sortDirections: ['ascend', 'descend', 'ascend']
     }
   ]
 
   return (
-    <div>
-      <Space size={'large'} style={{ float: 'right', paddingBottom: 8 }}>
+    <div className={styles.membersContainer}>
+      {/* <Heading2 className={styles.membersTitle}>Members</Heading2> */}
+
+      <Space
+        size={'large'}
+        style={{ paddingBottom: '16px', justifyContent: 'space-between', display: 'flex' }}
+      >
+        <Button onClick={() => onAddMember()}>New</Button>
         <Input addonBefore={<SearchOutlined />} onChange={onSearchChange} />
-        <Button onClick={() => onAddMember()}>Add</Button>
       </Space>
-      <Table
-        className={styles.members__list}
-        loading={!isLoaded}
-        size='small'
-        columns={columns}
-        dataSource={items}
-        pagination={{ pageSize: 15 }}
-        onRow={(record, rowIndex) => {
-          return {
-            onClick: event => { setSelectedMember(record.data) }
-          }
-        }}
-      />
+
+      <CompactCard>
+        <DataTable
+          className={styles.members__list}
+          loading={!isLoaded}
+          size='small'
+          columns={columns}
+          dataSource={items}
+          pagination={{ pageSize: 15 }}
+          onRow={(record, rowIndex) => {
+            return {
+              onClick: (_event: any) => { setSelectedMember(record.data) }
+            }
+          }}
+        />
+      </CompactCard>
       {memberScene()}
     </div>
   )
@@ -118,15 +129,14 @@ export default function MembersScene (): JSX.Element {
     //     })
     // }
 
-    return <>
-      <Modal
+    return (
+      <CommonModal
         title={selectedMember.fullName()}
         open={selectedMember !== undefined}
-        onCancel={onClose}
-        footer={[]}
+        onClose={onClose}
       >
-        <MemberScene/>
-      </Modal>
-    </>
+        <MemberScene onClose={onClose}/>
+      </CommonModal>
+    )
   }
 }

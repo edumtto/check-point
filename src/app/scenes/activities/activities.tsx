@@ -3,7 +3,9 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { type Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
-import { Table } from 'antd'
+import { DataTable } from '@/app/globals/components/common'
+import { Heading2 } from '@/app/globals/design-system'
+import { CompactCard } from '@/app/globals/components/common/Card'
 
 export enum ActionType {
   CHECKIN,
@@ -60,19 +62,24 @@ export function ActivitiesScene (
     .sort((a, b) => a.time.localeCompare(b.time))
 
   return (
-    <Table
-      className={styles.activities__list}
-      columns={tableColumns}
-      dataSource={tableData}
-      size='middle'
-      bordered={false}
-      pagination={{ pageSize: 50, position: [] }}
-      onRow={(record, rowIndex) => {
-        return {
-          onClick: event => { handleSelectActivity(record.key) }
-        }
-      }}
-    />
+    <div className={styles.activitiesContainer}>
+      {/* <Heading2 className={styles.activitiesTitle}>Activities</Heading2> */}
+      <CompactCard>
+        <DataTable
+          className={styles.activities__list}
+          columns={tableColumns}
+          dataSource={tableData}
+          size='middle'
+          bordered={false}
+          pagination={{ pageSize: 50, position: [] }}
+          onRow={(record, rowIndex) => {
+            return {
+              onClick: (_event: any) => { handleSelectActivity(record.key) }
+            }
+          }}
+        />
+      </CompactCard>
+    </div>
   )
 
   function handleSelectActivity (activityId: string): void {
