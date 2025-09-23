@@ -16,7 +16,7 @@ import {
 import { AppContext } from '@/app/globals/appContext'
 import { DashboardCalculator } from '@/app/globals/dashboardUtils'
 import { formatCurrency, formatDate } from '@/app/globals/utils/formatUtils'
-import { Heading2, BodySmall } from '@/app/globals/design-system'
+import { BodySmall } from '@/app/globals/design-system'
 import styles from './home.module.css'
 import { BaseCard } from '@/app/globals/components/common/Card'
 

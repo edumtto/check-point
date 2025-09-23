@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'
 import { type Activity } from '../../globals/models/activity'
 import styles from './activities.module.css'
 import { DataTable } from '@/app/globals/components/common'
-import { Heading2 } from '@/app/globals/design-system'
 import { CompactCard } from '@/app/globals/components/common/Card'
 
 export enum ActionType {

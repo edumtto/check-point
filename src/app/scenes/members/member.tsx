@@ -8,7 +8,7 @@ interface MemberSceneProps {
   onClose: () => void
 }
 
-export default function MemberScene ({ onClose }: MemberSceneProps): React.JSX.Element {
+export default function MemberScene (props: MemberSceneProps): React.JSX.Element {
   const member = new Member(
     15,
     'Luan',
@@ -89,7 +89,7 @@ export default function MemberScene ({ onClose }: MemberSceneProps): React.JSX.E
   }
 
   if (isDeleteConfirmed === true) {
-    onClose()
+    props.onClose()
     console.log('close')
   }
 

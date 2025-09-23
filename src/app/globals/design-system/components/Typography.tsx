@@ -19,16 +19,16 @@ export function Heading1 ({ children, className, as: Component = 'h1' }: Typogra
   )
 }
 
-export function Heading2 ({ children, className, as: Component = 'h2' }: TypographyProps): JSX.Element {
-  return (
-    <Component className={cn(
-      'text-3xl font-semibold leading-tight tracking-tight text-on-background',
-      className
-    )}>
-      {children}
-    </Component>
-  )
-}
+// export function Heading2 ({ children, className, as: Component = 'h2' }: TypographyProps): JSX.Element {
+//   return (
+//     <Component className={cn(
+//       'text-3xl font-semibold leading-tight tracking-tight text-on-background',
+//       className
+//     )}>
+//       {children}
+//     </Component>
+//   )
+// }
 
 export function Heading3 ({ children, className, as: Component = 'h3' }: TypographyProps): JSX.Element {
   return (

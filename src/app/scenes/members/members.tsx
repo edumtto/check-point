@@ -6,11 +6,10 @@ import { Space, Button, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import styles from './members.module.css'
 import { api } from '@/app/globals/api'
-import MemberScene from './member/page'
+import MemberScene from './member'
 import { appState } from '@/app/globals/database'
 import { AppContext } from '@/app/globals/appContext'
 import { CommonModal, DataTable } from '@/app/globals/components/common'
-// import { Heading2 } from '@/app/globals/design-system'
 import { CompactCard } from '@/app/globals/components/common/Card'
 
 export default function MembersScene (): JSX.Element {
@@ -23,7 +22,7 @@ export default function MembersScene (): JSX.Element {
 
   useEffect(() => {
     console.log('use effect - Members -- isLoaded: ' + isLoaded + ' ,isFetching: ' + isFetching)
-  }, [])
+  }, [isLoaded, isFetching])
 
   console.log('-- isLoaded: ' + isLoaded + ' ,isFetching: ' + isFetching)
 
@@ -117,7 +116,9 @@ export default function MembersScene (): JSX.Element {
     if (selectedMember === undefined) {
       return <></>
     }
+
     const onClose = function (): void { setSelectedMember(undefined) }
+
     // const onDelete = function (id: number): void {
     //   onClose()
     //   api.deleteMember(id)

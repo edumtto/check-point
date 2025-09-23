@@ -5,7 +5,7 @@ export { ThemeProvider, useTheme } from './ThemeProvider'
 // Typography Components
 export {
   Heading1,
-  Heading2,
+  // Heading2,
   Heading3,
   Heading4,
   Heading5,

@@ -1,5 +1,5 @@
-import { Activity } from './models/activity'
-import { Member } from './models/member'
+import type { Activity } from './models/activity'
+import type { Member } from './models/member'
 
 export interface DashboardMetrics {
   totalMetrics: {
@@ -44,7 +44,7 @@ export class DashboardCalculator {
     }
   }
 
-  private calculateTotalMetrics () {
+  private calculateTotalMetrics (): DashboardMetrics['totalMetrics'] {
     const totalEnrolled = this.members.length
     const totalClasses = this.activities.length
     const totalParticipants = this.activities.reduce((sum, activity) => sum + activity.participants.length, 0)
@@ -79,7 +79,7 @@ export class DashboardCalculator {
     }
   }
 
-  private calculateClassMetrics () {
+  private calculateClassMetrics (): DashboardMetrics['classMetrics'] {
     // Average attendance per week
     const currentWeek = new Date()
     currentWeek.setDate(currentWeek.getDate() - 7)
@@ -98,14 +98,14 @@ export class DashboardCalculator {
     }
   }
 
-  private calculateParticipationMetrics () {
+  private calculateParticipationMetrics (): DashboardMetrics['participationMetrics'] {
     // Calculate how many members are enrolled in multiple classes
     const memberClassCounts = new Map<number, number>()
 
     this.activities.forEach(activity => {
       activity.participants.forEach(participant => {
         const memberId = participant.member.id
-        memberClassCounts.set(memberId, (memberClassCounts.get(memberId) || 0) + 1)
+        memberClassCounts.set(memberId, (memberClassCounts.get(memberId) ?? 0) + 1)
       })
     })
 
