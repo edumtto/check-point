@@ -37,7 +37,12 @@ export function SceneHeader (
 ): JSX.Element {
   if (showBackButton) {
     return <div className={styles.header}>
-      <Button type="primary" shape="circle" icon={<ArrowLeftOutlined />} size="large" onClick={handleBackButtonClick} />
+      <Button
+        type="primary"
+        shape="circle" icon={<ArrowLeftOutlined />}
+        size="large" onClick={handleBackButtonClick}
+        style={{ backgroundColor: 'var(--color-primary-500)' }}
+      />
       <h2 className={styles['header-title']}>{title}</h2>
     </div>
   }
